@@ -1,0 +1,259 @@
+---
+title: "01-Introduction"
+author: "Matthew Salganik"
+date: "2015-02-02 ![Creative Commons License](images/cc-by.png)" 
+output: ioslides_presentation
+---
+
+## Goals
+
+After this class, students will be able to:
+
+- Describe the goals for this course 
+- Explain why this course might be different from what they expected
+- Summarize the expectations we have for them this semester
+
+
+# What is this course?
+
+## What is this course?
+
+Advanced social data analysis not statistics
+
+## Quantitative research
+
+<center><img src="images/data_workflow.png" width="700px"/></center>
+
+Inspiration: Hadley Wickham
+
+## Traditional statistics class
+
+<center><img src="images/data_workflow_traditional_class.png" width="700px"/></center>
+
+## Actual time spent
+
+<center><img src="images/data_workflow_actual.png" width="700px"/></center>
+
+## Goals for this course (short-term)
+
+By the end of the semester, you will be able to:
+
+- Conduct, interpret, and communicate results from analysis using multiple regression (including dummy variables and interactions)
+- Conduct, interpret, and communicate results from analysis using logistic regression (including dummy variables and interactions)
+- Describe the relationship between multiple regression, logistic regression, and then generalized linear model
+- Describe the challenges and opportunities for making causal claims from observational data
+- Write clean, reusable, and reliable R code
+- Feel empowered working with data
+
+## Goals for this course (long-term)
+
+After this course is over, you will be able to:
+
+- Learn new statistics
+- Learn new programing
+
+## My goals
+
+I want this course to be:
+
+- modern
+- active
+- optimized for the long-term, not the short-term
+
+## A note on tone
+
+Regression is:
+
+- Most valuable framework for learning about society, proven its value over many years
+- The worst thing that ever happened to social science; leading us to ask boring questions that we can’t really answer anyway and obsess about the wrong things
+
+# Inspirations for this class
+
+## Inspirations for this class
+
+- data science
+- MOOCs (massively open online courses)
+- open and reproducible research
+
+## data science 
+
+<center>
+<img src="images/Data_Science_VD.png" width="500px">
+</center>
+
+http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram
+
+##
+
+<center>
+<img src="images/john_henry.jpg" width="650px">
+</center>
+
+http://commons.wikimedia.org/wiki/File:John_Henry-27527.jpg
+
+## 
+
+By the time you are on the job market, computers will be 10x faster than they are now.  The trick is ride this wave rather than getting crushed by it.
+
+In a race against the machine you will lose.
+
+
+## MOOCs
+
+- use the great educational materials that exist
+- curation vs creation
+- contribute to the commons
+
+## open and reproducible research
+
+- you will be able to reproduce your own work
+- you will be comfortable having your work seen by others
+- we will use tools that available to everyone in the world
+
+# tools
+
+## tools
+
+- R
+- RStudio
+- RMarkdown
+- dplyr
+- ggplot2
+- tidyr
+- magritrr
+- git
+- github
+
+all either free or open-source (or both)
+
+## tools
+
+Better tools mean qualitatively different research, not just the same thing faster
+
+Typewriter vs computer
+
+# Expectations
+
+## 
+
+Three main things you have to do:
+ 
+- prepare for class by reading
+- do your weekly homeworks
+- finish the replication project
+
+## This is what the course should feel like
+
+<center>
+<img src="images/bike_racing.jpg" width="700px">
+</center>
+
+https://www.flickr.com/photos/gasmith/3738239220/
+
+## Collaboration
+
+- Work together.
+- Ask your questions on Piazza.
+- Use stackoverflow.
+
+But, absolutely positively **don't copy and paste your code**.
+
+## 
+
+What is the right mental model for this class?
+
+- Burger King Model
+- Medical Model
+
+Metaphor due to Neil Postman (I think)
+
+## 
+
+What is your computing situation?
+
+- How many have laptops? Windows, Mac, Linux?
+- How many need accounts on Lotka?
+
+## Class logistics
+
+- Sunday at midnight (or before): Homework posted to github
+- Monday, 1:30 - 3:00 meet in Wallace 165
+- Monday, 3:00 - 5:00 meet in Stokes Library Computer lab
+- Wednesday, 1:30 - 3:00 meet in Wallace 165
+- Thursday at midnight, submit homework through github
+
+Because form follows function, the ratio of class time to lab time will vary from week-to-week
+
+## Laptop policy
+
+No laptops, unless we are in the computer lab
+
+- slides will be avaiable
+- hard to take notes on technical material on laptop
+- creates "second-hand smoke"
+- see Shirky: [Why I Just Asked My Students To Put Their Laptops Away](https://medium.com/@cshirky/why-i-just-asked-my-students-to-put-their-laptops-away-7f5f7c50f368)
+
+## Reading
+
+- You *must* read the assigned material *before* class
+- I will *not* summarize the reading for you
+- In class we will build on the readings
+
+## Honest talk
+
+- Some of you might not think you can learn this material
+- Some of you might not want to learn this material
+- Learning is hard; we will all struggle in this class
+
+## 
+
+Questions about expectations?
+
+# First lab
+
+## First lab
+
+<center>
+<img src="images/data_workflow.png" width="700px">
+</center>
+
+## First lab
+
+You will have time to work on your homework, and you will submit your homework in R Markdown.
+
+## R Markdown vs. what you have done before
+
+![Comparing traditional model and R Markdown](images/baumer_R_2014_fig4.png)
+
+[Baumer et al (2014)](http://arxiv.org/abs/1402.1894)
+
+R Markdown uses source - output paradigm (not WYSIWYG)
+
+## What is R Markdown?
+
+<img src="images/rmarkdown.png" width="700px">
+
+[RStudio RMarkdown documentation](http://rmarkdown.rstudio.com/)
+
+How many of you read and write LaTeX? HTML?
+
+## R Markdown
+
+In case you want to learn more, note that this workflow also involves 
+
+- [knitr](http://yihui.name/knitr/): "Elegant, flexible and fast dynamic report generation with R"
+- [pandoc](http://johnmacfarlane.net/pandoc/): "If you need to convert files from one markup format into another, pandoc is your swiss-army knife."
+
+## Automation: R Markdown
+
+Why R Markdown?
+
+- enables automation
+- relatively easy to learn
+- gets you into a modern eco-system
+
+## 
+
+To the lab
+
+
