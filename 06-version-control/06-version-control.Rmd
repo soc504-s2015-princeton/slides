@@ -1,0 +1,44 @@
+---
+title: "Version control <br /> with git and github"
+author: "Matthew Salganik"
+date: "2015-02-11 ![Creative Commons Attribution License](images/cc-by.png)"
+output: ioslides_presentation
+---
+
+
+## 
+
+Why are we doing this?
+
+How many people recognize the date name system?
+
+Do you think they use that system at Google?
+
+
+## git
+
+History is important to understand why it works like this
+
+- developed to enable development of Linux kernel
+- very decentralized (and democratic)
+- you can committ without being connected to the internet
+- for our purposes: local copy and github copy
+
+## git
+
+http://www.phdcomics.com/comics/archive.php?comicid=1531
+
+##
+
+- not file model, but content model 
+- matches RStudio project 
+
+## github
+
+- by using github we are not being total decentralized
+
+ 
+## fork, change, pull request
+
+dplyr -> fork, change, pull request
+
