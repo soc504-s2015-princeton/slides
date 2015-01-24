@@ -1,0 +1,159 @@
+country,pop2012,imr,tfr,le,leM,leF,region,area
+Algeria,37.4,24,2.9,73,72,75,Northern Africa,Africa
+Egypt,82.3,24,2.9,72,70,74,Northern Africa,Africa
+Libya,6.5,14,2.6,75,72,77,Northern Africa,Africa
+Morocco,32.6,30,2.3,72,70,74,Northern Africa,Africa
+South Sudan,9.4,101,5.4,52,50,53,Northern Africa,Africa
+Sudan,33.5,67,4.2,60,58,62,Northern Africa,Africa
+Tunisia,10.8,20,2.1,75,73,77,Northern Africa,Africa
+Benin,9.4,81,5.4,56,54,58,Western Africa,Africa
+Burkina Faso,17.5,65,6,55,54,56,Western Africa,Africa
+Cote d'Ivoire,20.6,73,4.6,55,54,56,Western Africa,Africa
+Gambia,1.8,70,4.9,58,57,59,Western Africa,Africa
+Ghana,25.5,47,4.2,64,63,65,Western Africa,Africa
+Guinea,11.5,89,5.2,54,52,55,Western Africa,Africa
+Guinea-Bissau,1.6,103,5.1,48,47,50,Western Africa,Africa
+Liberia,4.2,83,5.4,56,55,57,Western Africa,Africa
+Mali,16,97,6.3,51,50,52,Western Africa,Africa
+Mauritania,3.6,74,4.5,58,57,60,Western Africa,Africa
+Niger,16.3,81,7.1,58,56,60,Western Africa,Africa
+Nigeria,170.1,77,5.6,51,48,54,Western Africa,Africa
+Senegal,13.1,47,5,58,57,59,Western Africa,Africa
+Sierra Leone,6.1,109,5,47,47,48,Western Africa,Africa
+Togo,6,78,4.7,62,60,65,Western Africa,Africa
+Burundi,10.6,63,6.4,58,57,60,Eastern Africa,Africa
+Eritrea,5.6,51,4.5,61,59,63,Eastern Africa,Africa
+Ethiopia,87,59,4.8,59,57,60,Eastern Africa,Africa
+Kenya,43,47,4.4,62,60,63,Eastern Africa,Africa
+Madagascar,21.9,43,4.7,66,65,68,Eastern Africa,Africa
+Malawi,15.9,66,5.7,53,53,53,Eastern Africa,Africa
+Mauritius,1.3,13,1.4,73,70,77,Eastern Africa,Africa
+Mozambique,23.7,86,5.9,52,50,54,Eastern Africa,Africa
+Rwanda,10.8,50,4.6,54,53,55,Eastern Africa,Africa
+Somalia,10.1,107,6.4,50,48,52,Eastern Africa,Africa
+Tanzania,47.7,51,5.4,57,56,58,Eastern Africa,Africa
+Uganda,35.6,54,6.2,53,53,54,Eastern Africa,Africa
+Zambia,13.7,88,6.3,48,48,49,Eastern Africa,Africa
+Zimbabwe,12.6,57,4.1,48,48,47,Eastern Africa,Africa
+Angola,20.9,64,6.3,54,53,55,Middle Africa,Africa
+Cameroon,20.9,62,5.1,51,50,52,Middle Africa,Africa
+Central African Republic,4.6,101,4.6,48,46,49,Middle Africa,Africa
+Chad,11.8,128,6,49,48,51,Middle Africa,Africa
+Congo,4.2,70,5.1,57,56,58,Middle Africa,Africa
+Congo: Dem. Rep.,69.1,115,6.3,48,47,50,Middle Africa,Africa
+Gabon,1.6,47,3.3,62,61,63,Middle Africa,Africa
+Botswana,1.9,44,2.8,51,52,50,Southern Africa,Africa
+Lesotho,2.2,80,3.2,48,48,47,Southern Africa,Africa
+Namibia,2.4,34,3.3,62,61,62,Southern Africa,Africa
+South Africa,51.1,38,2.4,54,55,54,Southern Africa,Africa
+Swaziland,1.2,70,3.5,48,49,48,Southern Africa,Africa
+Canada,34.9,5,1.7,81,79,83,Northern America,Americas
+United States,313.9,6,1.9,79,76,81,Northern America,Americas
+Costa Rica,4.5,9,1.8,79,77,82,Central America,Americas
+El Salvador,6.3,20,2.3,72,67,77,Central America,Americas
+Guatemala,15,30,3.6,71,67,74,Central America,Americas
+Honduras,8.4,26,3.2,73,71,75,Central America,Americas
+Mexico,116.1,15,2.3,77,74,79,Central America,Americas
+Nicaragua,6,20,2.6,74,71,77,Central America,Americas
+Panama,3.6,17,2.4,76,73,80,Central America,Americas
+Cuba,11.2,5,1.7,78,76,80,Caribbean,Americas
+Dominican Republic,10.1,27,2.6,73,70,76,Caribbean,Americas
+Haiti,10.3,61,3.4,62,61,63,Caribbean,Americas
+Jamaica,2.7,23,2.1,73,70,76,Caribbean,Americas
+Puerto Rico,3.7,9,1.6,79,75,83,Caribbean,Americas
+Trinidad and Tobago,1.3,29,1.8,71,68,74,Caribbean,Americas
+Argentina,40.8,12,2.4,76,72,80,South America,Americas
+Bolivia,10.8,42,3.3,67,65,69,South America,Americas
+Brazil,194.3,20,1.9,74,70,77,South America,Americas
+Chile,17.4,8,1.9,79,75,82,South America,Americas
+Colombia,47.4,16,2.1,73,70,77,South America,Americas
+Ecuador,14.9,20,2.5,75,73,79,South America,Americas
+Paraguay,6.7,30,3,72,70,74,South America,Americas
+Peru,30.1,16,2.6,74,71,76,South America,Americas
+Uruguay,3.4,11,2,76,73,80,South America,Americas
+Venezuela,29.7,16,2.5,74,71,77,South America,Americas
+Armenia,3.3,11,1.7,74,71,77,Western Asia,Asia/Oceania
+Azerbaijan,9.3,11,2.3,74,71,76,Western Asia,Asia/Oceania
+Bahrain,1.3,11,1.9,78,76,80,Western Asia,Asia/Oceania
+Cyprus,1.2,3,1.4,78,76,81,Western Asia,Asia/Oceania
+Georgia,4.5,12,1.7,74,70,79,Western Asia,Asia/Oceania
+Iraq,33.7,33,4.6,70,66,72,Western Asia,Asia/Oceania
+Israel,7.9,3,3,82,80,83,Western Asia,Asia/Oceania
+Jordan,6.3,23,3.8,73,72,74,Western Asia,Asia/Oceania
+Kuwait,2.9,8,2.3,75,74,76,Western Asia,Asia/Oceania
+Lebanon,4.3,21,1.9,72,70,75,Western Asia,Asia/Oceania
+Oman,3.1,16,2.9,74,72,76,Western Asia,Asia/Oceania
+Palestinian Territory,4.3,21,4.4,73,71,74,Western Asia,Asia/Oceania
+Qatar,1.9,7,2.1,78,78,79,Western Asia,Asia/Oceania
+Saudi Arabia,28.7,17,2.8,74,73,75,Western Asia,Asia/Oceania
+Syria,22.5,16,3,74,71,77,Western Asia,Asia/Oceania
+Turkey,74.9,22,2,73,71,76,Western Asia,Asia/Oceania
+United Arab Emirates,8.1,7,1.8,76,76,78,Western Asia,Asia/Oceania
+Yemen,25.6,48,5.2,65,64,67,Western Asia,Asia/Oceania
+Afghanistan,33.4,129,6.2,49,48,49,South Central Asia,Asia/Oceania
+Bangladesh,152.9,43,2.3,69,68,69,South Central Asia,Asia/Oceania
+India,1259.7,47,2.5,65,64,67,South Central Asia,Asia/Oceania
+Iran,78.9,43,1.9,70,68,71,South Central Asia,Asia/Oceania
+Kazakhstan,16.8,17,2.6,69,64,74,South Central Asia,Asia/Oceania
+Kyrgyzstan,5.7,25,2.6,69,65,73,South Central Asia,Asia/Oceania
+Nepal,30.9,46,2.6,68,68,69,South Central Asia,Asia/Oceania
+Pakistan,180.4,68,3.5,65,64,66,South Central Asia,Asia/Oceania
+Sri Lanka,21.2,12,2.2,75,72,78,South Central Asia,Asia/Oceania
+Tajikistan,7.1,53,3.3,73,70,75,South Central Asia,Asia/Oceania
+Turkmenistan,5.2,49,2.4,65,61,69,South Central Asia,Asia/Oceania
+Uzbekistan,29.8,46,2.6,68,65,71,South Central Asia,Asia/Oceania
+Cambodia,15,57,3,62,60,65,Southeast Asia,Asia/Oceania
+Indonesia,241,29,2.3,72,70,74,Southeast Asia,Asia/Oceania
+Laos,6.5,57,3.5,65,64,67,Southeast Asia,Asia/Oceania
+Malaysia,29,7,2.6,74,72,77,Southeast Asia,Asia/Oceania
+Myanmar,54.6,51,2.3,65,61,67,Southeast Asia,Asia/Oceania
+Philippines,96.2,22,3.2,69,65,72,Southeast Asia,Asia/Oceania
+Singapore,5.3,2,1.2,82,79,84,Southeast Asia,Asia/Oceania
+Thailand,69.9,12,1.6,74,71,77,Southeast Asia,Asia/Oceania
+Timor-Leste,1.1,45,5.7,62,61,63,Southeast Asia,Asia/Oceania
+Vietnam,89,16,2,73,70,76,Southeast Asia,Asia/Oceania
+China,1350.4,17,1.5,75,73,77,East Asia,Asia/Oceania
+Japan,127.6,2,1.4,83,80,86,East Asia,Asia/Oceania
+Korea: North,24.6,28,2,69,65,73,East Asia,Asia/Oceania
+Korea: South,48.9,3,1.2,81,77,84,East Asia,Asia/Oceania
+Mongolia,2.9,39,2.5,68,64,72,East Asia,Asia/Oceania
+Taiwan,23.3,4,1.1,79,76,83,East Asia,Asia/Oceania
+Denmark,5.6,4,1.8,79,77,82,Northern Europe,Europe
+Estonia,1.3,3,1.5,76,71,81,Northern Europe,Europe
+Finland,5.4,2,1.8,80,77,84,Northern Europe,Europe
+Ireland,4.7,4,2.1,79,77,82,Northern Europe,Europe
+Latvia,2,6,1.1,74,69,78,Northern Europe,Europe
+Lithuania,3.2,4,1.5,73,68,79,Northern Europe,Europe
+Norway,5,2,1.9,81,79,84,Northern Europe,Europe
+Sweden,9.5,2,1.9,82,80,84,Northern Europe,Europe
+United Kingdom,63.2,4,2,80,78,82,Northern Europe,Europe
+Austria,8.5,4,1.4,81,78,83,Western Europe,Europe
+Belgium,11.1,4,1.8,80,78,83,Western Europe,Europe
+France,63.6,4,2,82,78,85,Western Europe,Europe
+Germany,81.8,3,1.4,80,78,83,Western Europe,Europe
+Netherlands,16.7,4,1.7,81,79,83,Western Europe,Europe
+Switzerland,8,4,1.5,82,80,85,Western Europe,Europe
+Belarus,9.5,4,1.5,70,65,77,Eastern Europe,Europe
+Bulgaria,7.2,9,1.5,74,70,77,Eastern Europe,Europe
+Czech Republic,10.5,3,1.4,78,75,81,Eastern Europe,Europe
+Hungary,9.9,5,1.2,74,71,78,Eastern Europe,Europe
+Moldova,4.1,11,1.3,69,65,73,Eastern Europe,Europe
+Poland,38.2,5,1.3,76,72,81,Eastern Europe,Europe
+Romania,21.4,10,1.3,73,70,77,Eastern Europe,Europe
+Russia,143.2,8,1.6,69,63,75,Eastern Europe,Europe
+Slovakia,5.4,5,1.4,75,72,79,Eastern Europe,Europe
+Ukraine,45.6,9,1.5,70,65,76,Eastern Europe,Europe
+Albania,2.8,18,1.4,75,73,78,Southern Europe,Europe
+Bosnia-Herzegovina,3.8,5,1.2,76,73,78,Southern Europe,Europe
+Croatia,4.3,4,1.5,77,74,80,Southern Europe,Europe
+Greece,10.8,4,1.5,80,78,82,Southern Europe,Europe
+Italy,60.9,3,1.4,82,79,85,Southern Europe,Europe
+Kosovo,2.3,9,2,69,67,71,Southern Europe,Europe
+Macedonia,2.1,8,1.5,72,70,74,Southern Europe,Europe
+Portugal,10.6,3,1.3,79,76,82,Southern Europe,Europe
+Serbia,7.1,7,1.3,74,71,77,Southern Europe,Europe
+Slovenia,2.1,3,1.5,80,76,83,Southern Europe,Europe
+Spain,46.2,3,1.4,82,79,85,Southern Europe,Europe
+Australia,22,4,1.9,82,80,84,Oceania,Asia/Oceania
+New Zealand,4.4,5,2.1,81,79,83,Oceania,Asia/Oceania
+Papua New Guinea,7,47,4.1,62,60,65,Oceania,Asia/Oceania
