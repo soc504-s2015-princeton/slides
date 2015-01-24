@@ -1,0 +1,21 @@
+---
+title: "05-lab-visualization with ggplot2"
+author: "Angela Dixon"
+date: "2015-02-11 ![Creative Commons License](images/cc-by.png)"
+output: ioslides_presentation
+---
+
+## 
+
+At the end of this lab students will be able to:
+
+- quickly create simple graphs with ggplot2
+- fine tune graphs after spending some time searching on the internet
+
+##
+
+Here are some examples of graphs that you can make with ggplot2
+
+## 
+
+Goal check
