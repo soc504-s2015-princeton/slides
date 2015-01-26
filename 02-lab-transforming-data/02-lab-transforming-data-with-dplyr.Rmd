@@ -159,11 +159,23 @@ Create table with players with one or more red cards.
 filter(soccer.data, red.cards > 0)
 ```
 
-add multiple choice problems?
+## filter() with soccer data {.build}
+
+Create a table with players who played for FC Barcelona, Manchester United, or Real Madrid  
+```{r}
+filter(soccer.data, club %in% c("FC Barcelona", "Manchester United", "Real Madrid"))
+```
 
 ## filter() with soccer data {.build}
 
-MORE PROBLEMS HERE
+How many players play Center Back and are over 198cm (6'5'') in height?  
+
+* A. 225
+* B. 7761
+* C. 22763
+```{r}
+filter(soccer.data, position == "Center Back", height > 198)
+```
 
 # select()
 
