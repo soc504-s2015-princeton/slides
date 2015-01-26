@@ -168,7 +168,7 @@ filter(soccer.data, club %in% c("FC Barcelona", "Manchester United", "Real Madri
 
 ## filter() with soccer data {.build}
 
-How many players play Center Back and are over 198cm (6'5'') in height?  
+How many rows are in a table of players who play Center Back and are over 198cm (6'5'') in height?  
 
 * A. 225
 * B. 7761
@@ -191,7 +191,33 @@ filter(soccer.data, position == "Center Back", height > 198)
 
 ## select() with soccer data {.build}
 
-MORE PROBLEMS HERE
+Return a copy of soccer.data with the columns related to victories, ties, and defeats
+```{r}
+select(soccer.data, victories, ties, defeats)
+```
+
+
+## select() with soccer data {.build}
+
+Return a copy of soccer.data that contains columns "games"" up to "red.cards". 
+```{r}
+select(soccer.data, games:red.cards)
+```
+
+## select() with soccer data {.build}
+
+What is the most concise way to select: columns "player.short up"" to and including "goals"", columns "ref.num"" up to and including "se.exp".  
+```{r}
+select(soccer.data, -(yellow.cards:rater2))
+```
+
+
+## select() with soccer data {.build}
+
+Return a copy of soccer.data that contains all variables related to the referees
+```{r}
+select(soccer.data, ref.num, ref.country, ref.country.alpha)
+```
 
 ## select() helper functions
 
@@ -205,7 +231,18 @@ Also, lots of helper functions
 
 ## select() with soccer data {.build}
 
-MORE PROBLEMS HERE
+Answer the previous question using a helper function 
+```{r}
+select(soccer.data, contains("ref"))
+```
+
+## select() with soccer data {.build}
+
+Or
+```{r}
+select(soccer.data, starts_with("ref"))
+```
+
 
 # arrange()
 
