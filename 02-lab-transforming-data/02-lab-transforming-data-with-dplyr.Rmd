@@ -192,7 +192,7 @@ filter(soccer.data, position == "Center Back", height > 198)
 
 ## select() with soccer data {.build}
 
-Return a copy of soccer.data with the columns related to victories, ties, and defeats
+Return a copy of soccer.data with the columns related to wins, losses, and ties
 ```{r}
 select(soccer.data, victories, ties, defeats)
 ```
