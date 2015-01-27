@@ -163,7 +163,8 @@ filter(soccer.data, red.cards > 0)
 
 Create a table with players who played for FC Barcelona, Manchester United, or Real Madrid  
 ```{r}
-filter(soccer.data, club %in% c("FC Barcelona", "Manchester United", "Real Madrid"))
+filter(soccer.data, club %in%
+         c("FC Barcelona", "Manchester United", "Real Madrid"))
 ```
 
 ## filter() with soccer data {.build}
@@ -231,7 +232,7 @@ Also, lots of helper functions
 
 ## select() with soccer data {.build}
 
-Answer the previous question using a helper function 
+Answer the previous question (return a copy of soccer.data that contains all variables related to the referees) using a helper function 
 ```{r}
 select(soccer.data, contains("ref"))
 ```
@@ -258,7 +259,17 @@ select(soccer.data, starts_with("ref"))
 
 ## arrange() with soccer data {.build}
 
-MORE PROBLEMS HERE
+Arrange according to height
+```{r}
+arrange(soccer.data, height)
+```
+
+## arrange() with soccer data {.build}
+
+Arrange according to height and decreasing weight
+```{r}
+arrange(soccer.data, height, desc(weight)) 
+```
 
 # mutate()
 
@@ -274,11 +285,18 @@ MORE PROBLEMS HERE
 
 ## mutate() with soccer data {.build}
 
-MORE PROBLEMS HERE
+Add a new variable total.cards based on red and yellow cards received 
+```{r}
+mutate(soccer.data, total.cards = yellow.cards + red.cards)
+```
 
-One should be to create mean rating
+## mutate() with soccer data {.build}
 
-But watch out for missing data!
+Add a new variable of the mean skin color rating (watch out for missing values!)
+```{r}
+no.missing <- filter(soccer.data, !(is.na(rater1) | is.na(rater2)))
+mutate(no.missing, skin.color = (rater1 + rater2) / 2)  
+```
 
 # summarise()
 
@@ -312,7 +330,7 @@ You can use functions that take vector, return number ("Aggregate functions").  
 <center><img src="images/wickham_dplyr_2014_summarise_group_by1.jpg"
   width="600px"/></center>
 
-## summarise() + group_by w. soccer data {.build}
+## summarise() + group_by w/ soccer data {.build}
 
 How many red cards are there in each league?
 ```{r}
@@ -320,7 +338,7 @@ by_league <- group_by(soccer.data, league.country)
 summarise(by_league, total.red=sum(red.cards))
 ```
 
-## summarise() + group_by w. soccer data {.build}
+## summarise() + group_by w/ soccer data {.build}
 
 How many red cards and how many games are there in each league?
 ```{r}
@@ -328,7 +346,7 @@ by_league <- group_by(soccer.data, league.country)
 summarise(by_league, total.red=sum(red.cards), total.games=sum(games))
 ```
 
-## summarise() + group_by w. soccer data {.build}
+## summarise() + group_by w/ soccer data {.build}
 
 How many players are there in the dataset?
 ```{r}
@@ -336,9 +354,13 @@ by_player <- group_by(soccer.data, player.short)
 summarise(by_player, count=n_distinct(player.short))
 ```
 
-## summarise() + group_by w. soccer data {.build}
+## summarise() + group_by w/ soccer data {.build}
 
-MORE PROBLEMS HERE
+Maximum number of red cards by club?
+```{r}
+by_club <- group_by(soccer.data, club)
+summarise(by_club, max.red = max(red.cards))
+```
 
 # pipes
 
@@ -356,7 +378,28 @@ soccer.data %>%
 
 ## pipes with soccer data {.build}
 
-MORE PROBLEMS HERE
+Which English club had the greatest total number of victories? 
+
+* A. Everton FC 
+* B. Liverpool FC
+* C. Manchester City
+```{r}
+soccer.data %>%
+  group_by(club) %>%
+  filter(league.country == "England") %>%
+  summarise(total.victories = sum(victories)) %>%
+  arrange(desc(total.victories))
+
+```
+
+## pipes with soccer data {.build}
+
+Find the average height by each country
+```{r}
+soccer.data %>% 
+  group_by(league.country) %>%
+  summarise(country.height = mean(height, na.rm = T))
+```
 
 ## pipes with soccer data { .smaller .build }
 
