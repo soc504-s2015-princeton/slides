@@ -291,7 +291,7 @@ mutate(soccer.data, total.cards = yellow.cards + red.cards)
 
 Add a new variable of the mean skin color rating (watch out for missing values!)
 ```{r}
-no.missing <- filter(soccer.data, !(is.na(rater1) | is.na(rater2)))
+no.missing <- filter(soccer.data, !(is.na(rater1)), !(is.na(rater2)))
 mutate(no.missing, skin.color = (rater1 + rater2) / 2)  
 ```
 
