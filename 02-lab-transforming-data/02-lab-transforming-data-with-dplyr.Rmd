@@ -169,14 +169,11 @@ filter(soccer.data, club %in%
 
 ## filter() with soccer data {.build}
 
-How many rows are in a table of players who play Center Back and are over 198cm (6'5'') in height?  
-
-* A. 225
-* B. 7761
-* C. 22763
+How many player-referee pairs are there where there is no missing data for the player's skin color?
 ```{r}
-filter(soccer.data, position == "Center Back", height > 198)
+filter(soccer.data, !is.na(rater1), !is.na(rater2))
 ```
+
 
 # select()
 
