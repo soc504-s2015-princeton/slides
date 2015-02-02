@@ -1,7 +1,7 @@
 ---
 title: "Transforming data with dplyr"
 author: "Angela Dixon"
-date: "2015-02-04 ![Creative Commons License](images/cc-by.png)" 
+date: "2015-02-04 ![Creative Commons License](images/cc-by.png)"
 output: ioslides_presentation
 ---
 
@@ -43,7 +43,7 @@ source: https://www.flickr.com/photos/aussiegold/4729935987/
 
 - We are going to try to address without regression or statistical tests
 
-## Getting set-up
+## Getting set-up {.smaller}
 
 Load data:
 ```{r load.data}
@@ -52,6 +52,7 @@ load(url("http://www.princeton.edu/~mjs3/soc504_s2015/CrowdstormingDataJuly1st.R
 
 Load dplyr:
 ```{r load.dplyr}
+# install.packages("dplyr") # You will need to do this the first time on your own machines.
 suppressPackageStartupMessages(library(dplyr))
 ```
 
@@ -138,7 +139,7 @@ source: https://www.flickr.com/photos/bdesham/2432400623/
 <center><img src="images/wickham_dplyr_2014_filter2.jpg"
   width="600px"/></center>
 
-## filter() with soccer data {.build}
+## filter() with soccer data
 
 Create table with only the games from the Spanish League. Note that this does not change soccer.data
 
@@ -154,7 +155,7 @@ filter(soccer.data, league.country=="Spain")
 
 ## filter() with soccer data {.build}
 
-Create table with players with one or more red cards.
+Create table with player-referee pairs where one or more red cards were given.
 ```{r}
 filter(soccer.data, red.cards > 0)
 ```
@@ -170,8 +171,9 @@ filter(soccer.data, club %in%
 ## filter() with soccer data {.build}
 
 How many player-referee pairs are there where there is no missing data for the player's skin color?
+
 ```{r}
-filter(soccer.data, !is.na(rater1), !is.na(rater2))
+ filter(soccer.data, !is.na(rater1), !is.na(rater2))
 ```
 
 
@@ -197,14 +199,14 @@ select(soccer.data, victories, ties, defeats)
 
 ## select() with soccer data {.build}
 
-Return a copy of soccer.data that contains columns "games"" up to "red.cards". 
+Return a copy of soccer.data that contains columns "games"" up to and including "red.cards". 
 ```{r}
 select(soccer.data, games:red.cards)
 ```
 
 ## select() with soccer data {.build}
 
-What is the most concise way to select: columns "player.short up"" to and including "goals"", columns "ref.num"" up to and including "se.exp".  
+What is the most concise way to select: columns "player.short" up to and including "goals", columns "ref.num" up to and including "se.exp".  
 ```{r}
 select(soccer.data, -(yellow.cards:rater2))
 ```
@@ -365,12 +367,21 @@ summarise(by_club, max.red = max(red.cards))
 
 - the 5 verbs can be combined using a the pipe operator %>%
 - as you will see, pipes turn out to be awesome!
-- prononce %>% as *then*
+- pronounce %>% as *then*
 - For example:
 ```{r eval=FALSE}
 soccer.data %>% 
   group_by(player.short) %>%
   summarise(count=n_distinct(player.short))
+``` 
+
+## pipes with soccer data {.build}
+
+Find the average height by each country  
+```{r}
+soccer.data %>% 
+  group_by(league.country) %>%
+  summarise(country.height = mean(height, na.rm = T))
 ```
 
 ## pipes with soccer data {.build}
@@ -379,7 +390,7 @@ Which English club had the greatest total number of victories?
 
 * A. Everton FC 
 * B. Liverpool FC
-* C. Manchester City
+* C. Manchester City  
 ```{r}
 soccer.data %>%
   group_by(club) %>%
@@ -389,18 +400,9 @@ soccer.data %>%
 
 ```
 
-## pipes with soccer data {.build}
-
-Find the average height by each country
-```{r}
-soccer.data %>% 
-  group_by(league.country) %>%
-  summarise(country.height = mean(height, na.rm = T))
-```
-
 ## pipes with soccer data { .smaller .build }
 
-Are soccer referees more likely to give red cards to dark skin toned players than light skin toned players?
+Are soccer referees more likely to give red cards to dark skin toned players than light skin toned players?  
 
 ```{r}
 soccer.data %>%
@@ -412,7 +414,7 @@ soccer.data %>%
 ```
 
 
-## pipes in general {.build}
+## pipes in general
 
 - can use them everywhere, not just with dplyr
 - x %>% f(y) -> f(x, y)
