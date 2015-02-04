@@ -70,6 +70,8 @@ available data and programming files to determine a possible computational error
 
 ## Research pipeline
 
+<center><img src="images/research_pipeline.png" width="600px"/></center>
+
 ## 
 
 Gentzkow and Shapiro:
@@ -113,6 +115,12 @@ Costs-and-benefits of automation
 - the short-term
 - the long-term
 
+## 
+
+> "The easy way is efficacious and speedy, the hard way arduous and long. But, as the clock ticks, the easy way becomes harder and the hard way becomes easier. And as the calendar records the years, it becomes increasingly evident that the easy way rests hazardously upon shifting sands, whereas the hard way builds solidly a foundation of confidence that cannot be swept away." 
+
+-- Harland Sanders
+
 ## Automation
 
 questions about automation
@@ -131,7 +139,7 @@ Do you think they use that system at Google?
 
 We will use git and github.  
 
-- Sign up for Hadley Wickham webinar
+- Sign up for [Hadley Wickham webinar](http://pages.rstudio.net/Webinar---February-2015_Registration.html)
 - Will cover next Wednesday
 
 # Directories
@@ -187,7 +195,7 @@ We will build up some concepts so that you can understand this idea, then we wil
 *Keys* are really important:
 
 - primary keys uniquely define rows
-- primary keys can be simple (one column) or compond (more than one column)
+- primary keys can be simple (one column) or compound (more than one column)
 - primary keys must be defined for each row
 
 ## Keys { .build }
@@ -222,8 +230,6 @@ Intuition and examples from:
 
 ## First normal form { .build }
 
-First normal form requires that
-
 - the columns in a table must be atomic
 - there should be no duplicative columns
 - every table must have a primary key
@@ -232,12 +238,10 @@ book_table ( title [PK], authors)
 
 title                          authors
 -----------------------------  -----------------------
-Slinky Malinki                 Lynley Dodd
-My Cat Likes to Hide in Boxes  Eve Sutton, Lynley Dodd
+Das Kapital                    Karl Marx
+The Communist Manefesto        Karl Marx, Friedrich Engels 
 
 ## First normal form { .build }
-
-First normal form requires that
 
 - the columns in a table must be atomic
 - there should be no duplicative columns
@@ -247,12 +251,10 @@ book_table ( title [PK], author1, author2)
 
 title                          author1      author2
 -----------------------------  -----------  -----------
-Slinky Malinki                 Lynley Dodd  NULL
-My Cat Likes to Hide in Boxes  Eve Sutton   Lynley Dodd
+Das Kapital                    Karl Marx    NULL
+The Communist Manesto          Karl Marx    Friedrich Engels
 
 ## First normal form { .build }
-
-First normal form requires that
 
 - the columns in a table must be atomic
 - there should be no duplicative columns
@@ -262,30 +264,27 @@ book_table (title [PK], author)
 
 title                          author
 -----------------------------  ----------- 
-Slinky Malinki                 Lynley Dodd 
-My Cat Likes to Hide in Boxes  Eve Sutton  
-My Cat Likes to Hide in Boxes  Lynley Dodd
+Das Kapital                    Karl Marx 
+The Communist Manefesto        Karl Marx  
+The Communist Manefesto        Friedrich Engels
 
 ## First normal form { .build }
-
-First normal form requires that
 
 - the columns in a table must be atomic
 - there should be no duplicative columns
 - every table must have a primary key
 
-book_table (ISBN [PK], title, author)
+book_table (ISBN [PK], title, author [PK])
 
-ISBN        title                          author     
-----------  -----------------------------  -----------
-0908606664  Slinky Malinki                 Lynley Dodd
-0908606273  My Cat Likes to Hide in Boxes  Lynley Dodd
-0908606273  My Cat Likes to Hide in Boxes  Eve Sutton
+ISBN            title                              author     
+--------------  -----------------------------  ---------------------
+9783520064073     Das Kaptial                       Karl Marx
+9789875742925     The Communist Manifesto           Karl Marx
+9789875742925     The Communist Manifesto           Friedrich Engels
 
+Note that even though this is first normal form, it is not a great solution so let's keep going
 
 ## Second normal form { .build }
-
-Second normal form requires that:
 
 - a table must be in first normal form
 - all columns in the table must relate to the entire primary key
@@ -294,48 +293,74 @@ Formalizes the idea that there should be a table for each entity in the data set
 
 ##  Second normal form { .build }
 
-Second normal form requires that:
-
 - a table must be in first normal form
 - all columns in the table must relate to the entire primary key
 
 prof_table (last name [PK], university [PK], state)
 
+Last Name       University     State
+------------   ------------   -------------
+Metron          Columbia        NY
+Parson          Harvard         MA
+Park            Chicago         IL
 
-professor_table()
+##  Second normal form { .build .smaller }
 
-university_table()
+- a table must be in first normal form
+- all columns in the table must relate to the entire primary key
+
+prof_table (last name [PK], university [PK])
+
+Last Name       University    
+------------   ------------   
+Metron          Columbia      
+Parson          Harvard       
+Park            Chicago 
 
 
-Foreign key allows you to link between tables
+university_table(university [PK], state [PK])
 
-## Second normal form { .build }
-
-TODO Acitivity
+University     State
+------------   -------------
+Columbia        NY
+Harvard         MA
+Chicago         IL
 
 
 ##  Third normal form { .build }
 
-Third normal form requires that 
 - a table must be in second normal form 
 - all columns in the table must relate only to the primary key (not to each other). 
 
 book_table (ISBN [PK], title, publisher, country)
 
-ISBN        title             publisher         country
-----------  ----------------  ----------------  -------
-0395193958  The Hobbit        Houghton Mifflin  USA    
-0836827848  Slinky Malinki    Mallinson Rendel  NZ
-0908783116  Mechanical Harry  Mallinson Rendel  NZ
+ISBN        title                           publisher        country
+----------  -----------------------------  -------------  -----------
+0374527253  Sidewalk                        FSG              USA    
+0836827848  The Purchase of Intimacy        PUP              USA
+0908783116  The Twenty-First Century Firm   PUP              USA
 
-solution?
+Solution
 
-book table 
-publisher table
+- book table 
+- publisher table
 
-## Third normal form 
+## Third normal form { .build }
 
-TODO Activity
+- a table must be in second normal form 
+- all columns in the table must relate only to the primary key (not to each other). 
+
+player_table (ID [PK], name, height, weight, BMI)
+
+ID       name             height     weight     BMI
+---  ------------------ ---------- ---------- ------
+1       Russell Wilson    1.8         93        28.7
+2       Marshon Lynch     1.8         98        30.2
+3       Tom Brady         1.93        102       27.4
+
+Solution:
+
+- don't store BMI (it a derived from height and weight)
 
 ## Database ideas applied to soccer data
 
@@ -383,14 +408,14 @@ Answer: It depends.  But here are some good candidates:
 
 Research questions:
 
-- 1) Are soccer referees more likely to give red cards to dark skin toned players than light skin toned players?
-- 2) Are soccer referees from countries high in skin-tone prejudice more likely to award red cards to dark skin toned players?
+1. Are soccer referees more likely to give red cards to dark skin toned players than light skin toned players?
+2. Are soccer referees from countries high in skin-tone prejudice more likely to award red cards to dark skin toned players?
 
 Q: What is the primary key in a table to answer question 1?
 
 A: It depends.  Good candidate is player.  Could also be skin color.
 
-## Soccer data
+## Soccer data { .build }
 
 Research questions:
 
@@ -409,7 +434,7 @@ Databases in third normal form follow the DRY principle: [Don't repeat yourself]
 - easy to update
 - never gets out of sync
 
-## Recap, Murrell (2009) { .smaller }
+## Recap, [Murrell (2009)](https://www.stat.auckland.ac.nz/~paul/ItDT/HTML/node42.html) { .smaller }
 
 - A database consists of one or more tables. Each column of a database table contains only one type of information, corresponding to one variable from a data set.
 
@@ -429,7 +454,7 @@ Questions about databases?
 
 1. Why don't people do this more?
 
-They don't know how to do joins in a reliable way so they are afraid.
+I don't know, but my guess is that they don't know how to do joins in a reliable way so they are afraid.
 
 ## Tidy data
 
@@ -550,6 +575,7 @@ p + geom_bar(stat = "identity", position = "dodge") +
 How well does your approach scale if there were many more movies or if I provided you with updated data that includes all the Races (e.g. dwarves, orcs, etc.)?
 
 Note that we will learn to make plots like this on Monday.
+
 ## Tidy data 
 
 Tall skinny data looks bad to the eye, but seems to work better for computers
@@ -578,8 +604,7 @@ Questions about Keys, databases, and data structure
 
 ## 
 
-abstraction: "turning the specific instances of something into
-a general-purpose tool""
+abstraction: "turning the specific instances of something into a general-purpose tool"
 
 More concretely
 
@@ -703,6 +728,7 @@ If you want to be able to reproduce your results 10 years from now, you need to 
 - Your code should be human-readable.
 - Choose variable names that make sense.
 - Your code should be clear to someone else.  And, that someone else could be you.
+- sometimes the best way to document is to refactor
 
 ##
 
