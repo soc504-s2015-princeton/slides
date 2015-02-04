@@ -673,8 +673,7 @@ Questions about loops?
 functions take inputs and return outputs
 
 ```{r eval=FALSE}
-  total <- sum(c(1, 2, 3))
-}
+total <- sum(c(1, 2, 3))
 ```
 
 functions are like you building your own tools
@@ -694,7 +693,6 @@ functions are like you building your own tools
 
 ```{r eval=FALSE}
   analytic.data <- run.processing.code(measured.data)
-}
 ```
 
 ## functions
@@ -725,10 +723,11 @@ Questions about abstraction?
 If you want to be able to reproduce your results 10 years from now, you need to write documentation.
 
 - Write self-documenting code.
-- Your code should be human-readable.
+- Your code should be human-readable, not just computer-readable.
 - Choose variable names that make sense.
 - Your code should be clear to someone else.  And, that someone else could be you.
-- sometimes the best way to document is to refactor
+- Sometimes the best way to document is to refactor
+- We are going to exchange code a lot so you will get practice with this
 
 ##
 
