@@ -26,6 +26,18 @@ Advanced social data analysis not statistics
 
 Inspiration: Hadley Wickham
 
+## Quantitative research
+
+<center><img src="images/data_workflow_with_loops.png" width="700px"/></center>
+
+Inspiration: Hadley Wickham
+
+## Quantitative research
+
+<center><img src="images/data_workflow.png" width="700px"/></center>
+
+Inspiration: Hadley Wickham
+
 ## Traditional statistics class
 
 <center><img src="images/data_workflow_traditional_class.png" width="700px"/></center>
@@ -64,8 +76,8 @@ I want this course to be:
 
 Regression is:
 
-- Most valuable framework for learning about society, proven its value over many years
-- The worst thing that ever happened to social science; leading us to ask boring questions that we can’t really answer anyway and obsess about the wrong things
+- the most powerful framework for learning about society
+- the worst thing that ever happened to social science; leading us to ask boring questions that we can’t really answer anyway and obsess about the wrong things
 
 # Inspirations for this class
 
@@ -96,7 +108,6 @@ http://commons.wikimedia.org/wiki/File:John_Henry-27527.jpg
 By the time you are on the job market, computers will be 10x faster than they are now.  The trick is ride this wave rather than getting crushed by it.
 
 In a race against the machine you will lose.
-
 
 ## MOOCs
 
@@ -142,6 +153,45 @@ Three main things you have to do:
 - do your weekly homeworks
 - finish the replication project
 
+## Homework
+
+Homework will be due every Thursday at midnight (including this Thursday)
+
+You will submit your homework in R Markdown.
+
+## R Markdown vs. what you have done before
+
+![Comparing traditional model and R Markdown](images/baumer_R_2014_fig4.png)
+
+[Baumer et al (2014)](http://arxiv.org/abs/1402.1894)
+
+R Markdown uses source - output paradigm (not WYSIWYG)
+
+## What is R Markdown?
+
+<img src="images/rmarkdown.png" width="700px">
+
+[RStudio RMarkdown documentation](http://rmarkdown.rstudio.com/)
+
+How many of you read and write LaTeX? HTML?
+
+## R Markdown
+
+In case you want to learn more, note that this workflow also involves 
+
+- [knitr](http://yihui.name/knitr/): "Elegant, flexible and fast dynamic report generation with R"
+- [pandoc](http://johnmacfarlane.net/pandoc/): "If you need to convert files from one markup format into another, pandoc is your swiss-army knife."
+
+## R Markdown
+
+Why R Markdown?
+
+- enables automation
+- relatively easy to learn
+- gets you into a modern eco-system
+
+# Course style
+
 ## This is what the course should feel like
 
 <center>
@@ -167,12 +217,12 @@ What is the right mental model for this class?
 
 Metaphor due to Neil Postman (I think)
 
-## 
+## Computing logistics
 
-What is your computing situation?
-
-- How many have laptops? Windows, Mac, Linux?
+- How many have laptops? Mac, Windows, Linux?
 - How many need accounts on Lotka?
+- Collect up everyone's email adddess.
+- Ask everyone to sign up for Piazza.
 
 ## Class logistics
 
@@ -209,6 +259,8 @@ No laptops, unless we are in the computer lab
 
 Questions about expectations?
 
+# Goal check
+
 # First lab
 
 ## First lab
@@ -216,41 +268,6 @@ Questions about expectations?
 <center>
 <img src="images/data_workflow.png" width="700px">
 </center>
-
-## First lab
-
-You will have time to work on your homework, and you will submit your homework in R Markdown.
-
-## R Markdown vs. what you have done before
-
-![Comparing traditional model and R Markdown](images/baumer_R_2014_fig4.png)
-
-[Baumer et al (2014)](http://arxiv.org/abs/1402.1894)
-
-R Markdown uses source - output paradigm (not WYSIWYG)
-
-## What is R Markdown?
-
-<img src="images/rmarkdown.png" width="700px">
-
-[RStudio RMarkdown documentation](http://rmarkdown.rstudio.com/)
-
-How many of you read and write LaTeX? HTML?
-
-## R Markdown
-
-In case you want to learn more, note that this workflow also involves 
-
-- [knitr](http://yihui.name/knitr/): "Elegant, flexible and fast dynamic report generation with R"
-- [pandoc](http://johnmacfarlane.net/pandoc/): "If you need to convert files from one markup format into another, pandoc is your swiss-army knife."
-
-## Automation: R Markdown
-
-Why R Markdown?
-
-- enables automation
-- relatively easy to learn
-- gets you into a modern eco-system
 
 ## 
 
