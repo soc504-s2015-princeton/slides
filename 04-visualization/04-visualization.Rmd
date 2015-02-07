@@ -28,7 +28,9 @@ Visualization is a great way to
 
 I think that visualizations are **more powerful** than models for both of these goals for most of what we do. 
 
-# Examples { .build }
+# Examples 
+
+# learning
 
 ## 
 
@@ -39,6 +41,8 @@ I think that visualizations are **more powerful** than models for both of these 
 <div class="cite">
 http://commons.wikimedia.org/wiki/File:Anscombe%27s_quartet_3.svg
 </div>
+
+# communicating
 
 ##  
 
@@ -102,15 +106,21 @@ By Kenworthy
 
 By Jackman
 
-## { .build .smaller}
+##
 
-<img src="images/kastellec_using_2007_tab8.pdf" width="300">
+Next example from the wonderful paper:
 
-<img src="images/kastellec_using_2007_fig7.pdf" width="300">
+- Kasetellec and Leoni (2007) [Using Graphs Instead of Tables in Political Science](http://dx.doi.org/10.1017/S1537592707072209)
+- They also have a [code respository](http://tables2graphs.com/doku.php)
 
-From: Kasetellec and Leoni (2007) [Using Graphs Instead of Tables in Political Science](http://dx.doi.org/10.1017/S1537592707072209)
+## { .build .columns-2}
 
-## { .build }
+<img src="images/kastellec_using_2007_tab8.png" width="325">
+
+<img src="images/kastellec_using_2007_fig7.png" width="325">
+
+
+## 
 
 - When was the last time you saw a table of regression results in a talk?
 - When was the last time you saw a graph likes these in a talk?
@@ -127,7 +137,7 @@ From: Kasetellec and Leoni (2007) [Using Graphs Instead of Tables in Political S
 
 ## note on coding error
 
-<img src="images/healy_data_2014_fig5.png" width="450">
+<img src="images/healy_data_2014_fig5.png" width="400">
 
 Thank you to Kieran Healy for being open about this so that we can all learn from it
 
@@ -338,11 +348,10 @@ p <- ggplot(data = world.pop.data,
 p + layer(geom = "point") + layer(stat = "smooth", method = "lm", se = FALSE)
 ```
 
-## Base plot { .smaller }
+## Basic plot { .smaller }
 
 ```{r}
 p <- ggplot(data = world.pop.data, aes(x = le, y = tfr))
-p + layer(geom = "point") + layer(stat = "smooth", method = "lm", se = FALSE)
 ```
 
 ## adding faceting { .smaller }
