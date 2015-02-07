@@ -125,7 +125,7 @@ Which would you like in your talk?
 
 <img src="images/healy_data_2014_fig5.pdf" width="450">
 
-Thank you ot Kieran Healy for being open about this so that we can all learn from it
+Thank you to Kieran Healy for being open about this so that we can all learn from it
 
 ## note on coding error { .build }
 
@@ -184,7 +184,7 @@ More on [ggplot2 version 1.0](http://blog.rstudio.org/2015/01/09/ggplot2-updates
 
 ##
 
-Next, an example based on [Dawn Kauffman's OPR workshop](http://opr.princeton.edu/workshops/201501/)
+Next, an example based on [Dawn Koffman's OPR workshop](http://opr.princeton.edu/workshops/201501/)
 
 ## 
 
@@ -232,7 +232,7 @@ p <- ggplot(data = world.pop.data,
 p + layer(geom = "point")
 ```
 
-## changing the aesthetics
+## adding aesthetics
 
 ```{r}
 p <- ggplot(data = world.pop.data, 
@@ -240,7 +240,7 @@ p <- ggplot(data = world.pop.data,
 p + layer(geom = "point")
 ```
 
-## changing the aesthetics
+## adding aesthetics
 
 ```{r}
 p <- ggplot(data = world.pop.data, 
@@ -248,7 +248,7 @@ p <- ggplot(data = world.pop.data,
 p + layer(geom = "point")
 ```
 
-## changing the aesthetics
+## adding aesthetics
 
 ```{r}
 p <- ggplot(data = world.pop.data, 
@@ -353,6 +353,10 @@ p + layer(geom = "point") + facet_grid(. ~ area) + layer(stat = "smooth", method
 
 Questions about visualization and ggplot2?
 
+One thing that you should should know that most people don't talk about:
+
+- you will build and tweak your graphs over time; the first graph is never the final graph
+
 ## 
 
 Goal check
@@ -364,7 +368,7 @@ Review and motivation for next class
 ## honest talk about graphs in ggplot2
 
 - `ggplot2` is confusing at first
-- requires lots and lots of practice
-- you will build and tweak your graphs over time; the first graph is never the final graph
+- it will require practice
+- it will make you powerful
 
 To the lab for practice, practice, practice
