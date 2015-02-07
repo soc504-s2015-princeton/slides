@@ -17,9 +17,7 @@ After this class students will be able to:
 - explain the layered grammer of graphics
 - be excited to struggle with `ggplot2`
 
-##
-
-Why are we doing this?
+## Why are we doing this?
 
 Visualization is a great way to 
 
@@ -28,7 +26,7 @@ Visualization is a great way to
 
 I think that visualizations are **more powerful** than models for both of these goals for most of what we do. 
 
-# Examples
+# Examples { .build }
 
 ## 
 
@@ -82,13 +80,13 @@ Example from [Tufte (1997)](http://www.edwardtufte.com/tufte/books_visex)
 
 ##  
 
-<img src="images/healy_violent.png">
+<img src="images/healy_violent.png" height="500">
 
 by Healy
 
 ## 
 
-<img src="images/kenworthy_health.png">
+<img src="images/kenworthy_health.png" height="500">
 
 By Kenworthy
 
@@ -100,17 +98,17 @@ By Jackman
 
 ## { .build .smaller}
 
-<img src="images/regression_table.png" width="600">
+<img src="images/kastellec_using_2007_tab8.png" width="300">
+
+<img src="images/kastellec_using_2007_fig7.png" width="300">
 
 From: Kasetellec and Leoni (2007) [Using Graphs Instead of Tables in Political Science](http://dx.doi.org/10.1017/S1537592707072209)
 
-##
+## { .build }
 
-When was the last time you saw a table of regression results in a talk?
-
-When was the last time you saw a graph likes these in a talk?
-
-Which would you like in your talk?
+- When was the last time you saw a table of regression results in a talk?
+- When was the last time you saw a graph likes these in a talk?
+- Which do you want to have in your talk?
 
 # making graphs
 
@@ -170,7 +168,21 @@ Why `ggplot2`?
 - natural transition to `ggvis`, the next big thing
 - strong and active community
 
-# ggplot2
+## New York 311 data, Nicole Pangborn
+
+<img src="images/pangborn_311_callmap.png" width="800">
+
+## New York 311 data, Nicole Pangborn
+
+```{r eval=FALSE}
+library(ggmap)
+library(ggplot2)
+NYC <- get_map(location = "new york, new york", zoom = 11)
+p <- ggmap(NYC)
+p + geom_point(aes(x = dfcalls_small$Longitude, y = dfcalls_small$Latitude)) +
+  labs(title = "311 calls in NYC, 1/28/15 - 1/29/15") + 
+  theme(plot.title = element_text(size=rel(2)))
+```
 
 ## 
 
