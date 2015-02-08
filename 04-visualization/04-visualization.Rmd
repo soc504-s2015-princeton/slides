@@ -380,7 +380,7 @@ p + layer(geom = "point") + facet_grid(. ~ area) + layer(stat = "smooth", method
 
 Questions about visualization and ggplot2?
 
-One thing that you should should know that most people don't talk about:
+One thing that you should know that most people don't talk about:
 
 - you will build and tweak your graphs over time; the first graph is never the final graph
 
