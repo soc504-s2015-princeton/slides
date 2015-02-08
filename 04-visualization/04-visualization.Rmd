@@ -36,7 +36,7 @@ I think that visualizations are **more powerful** than models for both of these 
 
 4 data sets with the same regression results: $y = 3 + 0.5 x$
 
-<img src="images/anscombe_quartet.svg" width="600">
+<img src="images/anscombe_quartet.png" width="600">
 
 <div class="cite">
 http://commons.wikimedia.org/wiki/File:Anscombe%27s_quartet_3.svg
