@@ -6,7 +6,7 @@ output:
   ioslides_presentation:
     css: soc504_s2015_slides.css
 ---
-
+ 
 ##
 
 <img src="images/data_workflow.png" width="800">
