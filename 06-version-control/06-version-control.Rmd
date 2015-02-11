@@ -2,43 +2,78 @@
 title: "Version control <br /> with git and github"
 author: "Matthew Salganik"
 date: "2015-02-11 ![Creative Commons Attribution License](images/cc-by.png)"
-output: ioslides_presentation
+output: 
+  ioslides_presentation:
+    css: soc504_s2015_slides.css
 ---
 
 
-## 
+##
+
+After this class you will be able to 
+
+- use five main git operations: init, add, commit, push, pull 
+- start a project with RStudio and keep it under version control with git
+- submit your homework with git and github
+
+##
 
 Why are we doing this?
 
-How many people recognize the date name system?
+<img src="images/final-doc.png" height="500">
 
-Do you think they use that system at Google?
+<div class="cite">
+http://www.phdcomics.com/comics/archive.php?comicid=1531
+</div>
 
 
 ## git
 
-History is important to understand why it works like this
+<img src="images/Git-Logo-2Color.png" height="200">
 
-- developed to enable development of Linux kernel
+History is important to understand why it works like:
+
+- created to enable development of Linux kernel
 - very decentralized (and democratic)
-- you can committ without being connected to the internet
+- you can commit without being connected to the internet
+- designed so that you have lots of control over your commits
 - for our purposes: local copy and github copy
 
 ## git
 
-http://www.phdcomics.com/comics/archive.php?comicid=1531
-
-##
-
+- different model than dropbox
 - not file model, but content model 
 - matches RStudio project 
+- can use git without github
 
 ## github
 
-- by using github we are not being total decentralized
+<img src="images/Octocat.png" height="200">
 
- 
-## fork, change, pull request
+- remote for git
+- faciliates collaboration
+- add extra social features
 
-dplyr -> fork, change, pull request
+## start a project and keep it under version control
 
+Live demo
+
+## start a project and keep it under version control
+
+Questions?
+
+## submit your homework via git
+
+Live demo (http://www.princeton.edu/~mjs3/soc504_s2015/submitting_homework.shtml)
+
+## submit your homework via git
+
+Questions?
+
+## 
+
+Goal check
+
+## 
+
+motivation for next class
