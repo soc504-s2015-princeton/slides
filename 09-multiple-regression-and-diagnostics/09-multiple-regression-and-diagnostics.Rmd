@@ -21,7 +21,7 @@ After this class you will be able to
 - compare and contrast extrapolation and interpolation
 - compare and contrast outliers, leverage, and influence
 
-Note that last class we did this with single predictor model and now we are going to do it with two predictor models.
+Last class we did this with single predictor model and now we are going to do it with two predictor models.
 
 ##
 
@@ -29,7 +29,7 @@ To make things concrete, we will talk about the relationship between education, 
 
 ##
 
-What is a regression line and what is a residual is words, equations, and pictures?
+What is a regression plane and what is a residual is words, equations, and pictures?
 
 ##
 
@@ -48,24 +48,138 @@ gss <- rename(gss, income = income06_n)
 ## 
 
 ```{r}
-require(car)
-require(rgl)
-scatter3d(educ, paeduc, income)
+suppressPackageStartupMessages(library(GGally))
+pm <- ggpairs(select(gss, educ, paeduc, income))
+pm
 ```
 
-require(car)
-require(rgl)
+##
+
+```{r}
+library(scatterplot3d)
+```
+
+##
+
+```{r}
+scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=20)
+```
+
+##
+
+```{r}
+scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=40)
+```
+
+##
+
+```{r}
+scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=60)
+```
+
+##
+
+```{r}
+scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=80)
+```
+
+##
+
+now let's add the regression plane
+
+##
+
+```{r}
+s3d <- scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=20)
+my.lm <- lm(gss$income ~ gss$educ + gss$paeduc)
+s3d$plane3d(my.lm)
+```
+
+##
+
+```{r}
+s3d <- scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=40)
+my.lm <- lm(gss$income ~ gss$educ + gss$paeduc)
+s3d$plane3d(my.lm)
+```
+
+##
+
+```{r}
+s3d <- scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=60)
+my.lm <- lm(gss$income ~ gss$educ + gss$paeduc)
+s3d$plane3d(my.lm)
+```
+
+
+##
+
+```{r}
+s3d <- scatterplot3d(x=gss$educ, y=gss$paeduc, z=gss$income, 
+              xlab="Education", ylab="Father's education", 
+              zlab="Income category", pch=20, angle=80)
+my.lm <- lm(gss$income ~ gss$educ + gss$paeduc)
+s3d$plane3d(my.lm)
+```
+
+##
+
+The regression plane is the plane that minimizes the sum of the squared residuals. The residual is the difference between the predicted income and actual income for each person in the sample.
+
+$$\mbox{income}_i = \beta_0 + \beta_1 \times \mbox{educ}_i + \beta_2 \times \mbox{paeduc}_i + \mbox{residual}_i$$ 
+
+$$\widehat{\mbox{income}}_i = \beta_0 + \beta_1 \times \mbox{educ}_i + \beta_2 \times \mbox{paeduc}_i$$ 
+
+
+##
+
+As with the line, it is well defined that this is the best fit plane to the whole dataset, but why is that what we want?
+
+What is the relationship between a regression coefficient and a correlation coefficent in words, equations, and pictures?
 
 ## 
 
-```{r echo=FALSE}
-suppressPackageStartupMessages(library(ggplot2))
+What is the relationship between a regression coefficient and a correlation coefficent in words, equations, and pictures?
+
+$$\hat{\beta_1} = corr(educ, income) \times \frac{SD(income)}{SD(educ)}$$
+
+or 
+
+$$\hat{\beta_1} = corr(educ, income) \times \frac{SD(educ)}{SD(income)}$$
+
+How can you figure out which is correct?
+
+## 
+
+What is the relationship between a regression coefficient and a correlation coefficent in words, equations, and pictures?
+
+Just in case you don't believe me
+
+```{r}
+library(broom)
+fit <- lm(income ~ educ, data = gss)
+tidy(fit)
 ```
 
 ```{r}
-p <- ggplot(gss, aes(x=educ, y=income))
-p + geom_jitter() + xlab("Years of education") + ylab("Income category") 
+cor(gss$income, gss$educ) * (sd(gss$income) / sd(gss$educ))
 ```
+
+## 
 
 
 # wrap-up
