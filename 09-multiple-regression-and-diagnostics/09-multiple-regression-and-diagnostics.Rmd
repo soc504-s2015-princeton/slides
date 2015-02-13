@@ -9,7 +9,63 @@ output:
 
 ##
 
+
+<img src="images/data_workflow.png" width="800">
+
+## 
+
 After this class you will be able to 
+
+- explain what is a regression line and what is a residual is words, equations, and pictures
+- explain the relationship between a regression coefficient and a correlation coefficent in words, equations, and pictures
+- compare and contrast extrapolation and interpolation
+- compare and contrast outliers, leverage, and influence
+
+Note that last class we did this with single predictor model and now we are going to do it with two predictor models.
+
+##
+
+To make things concrete, we will talk about the relationship between education, father's education, and income.
+
+##
+
+What is a regression line and what is a residual is words, equations, and pictures?
+
+##
+
+Here is some data from the GSS.
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+load("data/gss_2010_training.RData")
+gss.training <- tbl_df(gss.training)
+gss <- select(gss.training, income06_n, educ, maeduc, paeduc) %>%
+  filter(!is.na(income06_n), !is.na(educ), !is.na(maeduc), !is.na(paeduc))
+# NOTE: DROPPING MISSING DATA LIKE THIS CAN BE DANGEROUS
+gss <- rename(gss, income = income06_n)
+```
+
+## 
+
+```{r}
+require(car)
+require(rgl)
+scatter3d(educ, paeduc, income)
+```
+
+require(car)
+require(rgl)
+
+## 
+
+```{r echo=FALSE}
+suppressPackageStartupMessages(library(ggplot2))
+```
+
+```{r}
+p <- ggplot(gss, aes(x=educ, y=income))
+p + geom_jitter() + xlab("Years of education") + ylab("Income category") 
+```
 
 
 # wrap-up
@@ -25,3 +81,11 @@ Goal check
 ## 
 
 motivation for next class
+
+##
+
+##
+
+```{r}
+sessionInfo()
+```
