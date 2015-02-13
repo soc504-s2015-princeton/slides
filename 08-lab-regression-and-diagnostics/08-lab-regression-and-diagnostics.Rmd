@@ -1,0 +1,8 @@
+---
+title: "Lab: Regression and diagnostics"
+author: "Angela Dixon"
+date: "2015-02-16 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: soc504_s2015_slides.css
+---

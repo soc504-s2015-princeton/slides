@@ -1,0 +1,27 @@
+---
+title: "Regression and diagnostics"
+author: "Matthew Salganik"
+date: "2015-02-16 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: soc504_s2015_slides.css
+---
+
+##
+
+After this class you will be able to 
+
+
+# wrap-up
+
+## 
+
+Questions?
+
+## 
+
+Goal check
+
+## 
+
+motivation for next class
