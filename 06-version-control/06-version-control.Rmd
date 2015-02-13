@@ -7,7 +7,6 @@ output:
     css: soc504_s2015_slides.css
 ---
 
-
 ##
 
 After this class you will be able to 
