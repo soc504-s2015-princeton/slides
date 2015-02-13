@@ -37,8 +37,6 @@ What is a regression line and what is a residual is words, equations, and pictur
 
 ##
 
-##
-
 Here is some data from the GSS.
 
 ```{r}
@@ -262,3 +260,11 @@ Goal check
 ## 
 
 motivation for next class
+
+##
+
+##
+
+```{r}
+sessionInfo()
+```
