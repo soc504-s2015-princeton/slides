@@ -6,3 +6,83 @@ output:
   ioslides_presentation:
     css: soc504_s2015_slides.css
 ---
+
+
+## {.smaller}
+
+
+<br><br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> 
+<br> <br><br> <br> <br>    
+
+** Inspiration for this lab comes from the work of Jonathan Tannen 
+
+## "Advances in Development Reverse Fertility Declines" {.smaller .build}
+
+Today we will be working on the recent, important paper in Nature by Mikko Myrskyla, Hans-Peter Kohler & Francesco C. Billari (2009).  
+  
+This paper examined the relationship between the Human Development Index (HDI) and the Total Fertility Rate (TFR) in 143 countries.  
+
+-  Download: http://www.nature.com/nature/journal/v460/n7256/extref/nature08230-s2.zip    
+- Open a new R Script, set it up, and read.csv the data.
+- Drop all but the HDI and TFR for 1975 and 2005 (use dplyr)
+
+
+```{r, eval=FALSE}
+library(dplyr)
+library(ggplot2)
+data <- read.csv("data/nature08230-s2.csv")
+data <- select(data, country, HDI.1975, TFR.1975, HDI.2005, TFR.2005)
+```
+
+
+## Digging In 
+
+Explore the dataset. Make some plots. Do some calculations.
+What do you see?
+
+## Using lm()
+
+- Use "lm(y ~ x)" to regress TFR on HDI for 1975. 
+- Use "lm(y ~ x)" as lfit, and use "summary(lfit)."   
+- What is the observed relationship?  
+- Use the coefficient in a sentence.  
+- Interpret the constant.  
+ 
+
+## An lm() Object
+
+- lm() doesn't just spit out values, it stores anything you could ever need  
+- Use "str(lift)" to look at the structure of lfit. What's inside?  
+- Can you print the coefficients?  
+- Add the regression line to your scatter plot. 
+- Can you print the true TFR and the predicted TFR side by side?   
+- Bonus: Instead of summary(lfit), try installing and using the "broom" package. Which one do you like better. (see ??broom for more information)
+ 
+
+## Comparing 1975 to 2005
+
+- Return to the original HDI-TFR scatter plot.  
+- Add the 2005 data to your scatter plot in red.  
+- Perform the HDI on TFR regression for 2005 data.  
+- Did the relationship change from 1975 to 2005?  
+- Add the new regression line to your plot.   
+- Bonus: Relabel the axes, add a legend
+ 
+
+## The Killer Graph 
+
+[The killer graph](http://www.ccpr.ucla.edu/events/ccpr-seminars-previous-years/Kohler-advances%20in%20development.pdf)
+
+## The Killer Graph 
+
+![](images/Myrskla_graph_exp.png)
+
+## What Makes a Killer Graph?
+
+
+## .
+
+
+## The Killer Graph
+![](images/Myrskla_graph.png)
+
