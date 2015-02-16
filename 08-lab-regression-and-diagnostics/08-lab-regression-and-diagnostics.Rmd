@@ -79,9 +79,8 @@ What do you see?
 - Bonus: Make a new scatter plot of the residuals versus the fitted values for the 2005 data.
  
 
-## The Killer Graph 
-
-[The killer graph](http://www.ccpr.ucla.edu/events/ccpr-seminars-previous-years/Kohler-advances%20in%20development.pdf)
+## The Killer Graph
+![](images/Myrskla_graph.png)
 
 ## The Killer Graph 
 
@@ -90,9 +89,6 @@ What do you see?
 ## What Makes a Killer Graph?
 
 
-## .
 
 
-## The Killer Graph
-![](images/Myrskla_graph.png)
 
