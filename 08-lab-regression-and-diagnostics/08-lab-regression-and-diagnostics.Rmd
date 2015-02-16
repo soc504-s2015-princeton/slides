@@ -55,18 +55,28 @@ What do you see?
 - Use "str(lift)" to look at the structure of lfit. What's inside?  
 - Can you print the coefficients?  
 - Add the regression line to your scatter plot. 
-- Can you print the true TFR and the predicted TFR side by side?   
-- Bonus: Instead of summary(lfit), try installing and using the "broom" package. Which one do you like better. (see ??broom for more information)
+- Can you print the true TFR and the predicted TFR side by side? (you will need to address the missing data issue)   
+- Bonus: Instead of summary(lfit), try installing and using the "broom" package. Which one do you like better? (see ??broom for more information)
  
+## Residuals
+
+[Fortify and ggplot2](http://docs.ggplot2.org/0.9.3.1/fortify.lm.html)   
+
+- See ?fortify.lm  
+- Make a new scatter plot of the residuals versus the fitted values.    
+
+[Learn more about residuals](http://blog.minitab.com/blog/adventures-in-statistics/why-you-need-to-check-your-residual-plots-for-regression-analysis)  
+
 
 ## Comparing 1975 to 2005
 
 - Return to the original HDI-TFR scatter plot.  
 - Add the 2005 data to your scatter plot in red.  
 - Perform the HDI on TFR regression for 2005 data.  
-- Did the relationship change from 1975 to 2005?  
-- Add the new regression line to your plot.   
-- Bonus: Relabel the axes, add a legend
+- Add the new regression line to your plot.  
+- Did the relationship change from 1975 to 2005?   
+- Bonus: Make some aesthetic improvements to the graph
+- Bonus: Make a new scatter plot of the residuals versus the fitted values for the 2005 data.
  
 
 ## The Killer Graph 
