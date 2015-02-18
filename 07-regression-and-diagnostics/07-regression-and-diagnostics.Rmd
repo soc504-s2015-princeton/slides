@@ -12,6 +12,16 @@ output:
 rm(list=ls())
 ```
 
+# logistics
+
+## { .build }
+ 
+- Congrats Andres, Kyonne, Kalyani, Nick, Liora, Leah, and Aaron
+<img src="images/git_cheat_sheet_mugs.png" width=200>
+- live debugging
+- [how to ask a good question](http://stackoverflow.com/help/how-to-ask) on piazza based on stackoverflow
+- projects (don't do something you don't understand)
+
 ##
 
 <img src="images/data_workflow.png" width="800">
