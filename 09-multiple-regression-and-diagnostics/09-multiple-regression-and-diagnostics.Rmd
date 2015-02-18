@@ -149,38 +149,83 @@ $$\widehat{\mbox{income}}_i = \beta_0 + \beta_1 \times \mbox{educ}_i + \beta_2 \
 
 As with the line, it is well defined that this is the best fit plane to the whole dataset, but why is that what we want?
 
-What is the relationship between a regression coefficient and a correlation coefficent in words, equations, and pictures?
-
-## 
+## { .smaller }
 
 What is the relationship between a regression coefficient and a correlation coefficent in words, equations, and pictures?
 
-$$\hat{\beta_1} = corr(educ, income) \times \frac{SD(income)}{SD(educ)}$$
+Model is: $$\widehat{\mbox{income}}_i = \beta_0 + \beta_1 \times \mbox{educ}_i + \beta_2 \times \mbox{paeduc}_i$$ 
+
+
+$$\beta_1 = \frac{cor(income, educ) - cor(educ, paeduc) \times cor(income, paeduc)}{ (1 - cor(educ, paeduc)^2 ) } \times \frac{SD(income)}{SD(educ)}$$
 
 or 
 
-$$\hat{\beta_1} = corr(educ, income) \times \frac{SD(educ)}{SD(income)}$$
+$$\beta_1 = \frac{cor(income, educ) - cor(educ, paeduc) \times cor(income, paeduc)}{ (1 - cor(educ, paeduc)^2 ) } \times \frac{SD(educ)}{SD(income)}$$
 
-How can you figure out which is correct?
+- How can you figure out which is correct?
+- Note what happens when educ and paeduc are uncorrelated
+- Note what happens when educ and paeduc are correlated
+- If you wanted to decrease $\beta_1$ what kind of extra variable should you add to the model?
 
-## 
+<div class="cite">
+See [Berk (2004)](http://www.amazon.com/Regression-Analysis-Constructive-Quantitative-Techniques/dp/0761929045) p. 112
+</div>
+## { .smaller }
 
 What is the relationship between a regression coefficient and a correlation coefficent in words, equations, and pictures?
 
-Just in case you don't believe me
-
 ```{r}
 library(broom)
-fit <- lm(income ~ educ, data = gss)
+fit <- lm(income ~ educ + paeduc, data = gss)
 tidy(fit)
 ```
 
 ```{r}
-cor(gss$income, gss$educ) * (sd(gss$income) / sd(gss$educ))
+numerator <- cor(gss$income, gss$educ) - (cor(gss$educ, gss$paeduc) * cor(gss$income, gss$paeduc))
+denominator <- 1 - cor(gss$educ, gss$paeduc)^2
+numerator / denominator * (sd(gss$income) / sd(gss$educ))
 ```
 
 ## 
 
+compare and contrast extrapolation and interpolation
+
+<img src="images/king_dangers_2006_fig2.png" width=600>
+
+<div class="cite">
+From King and Zeng (2006) [The dangers of extreme counterfactuals](http://gking.harvard.edu/files/counterft.pdf)</div>
+
+##
+
+compare and contrast extrapolation and interpolation
+
+```{r}
+library(ggplot2)
+p <- ggplot(gss, aes(x=educ, y=paeduc))
+p + geom_jitter()
+```
+
+##
+
+- What is the predicted income for someone whose father has 12 years of education and who has 12 years of education?
+
+- What is the predicted income for someone whose father has 20 years of education and who has 0 years of education?
+
+```{r}
+library(broom)
+fit <- lm(income ~ educ + paeduc, data = gss)
+tidy(fit)
+```
+
+##
+
+compare and contrast outliers, leverage, and influence
+
+<img src="images/fox_applied_2008_fig11_3.png" width=500>
+
+<div class=cite>
+Source: Fox (2008)
+</div>
 
 # wrap-up
 
