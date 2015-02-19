@@ -9,6 +9,14 @@ output:
 
 ##
 
+Logisitcs:
+
+- no homework this week
+- work on your project (probably want to get it up on github)
+- future homeworks: really should knit
+- finding papers
+
+##
 
 <img src="images/data_workflow.png" width="800">
 
