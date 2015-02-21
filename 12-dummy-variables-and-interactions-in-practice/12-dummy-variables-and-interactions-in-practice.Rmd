@@ -1,0 +1,192 @@
+---
+title: "Dummy variables and interactions in practice"
+author: "Matthew Salganik"
+date: "2015-02-25 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+##
+
+Logisitcs:
+
+
+##
+
+<img src="images/data_workflow.png" width="800">
+
+## 
+
+After this class you will be able to 
+
+- 
+
+##
+
+
+
+## 
+
+- "include interaction terms whenever they have conditional hypotheses"
+
+
+##
+
+- "include all constitutive terms when specifying multiplicative interaction models except in very rare circumstances"
+
+##
+
+- "do not interpret consitutive terms as if they are unconditional marginal effects"
+
+##
+
+- "calculate substantively meaning marginal effects and standard errors"
+
+
+##
+
+<img src="images/greenman_double_2008_abstract.png" height="550">
+
+## { .build }
+
+<img src="images/greenman_double_2008_model_baseline_short.png" width="800">
+
+Write this model in an equation.
+
+## { .build .smaller }
+
+<img src="images/greenman_double_2008_model_baseline_short.png" width="500">
+
+$$\begin{eqnarray} 
+log(inc_{i}) &=& \beta_0 + \nonumber \\
+& & \beta_1 Chinese_i + \beta_2 Asian Indian + . . . + \beta_{18} Native American + \nonumber \\
+& & \beta_{19} female_i + \nonumber \\
+& & \beta_{20} Chinese_i * female_i + \beta_{21} Asian Indian * female_i +  . . .  + \nonumber \\
+& & \epsilon_i
+\end{eqnarray}$$
+
+## { .build }
+
+Why are there 18 race/ethnicity dummy variables and 19 race/ethnicity groups studied?
+
+
+- omitted group (whites) is measured by intercept $\beta_0$
+
+## { .build }
+
+If a person was a white man what would the model look like?
+
+$$\begin{eqnarray} 
+log(inc_{i}) &=& \beta_0 + \nonumber \\
+& & \epsilon_i
+\end{eqnarray}$$
+
+## { .build }
+
+If the person was a white female what would like the model look like?
+
+$$\begin{eqnarray} 
+log(inc_{i}) &=& \beta_0 + \nonumber \\
+& & \beta_{19} female_i + \nonumber \\
+& & \epsilon_i
+\end{eqnarray}$$
+
+## { .build }
+
+If a person was a Chinese-American man what would the model look like?
+
+$$\begin{eqnarray} 
+log(inc_{i}) &=& \beta_0 + \nonumber \\
+& & \beta_1 Chinese_i + \nonumber \\
+& & \epsilon_i
+\end{eqnarray}$$
+
+## { .build }
+
+If the person was a Chiniese-American female what would like the model look like?
+
+$$\begin{eqnarray} 
+log(inc_{i}) &=& \beta_0 + \nonumber \\
+& & \beta_1 Chinese_i + \nonumber \\
+& & \beta_{19} female_i + \nonumber \\
+& & \beta_{20} Chinese_i * female_i + \nonumber \\
+& & \epsilon_i
+\end{eqnarray}$$
+
+
+## { .build }
+
+<img src="images/greenman_double_2008_tab1.png" width="800">
+
+Interpret column 6 in words.
+
+## 
+
+<img src="images/greenman_double_2008_tab1.png" width="500">
+
+Interpret column 6 in words.
+
+- "The effect of gender is always weaker among minorities than whites"
+- predicted incomes for women in 18 non-white race/ethnicity groups are higher in a model that includes an interaction term than in a model that does not include an interaction term
+
+
+## 
+How would this pattern be visable in the residuals of this model?
+
+$$\begin{eqnarray} 
+log(inc_{i}) &=& \beta_0 + \nonumber \\
+& & \beta_1 Chinese_i + \beta_2 Asian Indian + . . . + \beta_{18} Native American + \nonumber \\
+& & \beta_{19} female_i + \nonumber \\
+& & \epsilon_i
+\end{eqnarray}$$
+
+Hint: Here's the full model
+$$\begin{eqnarray} 
+log(inc_{i}) &=& \beta_0 + \nonumber \\
+& & \beta_1 Chinese_i + \beta_2 Asian Indian + . . . + \beta_{18} Native American + \nonumber \\
+& & \beta_{19} female_i + \nonumber \\
+& & \beta_{20} Chinese_i * female_i + \beta_{21} Asian Indian * female_i +  . . .  + \nonumber \\
+& & \epsilon_i
+\end{eqnarray}$$
+
+## { .build }
+
+<img src="images/greenman_double_2008_sensitivity.png" width="700">
+
+How much does this increase how much you believe this result?
+
+## { .build }
+
+How must their code be organized in order to be able to run these checks reliably?
+
+Hint: Use this picture to help structure your thoughts and language.
+<img src="images/research_pipeline.png" width="800">
+
+Image by Roger Peng
+
+## 
+
+<img src="images/greenman_double_2008_conclusion.png" width="700">
+
+# wrap-up
+
+## 
+
+Questions?
+
+## 
+
+Goal check
+
+## 
+
+motivation for next class
+
+##
+
+##
+
+```{r}
+sessionInfo()
+```
