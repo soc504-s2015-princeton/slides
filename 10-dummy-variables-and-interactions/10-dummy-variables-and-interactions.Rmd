@@ -11,10 +11,18 @@ output:
 
 Logisitcs:
 
-- 30 second project updates
-- we're famous
+- today's seminar
+- Andrew Gelman will be [speaking on Tuesday](http://www.princeton.edu/~erp/erpseminarspring2015.html)
+<hr>
 - thank you Aaron and Nick!!!
+- we're famous
+<hr>
+- homework 3 is posted, due one week from today
+- everyone should try to submit Rmd and knitted html file via github
+<hr>
 - other issues
+<hr>
+- 30 second project updates
 
 ##
 
@@ -24,16 +32,243 @@ Logisitcs:
 
 After this class you will be able to 
 
-- illustrate regression with dummy variables in words, pictures, and equations
+- illustrate regression with dichotomous dummy variables in words, pictures, and equations
+- illustrate regression with polytimous dummy variables in words, pictures, and equations
 - explain the importance of carfeul variable names when working with dummy variables
 - illustrate regressions with interactions between a continuous variable and a dummy variable in words, pictures, and equations
-- identify substantive research questions that involve dummy variables
-- identify substantive research questions that involve interactions between a continuous variable and a dummy variable
+- identify substantive research questions that involve dummy variables and interactions
 
+# dichotomous dummy variable
 
 ##
 
+We are going to be looking at the relationship between years of education and vocabulary.  This data is orignally from the GSS, and I downloaded it from [John Fox's website](http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/datasets/index.html).
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(broom)
+```
+
+##
+
+```{r}
+data <- read.table("data/Vocabulary.txt", header=TRUE)
+data <- tbl_df(data)
+p <- ggplot(data, aes(x=education, y=vocabulary))
+p + geom_jitter() + stat_smooth(method = "lm")
+```
+
+##
+
+```{r}
+p <- ggplot(data, aes(x=education))
+p + geom_histogram(binwidth=1, colour="black", fill="white", origin = -0.5) +
+  scale_x_continuous(breaks=0:20) +
+  facet_grid(sex ~ .) 
+```
+
+##
+
+```{r}
+p <- ggplot(data, aes(x=vocabulary))
+p + geom_histogram(binwidth=1, colour="black", fill="white", origin = -0.5) +
+  scale_x_continuous(breaks=0:10) +
+  facet_grid(sex ~ .) 
+```
+
+##
+
+```{r}
+p <- ggplot(data, aes(x=education, y=vocabulary, colour=sex))
+p + geom_jitter() 
+```
+
+##
+
+```{r}
+fit <- lm(vocabulary ~ education + sex, data = data)
+tidy(fit)
+```
+
+Draw a graph showing the regression lines.  Be sure to label the slopes and intercepts.
+
+## What could make this a bit easier?
+
+"Every binary variable that you turn in for any work in this course must be renamed and recoded such that the values of the variable are 0/1, and the name of the variable carries mnemonic significance consistent with 1=yes and 0=no."
+
+"Your instructor generally has a life philosophy that punishments should be roughly proportional to the magnitude of offenses. With respect to this particular matter, however, all bets are off. His belief is that how you handle binary variables has emblematic significance for how you approach data analysis, and, specifically, whether you approach data analysis in a way that minimizes mistakes and confusion for yourself and others. Consider it akin to a `broken windows' theory of orderly data analysis."
+
+-- Jeremy Freese, [syllabus for Statistical Analysis of Social Data II, Spring 2013](http://www.boydetective.net/wp-content/uploads/2014/07/401-2SyllabusSpring2013.pdf)
+
+##
+
+```{r}
+data <- mutate(data, female = as.numeric(sex=="Female"))
+data
+```
+
+## 
+```{r}
+fit <- lm(vocabulary ~ education + female, data = data)
+fit.df <- tidy(fit)
+print(fit.df)
+```
+
+##
+
+```{r}
+inter.male <- as.numeric(filter(fit.df, term=="(Intercept)") %>%
+                         select(estimate))
+inter.female <- inter.male + as.numeric(filter(fit.df, term=="female") %>%
+                                        select(estimate))
+slope <- as.numeric(filter(fit.df, term=="education") %>%
+                      select(estimate))
+```
+
+##
+
+```{r}
+line.size <- 2
+p <- ggplot(data, aes(x=education, y=vocabulary, colour=sex))
+p + geom_jitter(alpha=0.3) + 
+  scale_color_manual(values = c("pink", "blue")) +
+  geom_abline(intercept = inter.male, slope = slope, colour="blue", size=line.size) +
+  geom_abline(intercept = inter.female, slope = slope, colour="pink", size=line.size)
+```
+
+##
+
+sustantive examples?
+
+
+# polytimous dummy variable
+
+##
+
+We are going to be looking at the relationship average years of education, average income, occupation category, and occupational prestige.  This data is from the 1971 Canadian Census, and I downloaded it from [John Fox's website](http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/datasets/index.html).
+
+```{r}
+data <- read.table("data/Prestige.txt", header=TRUE)
+head(data)
+data <- tbl_df(data)
+data
+```
+
+##
+
+```{r}
+data <- read.table("data/Prestige.txt", header=TRUE)
+data$occupation <- rownames(data)
+rownames(data) <- NULL
+data <- tbl_df(data)
+data
+```
+
+##
+
+```{r}
+p <- ggplot(data, aes(x=education, y=prestige))
+p + geom_jitter() + stat_smooth(method = "lm")
+```
+
+##
+
+```{r}
+data <- filter(data, !is.na(type))
+p <- ggplot(data, aes(x=education, y=prestige))
+p + geom_jitter() +
+  facet_grid(. ~ type) + 
+  stat_smooth(method = "lm")  
+```
+
+##
+
+Sketch out the following and label the graph.
+
+$$\begin{eqnarray} 
+\widehat{prestige}_ i &=& \beta_0 + \beta_1 education + \nonumber \\
+& & \beta_2 bluecollar + \beta_3 whitecolloar + \beta_4 professional 
+\end{eqnarray}$$
+
+## 
+
+Trick question.  Explain why.  If there are k groups, there should be k - 1 dummy variables if there is an intercept.  Otherwise the algebra doesn't work.
+
+##
+
+substantive exampes?
+
+## 
+
+Basically, dummy variables just give you different intercepts for different groups.  But, how often do we care about intercepts?  What if we also want to different slopes for different groups?
+
+# interactions between a continuous variable and a dummy variable 
+
+# candy break
+
+##
+
+Back to education and vocabulary
+
+```{r}
+data <- read.table("data/Vocabulary.txt", header=TRUE)
+data <- tbl_df(data)
+p <- ggplot(data, aes(x=education, y=vocabulary, colour=sex))
+p + geom_jitter() +
+  scale_color_manual(values = c("pink", "blue"))
+```
+
+##
+
+```{r}
+data <- mutate(data, female = as.numeric(sex=="Female"))
+fit <- lm(vocabulary ~ education + female + education:female, data = data)
+tidy(fit)
+```
+
+Sketch the graph of the relationship between vocabulary, education, and gender implied by this result.
+
+##
+
+```{r}
+data <- mutate(data, male = as.numeric(sex=="Male"))
+fit <- lm(vocabulary ~ education + male + education:male, data = data)
+tidy(fit)
+```
+
+Sketch the graph of the relationship between vocabulary, education, and gender implied by this result.
+
+##
+
+Back to occupational prestige
+
+```{r}
+data <- read.table("data/Prestige.txt", header=TRUE)
+data$occupation <- rownames(data)
+rownames(data) <- NULL
+data <- tbl_df(data)
+data <- filter(data, !is.na(type))
+data
+```
+
+##
+
+```{r}
+data <- mutate(data, prof = as.numeric(type=="prof"))
+data <- mutate(data, white.collar = as.numeric(type=="wc"))
+fit <- lm(prestige ~ education + prof + white.collar + education:type, data = data)
+tidy(fit)
+```
+
+Sketch the graph showing the relationship between eduation and occupational prestige implied by this result.
+
+## 
+
+substantive questions that involve the interaction between a categorical and continuous variable?
+
 # wrap-up
+
 
 ## 
 
@@ -51,12 +286,15 @@ Motivation for next class
 
 I need your feedback:
 
+- todays class was [too slow/just right/too fast]
+
 - keep 
 
 - stop
 
 - start
 
+- anything else you want to tell me?
 
 ##
 
