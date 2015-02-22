@@ -281,7 +281,7 @@ Interpret column 6 in words.
 
 
 ## 
-How would this pattern be visable in the residuals of this model?
+How would this pattern be visible in the residuals of this model?
 
 $$\begin{eqnarray} 
 log(inc_{i}) &=& \beta_0 + \nonumber \\
