@@ -126,6 +126,9 @@ slope.male <- as.numeric(filter(fit.df, term=="educ") %>%
                       select(estimate))
 slope.female <- slope.male + as.numeric(filter(fit.df, term=="educ:female") %>% 
                                           select(estimate))
+```
+
+```{r}
 p <- ggplot(gss, aes(x=educ, y=income, col=sex))
 p + geom_jitter() + 
   scale_color_manual(values = c("blue", "pink")) +
