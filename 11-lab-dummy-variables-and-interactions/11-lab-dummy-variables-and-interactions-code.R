@@ -62,6 +62,8 @@ df %>%
   mutate(diff.life = mean.life.female - mean.life.male) %>%
   select(region, mean.life.female, mean.life.male, diff.life)
 
+class(df$region)
+
 ### 4. By region visually 
 ggplot(df, aes(x = lifeFemale, y = lifeMale, color = region)) + 
   geom_point()  
@@ -89,14 +91,19 @@ df <- df  %>%
 fit <- lm(lifeFemale ~ europe, data = df)
 tidy(fit)
 
-
 fit <- lm(lifeFemale ~ not.europe, data = df)
 tidy(fit)
 
+
+# df %>%
+#   filter(region != "Europe") %>%
+#   summarise(mean = mean(lifeFemale, na.rm = T))
+# 
 # df %>%
 #   filter(region == "Europe") %>%
 #   summarise(mean = mean(lifeFemale, na.rm = T))
-# 65.91558 + 11.55584
+#  65.91558 + 11.55584
+
 
 ## 4. regression with region
 
@@ -111,7 +118,7 @@ levels(df$region)
 
 fit.3 <- lm(lifeFemale ~ region, data = df) 
 tidy(fit.3)
-
+summary(fit.3)
 
 ####  Life Expectancy and GDP ############
 
@@ -122,15 +129,29 @@ ggplot(df, aes(x = educationFemale, y = lifeFemale, color = region)) +
 
 ## 2. One dummy
 fit.ed <- lm(lifeFemale ~ educationFemale, data = df)
-tidy(fit.ed)
+fit.ed <- tidy(fit.ed)
 
 ggplot(df, aes(x = educationFemale, y = lifeFemale)) + 
   geom_point()  + geom_smooth(method = "lm", se = F)
 
+ed.10 <- fit.ed$estimate[1] + fit.ed$estimate[2]*10
+ed.10
+ed.11 <- fit.ed$estimate[1] + fit.ed$estimate[2]*11
+ed.11
+ed.11 - ed.10
+fit.ed
 
 ## 3. Two dummies
 fit.ed.euro <- lm(lifeFemale ~ educationFemale + europe, data = df)
 fit.ed.euro <- tidy(fit.ed.euro)
+fit.ed.euro
+
+# 12 years, european country 
+fit.ed.euro$estimate[1] + fit.ed.euro$estimate[2]*12 +  fit.ed.euro$estimate[3]
+
+# 12 years, non-european country
+fit.ed.euro$estimate[1] + fit.ed.euro$estimate[2]*12 
+
 
 inter.non.euro <- as.numeric(filter(fit.ed.euro, term =="(Intercept)") %>%
                            select(estimate))
@@ -147,9 +168,12 @@ ggplot(df, aes(x=educationFemale, y=lifeFemale, colour = as.factor(europe))) +
 
 
 ## 4. Only Europe
-fit.euro <- lm(lifeFemale ~ educationFemale + europe, 
+fit.euro <- lm(lifeFemale ~ educationFemale, 
                data = filter(df, europe == 1))
-tidy(fit.euro)
+fit.euro <- tidy(fit.euro)
+fit.euro
+
+fit.euro$estimate[1] + fit.euro$estimate[2]*12 
 
 ggplot(filter(df, europe == 1), 
        aes(x = educationFemale, y = lifeFemale)) + 
