@@ -1,0 +1,75 @@
+---
+title: "Lab: Dummies and Interactions"
+author: "Angela Dixon"
+date: "2015-02-23 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: soc504_s2015_slides.css
+
+---
+
+## {.smaller}
+
+
+<br><br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> 
+<br> <br><br> <br> <br>    
+
+** Inspiration for this lab comes from the work of Jonathan Tannen 
+
+## Goals for Today   
+
+1. Dummy regression.  
+2. Interactions.  
+3. Presenting results.  
+
+## “UN Data on Life Expectancy.”  {.smaller}
+
+- Load the dataset from Fox:  
+- http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/dataset/UnitedNations.txt  
+- More info on dataset: http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/datasets/UnitedNations.pdf
+- Explore the dataset.  
+- Make some plots of Life Expectancy. Anything interesting?  
+
+```{r, eval=FALSE}
+library(ggplot2)
+library(dplyr)
+df <-read.table("http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/datasets/UnitedNations.txt")
+df$country <- rownames(df)
+rownames(df) <- NULL
+df <- tbl_df(df)
+df
+```
+
+## Male and Female Life Expectancy
+
+1. Describe the difference between Male and Female Life Expectancy using statistics.
+2. Describe the difference between Male and Female Life Expectancy visually. (Challenge yourself to keep adding information!)
+3. Describe the difference between Male and Female Life Expectancy by region using statistics. (What kind of variable is ‘region’?)
+4. Add region information to your plot.
+5. Challenge: Redo the plot, but try adding the country names instead of points.
+
+## Comparing Regions 
+
+1. Create a dummy for European countries.  
+2. Create a dummy for non-European countries. 
+3. Regress female life expectancy on the europe dummy. Regress female life expectancy on the non-europe dummy. What do you notice?  
+4. Regress female life expectancy on ‘region’. Interpret the results.  
+5. Challenge: Do Europe and America have the same mean female life expectancy?  
+
+## Life Expectancy and GDP
+
+1. Plot female life expectancy and female education (with region colors). 
+2. Regress female life expectancy on female education. Interpret the results. Plot the regression line. 
+3. Regress female life expectancy on female education and the Europe dummy. Interpret each. Plot the regression lines.
+4. Regress female life expectancy on female education, only for European countries. Plot the regression line.    
+5. Regress female life expectancy on female education, only for American countries. Plot the regression line.   
+6. Regress female life expectancy on female education, Europe, and the interaction between the two. Plot the regression lines.
+
+
+## Life Expectancy and GDP
+
+Ambitious:  
+
+- Regress female life expectancy on female education and all region dummies. Interpret each.    
+- Regress female life expectancy on every region dummy interacted with female education.  Interpret every term.  
+- Put this information on your scatter plot. (Think hard about the most intuitive way to present it!)  
