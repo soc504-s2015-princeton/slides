@@ -208,17 +208,6 @@ tidy(fit.f.euro)
 ggplot(df,
        aes(x = educationFemale, y = lifeFemale, color = as.factor(europe))) +
   geom_point() + scale_color_manual(values = c("red", "blue")) +
-  geom_smooth(method = "lm", se = F) 
-
-ggplot(df,
-       aes(x = educationFemale, y = lifeFemale, color = as.factor(europe))) +
-  geom_point() + scale_color_manual(values = c("red", "blue")) +
-  geom_smooth(method = "lm", se = F, fullrange=TRUE) 
-  
-
-ggplot(df,
-       aes(x = educationFemale, y = lifeFemale, color = as.factor(europe))) +
-  geom_point() + scale_color_manual(values = c("red", "blue")) +
   geom_abline(slope = 2.455864, intercept = 44.134927, color = "red") +   
    geom_abline(slope = (2.455864 -1.036607), intercept = (44.134927 + 14.563841), 
                color = "blue") +  xlim(0, 17)  + ylim(40, 90)
