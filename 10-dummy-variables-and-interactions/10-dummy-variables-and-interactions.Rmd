@@ -184,16 +184,39 @@ p + geom_jitter() +
 
 ##
 
-Sketch out the following and label the graph.
+```{r}
+fit <- lm(prestige ~ education + type, data = data)
+fit.df <- tidy(fit)
+print(fit.df)
+```
 
-$$\begin{eqnarray} 
-\widehat{prestige}_ i &=& \beta_0 + \beta_1 education + \nonumber \\
-& & \beta_2 bluecollar + \beta_3 whitecolloar + \beta_4 professional 
-\end{eqnarray}$$
+Sketch the graph of the relationship occupational presitge, education, and job type implied by these results.
 
-## 
+##
 
-Trick question.  Explain why.  If there are k groups, there should be k - 1 dummy variables if there is an intercept.  Otherwise the algebra doesn't work.
+```{r}
+inter.bc <- as.numeric(filter(fit.df, term=="(Intercept)") %>%
+                         select(estimate))
+inter.prof <- inter.bc + as.numeric(filter(fit.df, term=="typeprof") %>%
+                                        select(estimate))
+inter.wc <- inter.bc + as.numeric(filter(fit.df, term=="typewc") %>%
+                                        select(estimate))
+slope <- as.numeric(filter(fit.df, term=="education") %>%
+                      select(estimate))
+```
+
+## { .smaller }
+
+```{r}
+line.size <- 2
+p <- ggplot(data, aes(x=education, y=prestige, colour=type))
+p + geom_jitter(alpha=0.7) + 
+  scale_color_manual(values = c("blue", "green", "white")) +
+  geom_abline(intercept = inter.bc, slope = slope, colour="blue", size=line.size) +
+  geom_abline(intercept = inter.prof, slope = slope, colour="green", size=line.size) +
+  geom_abline(intercept = inter.wc, slope = slope, colour="white", size=line.size) +
+  expand_limits(x = 0, y = 0)
+```
 
 ##
 
@@ -224,7 +247,8 @@ p + geom_jitter() +
 ```{r}
 data <- mutate(data, female = as.numeric(sex=="Female"))
 fit <- lm(vocabulary ~ education + female + education:female, data = data)
-tidy(fit)
+fit.df <- tidy(fit)
+print(fit.df)
 ```
 
 Sketch the graph of the relationship between vocabulary, education, and gender implied by this result.
@@ -232,12 +256,27 @@ Sketch the graph of the relationship between vocabulary, education, and gender i
 ##
 
 ```{r}
-data <- mutate(data, male = as.numeric(sex=="Male"))
-fit <- lm(vocabulary ~ education + male + education:male, data = data)
-tidy(fit)
+inter.male <- as.numeric(filter(fit.df, term=="(Intercept)") %>%
+                         select(estimate))
+inter.female <- inter.male + as.numeric(filter(fit.df, term=="female") %>%
+                                        select(estimate))
+slope.male <- as.numeric(filter(fit.df, term=="education") %>%
+                         select(estimate))
+slope.female <- slope.male + as.numeric(filter(fit.df, term=="education:female") %>%
+                                        select(estimate))
 ```
 
-Sketch the graph of the relationship between vocabulary, education, and gender implied by this result.
+## { .smaller }
+
+```{r}
+line.size <- 2
+p <- ggplot(data, aes(x=education, y=vocabulary, colour=sex))
+p + geom_jitter(alpha=0.7) + 
+  scale_color_manual(values = c("pink", "blue")) +
+  geom_abline(intercept = inter.male, slope = slope.male, colour="blue", size=line.size) +
+  geom_abline(intercept = inter.female, slope = slope.female, colour="pink", size=line.size) +
+  expand_limits(x = 0, y = 0)
+```
 
 ##
 
@@ -258,12 +297,43 @@ data
 data <- mutate(data, prof = as.numeric(type=="prof"))
 data <- mutate(data, white.collar = as.numeric(type=="wc"))
 fit <- lm(prestige ~ education + prof + white.collar + education:type, data = data)
-tidy(fit)
+fit.df <- tidy(fit)
+print(fit.df)
 ```
 
 Sketch the graph showing the relationship between eduation and occupational prestige implied by this result.
 
 ## 
+
+```{r}
+inter.bc <- as.numeric(filter(fit.df, term=="(Intercept)") %>%
+                         select(estimate))
+inter.wc <- inter.bc + as.numeric(filter(fit.df, term=="white.collar") %>%
+                                  select(estimate))
+inter.prof <- inter.bc + as.numeric(filter(fit.df, term=="prof") %>%
+                                  select(estimate))
+slope.bc <- as.numeric(filter(fit.df, term=="education") %>%
+                         select(estimate))
+slope.wc <- slope.bc + as.numeric(filter(fit.df, term=="education:typewc") %>%
+                                        select(estimate))
+slope.prof <- slope.bc + as.numeric(filter(fit.df, term=="education:typeprof") %>%
+                                        select(estimate))
+```
+
+## { .smaller }
+
+```{r}
+line.size <- 2
+p <- ggplot(data, aes(x=education, y=prestige, colour=type))
+p + geom_jitter(alpha=0.7) + 
+  scale_color_manual(values = c("blue", "green", "white")) +
+  geom_abline(intercept = inter.bc, slope = slope.bc, colour="blue", size=line.size) +
+  geom_abline(intercept = inter.prof, slope = slope.prof, colour="green", size=line.size) +
+  geom_abline(intercept = inter.wc, slope = slope.wc, colour="white", size=line.size) +
+  expand_limits(x = 0, y = 0)
+```
+
+##
 
 substantive questions that involve the interaction between a categorical and continuous variable?
 
