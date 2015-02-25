@@ -11,6 +11,7 @@ output:
 
 Logisitcs:
 
+- we are not going to cover everything today, that's OK
 
 ##
 
@@ -38,6 +39,7 @@ gss <- select(gss.training, income06_n, educ, maeduc, paeduc, sex) %>%
   filter(!is.na(income06_n), !is.na(educ), !is.na(maeduc), !is.na(paeduc), !is.na(sex))
 # NOTE: DROPPING MISSING DATA LIKE THIS CAN BE DANGEROUS
 gss <- rename(gss, income = income06_n)
+gss <- mutate(gss, female = as.numeric(sex=="female"))
 ```
 
 ##
@@ -59,31 +61,6 @@ $$\widehat{income}_i = \beta_0 + \beta_1 educ_i + \beta_2 sex_i + \beta_3 sex_i 
 ```{r}
 library(broom)
 ```
-
-```{r}
-fit <- lm(income ~ educ + sex + educ:sex, data = gss)
-tidy(fit)
-```
-
-##
-
-"Every binary variable that you turn in for any work in this course must be renamed and recoded such that the values of the variable are 0/1, and the name of the variable carries mnemonic significance consistent with 1=yes and 0=no."
-
-"Your instructor generally has a life philosophy that punishments should be roughly proportional to the magnitude of offenses. With respect to this particular matter, however, all bets are off. His belief is that how you handle binary variables has emblematic significance for how you approach data analysis, and, specifically, whether you approach data analysis in a way that minimizes mistakes and confusion for yourself and others. Consider it akin to a `broken windows' theory of orderly data analysis."
-
--- Jeremy Freese, (syllabus for Statistical Analysis of Social Data II, Spring 2013) [http://www.boydetective.net/wp-content/uploads/2014/07/401-2SyllabusSpring2013.pdf]
-
-## 
-
-```{r}
-gss <- mutate(gss, female = as.numeric(sex=="female"))
-```
-
-```{r}
-gss
-```
-
-##
 
 ```{r}
 fit <- lm(income ~ educ + female + educ:female, data = gss)
@@ -117,7 +94,7 @@ fit.df <- tidy(fit)
 fit.df
 ```
 
-## { .smaller }
+## 
 
 ```{r}
 inter <- as.numeric(filter(fit.df, term=="(Intercept)") %>%
@@ -127,6 +104,8 @@ slope.male <- as.numeric(filter(fit.df, term=="educ") %>%
 slope.female <- slope.male + as.numeric(filter(fit.df, term=="educ:female") %>% 
                                           select(estimate))
 ```
+
+##
 
 ```{r}
 p <- ggplot(gss, aes(x=educ, y=income, col=sex))
@@ -333,6 +312,20 @@ Goal check
 motivation for next class
 
 ##
+
+I need your feedback:
+
+- todays class was [too slow/just right/too fast]
+
+- keep 
+
+- stop
+
+- start
+
+- anything else you want to tell me?
+
+
 
 ##
 
