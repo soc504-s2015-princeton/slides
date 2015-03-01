@@ -162,6 +162,7 @@ data <- read.table("data/Prestige.txt", header=TRUE)
 data$occupation <- rownames(data)
 rownames(data) <- NULL
 data <- tbl_df(data)
+data <- filter(data, !is.na(type))
 data
 ```
 
@@ -175,7 +176,6 @@ p + geom_jitter() + stat_smooth(method = "lm")
 ##
 
 ```{r}
-data <- filter(data, !is.na(type))
 p <- ggplot(data, aes(x=education, y=prestige))
 p + geom_jitter() +
   facet_grid(. ~ type) + 
