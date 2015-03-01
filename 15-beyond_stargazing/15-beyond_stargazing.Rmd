@@ -1,0 +1,21 @@
+---
+title: "Beyond stargazing"
+author: "Matthew Salganik"
+date: "2015-03-04 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+##
+
+Logisitcs:
+
+
+##
+
+##
+
+```{r}
+sessionInfo()
+```
