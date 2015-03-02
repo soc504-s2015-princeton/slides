@@ -20,7 +20,7 @@ ggplot(df, aes(x = HDI.2005, y = TFR.2005)) +
 lfit <- lm(TFR.2005 ~ HDI.2005, data = df)
 tidy(lfit)
 
-ggplot(df, aes(x = TFR.2005, y = HDI.2005)) +
+ggplot(df, aes(x = HDI.2005, y = TFR.2005)) +
   geom_point(color = "blue") + 
   geom_smooth(method = "lm", se = F)
 
@@ -117,16 +117,15 @@ my.scatter.plot("red", 5, "loess")
 ## calculating Root mean squared error RMSE
 
 
-
 predicted.TFR <- sample.coefs[1, 1] + sample.coefs[1, 2] * df$HDI.2005
 residuals <- df$TFR.2005 - predicted.TFR
 RMSE <- sqrt(mean(residuals^2))
-
+RMSE
 
 Calc.RMSE <- function(intercept, slope){
   
-  predicted.TFR <- intercept + slope * HDI.2005
-  residuals <- TFR.2005 - predicted.TFR
+  predicted.TFR <- intercept + slope * df$HDI.2005
+  residuals <- df$TFR.2005 - predicted.TFR
   RMSE = sqrt(mean(residuals ^ 2))
   return(RMSE)
   
