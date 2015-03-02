@@ -17,19 +17,21 @@ output:
 
 ##  Goals for Today
 
-1. Using random draws.
+1. Understand why abstraction is helpul 
 2. Use for loops.
 3. Create a function.
 
-## R Commands for Today
+## Rules for Abstraction by Gentzkow and Shapiro (2014)
 
-- FunctionName <- function(arg1, arg2, ...){ } ## Creates function.
-- vcov(lm) ## Provides the variance, covariance of the coefficients of a model.
-- mvrnorm(n, mu, Sigma) ## Draws values from a multivariate normal distribution.
+1. Abstract to eliminate redundancy.
+2. Abstract to improve clarity.
+3. Otherwise, don’t abstract
+
+"Abstraction is essential to writing good code for at least two reasons. First ... it eliminates redundancy, which reduces the scope for error and increases the value you can get from the code you write. Second, just as importantly, it makes code more readable. A reader scanning one of the three code blocks above might easily miss their purpose. By contrast, a call to a function called leaveout_mean is hard to misunderstand" p.(24)
 
 ## "Advances in Development Reverse Fertility Declines" {.smaller}
 
-- The paper examined the relationship between the Human Development Index (HDI) and the Total Fertility Rate (TFR) in 143 countries.    
+- The paper examined the relationship between the Human Development Index (HDI) and the Total Fertility Rate (TFR).    
 - Download: http://www.nature.com/nature/journal/v460/n7256/extref/nature08230-s2.zip    
 - Open a new R Script, set it up, and read.csv the data. We will only be using 2005 data today.   
 - Install the package "MASS" with "install.packages("MASS")" and load the MASS, dplyr, boom, and ggplot2 packages
@@ -53,23 +55,20 @@ df
 - Make a scatter plot of TFR and HDI for 2005.
 - Regress TFR on HDI in 2005.
 - Add the regression line to your plot.   
-- Use 'vcov' to examine the variance-covariance of the
-coefficients 
 - Draw a sample of 100 coefficients from this distribution (using
-mvrnorm(), from package MASS).
+mvrnorm(), from package MASS). This involves using 'vcov' which gives variance-covariance of the coefficients (more on this on Wednesday).
 
 ```{r, eval=FALSE}
 vcov(lfit)
 
 mvrnorm(1, mu = lfit$coefficients, Sigma = vcov(lfit))
 
-
 ```
 
 
 
 
-## Introduction to loops {.build} {.smaller}
+## Introduction to loops {.smaller}
 
 Example from The Art of R Programming: A Tour of Statistical Software Design by Normal Matloff  
   
@@ -97,7 +96,7 @@ for (i in 1:10){
 ```
 
 
-## Introduction to loops {.build} {.smaller}
+## Introduction to loops {.smaller}
 
 - If you want to store the values that you create in a vector, you need to set up a vector OUTSIDE OF YOUR LOOP to store the values in before starting your loop. (ex. sqr.squared <- NULL)    
 
@@ -122,17 +121,13 @@ head(cbind(sqr, sqr.squared))
 (Make it general, rather than typing the coefficients into your script by hand).
 - Use a for loop to repeat the above command for every pair of coefficients.
 
-## Introduction to functions {.build} {.smaller}
-
+## Introduction to functions {.smaller}
 - Basic set up for functions:
 - function.name <- function(arguments) {  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; purpose of function (i.e. computations involving the arguments)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  
 - "{" indicates the beginning of the function, "}" the end
-
-
 http://www.ats.ucla.edu/stat/r/library/intro_function.htm  
-
 ```{r}
 
 # Creating a function, called f1, which adds a pair of numbers.
@@ -145,7 +140,7 @@ f1(2, 6)
 ```
 
 
-## Introduction to functions {.build} {.smaller}
+## Introduction to functions {.smaller}
 
 - Basic set up for functions:
 - function.name <- function(arguments) {  
@@ -167,23 +162,27 @@ my.scatter.plot <- function(color, size = 2, method) { # set default size to 2
 
 ```
 
-## functions
+## functions {.smaller}
 
-- Now, write a set of commands that calculates the RMSE for
-the first pair of coefficients.
-(There are many steps! You need to calculate predicted
-values, then find residuals, then calculate RMSE)
-- We will want to perform these steps many times, so make this
-a function.
+- Recall the linear model ( lfit() ) and 100 draws of coefficients (sample.coefs)
+- Now, write a set of commands that calculates the RMSE for the first pair of coefficients. (There are many steps! You need to calculate predicted values, then find residuals, then calculate RMSE)
+- We will want to perform these steps many times, so now make this a function.
 - ONLY AFTER YOU'VE WRITTEN YOUR OWN:
 Matt has provided a sample function at
 https://gist.github.com/jtannen/5026444
 
+- *For more on RMSE see http://www.theanalysisfactor.com/assessing-the-fit-of-regression-models/
 
 ## Additional resources for R on campus
 
 - Data and Statistical Services Lab Consultation: http://dss.princeton.edu/dsslab/ 
 - Politics Consultants: http://q-apsconsulting.princeton.edu/find-a-consultant/
+
+##  Goal Check 
+
+1. Understand why abstraction is helpul 
+2. Use for loops.
+3. Create a function.
 
 
 ## Session Info

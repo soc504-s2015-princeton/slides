@@ -31,6 +31,8 @@ vcov(lfit)
 mvrnorm(1, mu = lfit$coefficients, Sigma = vcov(lfit)) 
 mvrnorm(2, mu = lfit$coefficients, Sigma = vcov(lfit)) 
 
+
+
 # draw 100
 sample.coefs <- mvrnorm(100, mu = lfit$coefficients, Sigma = vcov(lfit)) 
 sample.coefs[1, ]
@@ -76,9 +78,6 @@ for (n in 1:50) {
 head(sqr.squared)
 head(cbind(sqr, sqr.squared))
 
-head(sqr.squared)
-head(cbind(sqr, sqr.squared))
-
 
 ############## for Loops ##########
 
@@ -90,8 +89,6 @@ abline(sample.coefs[1, ], col = "yellow", lwd = 2)
 for (row in 1:100) {
   abline(sample.coefs[row, ], col = "yellow", lwd = 2)
 } 
-
-abline(lfit, col = "red", lwd = 4)
 
 #### Introduction to Functions ########
 
@@ -119,7 +116,7 @@ my.scatter.plot("red", 5, "loess")
 
 ## calculating Root mean squared error RMSE
 
-# intercept + slope * HDI
+
 
 predicted.TFR <- sample.coefs[1, 1] + sample.coefs[1, 2] * df$HDI.2005
 residuals <- df$TFR.2005 - predicted.TFR
@@ -169,5 +166,4 @@ Matt.rmse <- function(prediction.vec, truth.vec) {
   return(result)
 }
 
-str(lfit)
 Matt.rmse(lfit$fitted.value, TFR.2005)
