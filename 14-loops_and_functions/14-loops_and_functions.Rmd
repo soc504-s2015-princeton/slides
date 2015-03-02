@@ -7,15 +7,186 @@ output:
     css: ../soc504_s2015_slides.css
 ---
 
-##
-
-Logisitcs:
+## {.smaller}
 
 
-##
+<br><br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> 
+<br> <br><br> <br> <br>    
 
-##
+** Inspiration for this lab comes from the work of Jonathan Tannen 
 
+##  Goals for Today
+
+1. Using random draws.
+2. Use for loops.
+3. Create a function.
+
+## R Commands for Today
+
+- FunctionName <- function(arg1, arg2, ...){ } ## Creates function.
+- vcov(lm) ## Provides the variance, covariance of the coefficients of a model.
+- mvrnorm(n, mu, Sigma) ## Draws values from a multivariate normal distribution.
+
+## "Advances in Development Reverse Fertility Declines" {.smaller}
+
+- The paper examined the relationship between the Human Development Index (HDI) and the Total Fertility Rate (TFR) in 143 countries.    
+- Download: http://www.nature.com/nature/journal/v460/n7256/extref/nature08230-s2.zip    
+- Open a new R Script, set it up, and read.csv the data. We will only be using 2005 data today.   
+- Install the package "MASS" with "install.packages("MASS")" and load the MASS, dplyr, boom, and ggplot2 packages
+
+```{r, eval=FALSE}
+# install.packages("MASS") 
+library(MASS)
+library(ggplot2)
+library(dplyr)
+library(broom)
+df <- read.csv("data/nature08230-s2.csv")
+df <- select(df, country, HDI.2005, TFR.2005)
+df <- filter(df, !is.na(HDI.2005), !is.na(TFR.2005))
+df <- tbl_df(df)
+df
+```
+
+
+## Linear Regression
+
+- Make a scatter plot of TFR and HDI for 2005.
+- Regress TFR on HDI in 2005.
+- Add the regression line to your plot.   
+- Use 'vcov' to examine the variance-covariance of the
+coefficients 
+- Draw a sample of 100 coefficients from this distribution (using
+mvrnorm(), from package MASS).
+
+```{r, eval=FALSE}
+vcov(lfit)
+
+mvrnorm(1, mu = lfit$coefficients, Sigma = vcov(lfit))
+
+
+```
+
+
+
+
+## Introduction to loops {.build} {.smaller}
+
+Example from The Art of R Programming: A Tour of Statistical Software Design by Normal Matloff  
+  
+- for(n in x){  
+  
+- "This means that there will be one iteration of the loop for each component of the vector x, with n taking on the values of those components - in the first iteration, n = x[1]; in the second iternation, n = x[2]; and so on." (p. 140)
+
+
+```{r}
+x <- c(5, 12, 13)
+for(n in x){
+  print( n ^ 2)
+}
+
+```
+
+## Introduction to loops 
+
+```{r}
+for(i in 1:10){
+  print("Hello world!")
+  print(i*i)
+}
+
+```
+
+
+## Introduction to loops {.build} {.smaller}
+
+- If you want to store the values that you create in a vector, you need to set up a vector OUTSIDE OF YOUR LOOP to store the values in before starting your loop. (ex. sqr.squared <- NULL)    
+
+https://blog.udemy.com/r-tutorial/
+
+```{r, eval=FALSE}
+sqr <-  seq(1, 100, by=2) # generating sequences of 50 numbers
+head(sqr)
+sqr.squared <- NULL  ## setting up empty vector
+for (n in 1:50) {
+sqr.squared[n] <- sqr[n]^2
+}
+
+head(sqr.squared)
+head(cbind(sqr, sqr.squared))
+```
+
+
+## Practicing for Loops
+- Make a scatter plot for TFR and HDI for 2005 using the "plot()"" function 
+- Add a line to your scatter plot with the first set of sampled coefficients using "abline()."
+(Make it general, rather than typing the coefficients into your script by hand).
+- Use a for loop to repeat the above command for every pair of coefficients.
+
+## Introduction to functions {.build} {.smaller}
+
+- Basic set up for functions:
+- function.name <- function(arguments) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; purpose of function (i.e. computations involving the arguments)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  
+- "{" indicates the beginning of the function, "}" the end
+
+
+http://www.ats.ucla.edu/stat/r/library/intro_function.htm  
+
+```{r}
+
+# Creating a function, called f1, which adds a pair of numbers.
+f1 <- function(x, y) {
+  x + y
+}
+
+f1(3, 4)
+f1(2, 6)
+```
+
+
+## Introduction to functions {.build} {.smaller}
+
+- Basic set up for functions:
+- function.name <- function(arguments) {  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; purpose of function (i.e. computations involving the arguments)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  
+
+```{r}
+
+my.scatter.plot <- function(color, size = 2, method) { # set default size to 2
+  ggplot(df, aes(x = HDI.2005, y =  TFR.2005)) + 
+    geom_point(color = color, size = size) +   # color and size vary based on inputs
+    geom_smooth(method = method, color = "red") + # line will always be red
+    theme_bw()                                    # theme will always be bw
+}
+
+# my.scatter.plot(color = "green", size = 6,  method = "lm")
+# my.scatter.plot(color = "blue",  method = "lm")
+# my.scatter.plot("red", 5, "loess")
+
+```
+
+## functions
+
+- Now, write a set of commands that calculates the RMSE for
+the first pair of coefficients.
+(There are many steps! You need to calculate predicted
+values, then find residuals, then calculate RMSE)
+- We will want to perform these steps many times, so make this
+a function.
+- ONLY AFTER YOU'VE WRITTEN YOUR OWN:
+Matt has provided a sample function at
+https://gist.github.com/jtannen/5026444
+
+
+## Additional resources for R on campus
+
+- Data and Statistical Services Lab Consultation: http://dss.princeton.edu/dsslab/ 
+- Politics Consultants: http://q-apsconsulting.princeton.edu/find-a-consultant/
+
+
+## Session Info
 ```{r}
 sessionInfo()
 ```
