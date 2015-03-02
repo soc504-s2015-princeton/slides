@@ -73,14 +73,14 @@ mvrnorm(1, mu = lfit$coefficients, Sigma = vcov(lfit))
 
 Example from The Art of R Programming: A Tour of Statistical Software Design by Normal Matloff  
   
-- for(n in x){  
+- for (n in x){  
   
 - "This means that there will be one iteration of the loop for each component of the vector x, with n taking on the values of those components - in the first iteration, n = x[1]; in the second iternation, n = x[2]; and so on." (p. 140)
 
 
 ```{r}
 x <- c(5, 12, 13)
-for(n in x){
+for (n in x){
   print( n ^ 2)
 }
 
@@ -89,7 +89,7 @@ for(n in x){
 ## Introduction to loops 
 
 ```{r}
-for(i in 1:10){
+for (i in 1:10){
   print("Hello world!")
   print(i*i)
 }

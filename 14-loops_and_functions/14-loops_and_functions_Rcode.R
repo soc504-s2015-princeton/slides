@@ -40,26 +40,26 @@ head(sample.coefs)
 
 # Ex. 1
 x <- c(5, 12, 13)
-for(n in x){
+for (n in x){
   print( n ^ 2)
 }
 
 # Ex. 2
-for(i in 1:10){
+for (i in 1:10){
   print("Hello world!")
   print(i*i)
 }
 
 ## which is the same as 
 x<- c(1:10)
-for(i in x){
+for (i in x){
   print("Hello world!")
   print(i*i)
 }
 
 ## and 
 x <- c(1:10)
-for(snow in x){     # the counter can take any name
+for (snow in x){     # the counter can take any name
   print("Hello world!")
   print(snow*snow)
 }
@@ -130,7 +130,7 @@ Calc.RMSE <- function(intercept, slope){
   
   predicted.TFR <- intercept + slope * HDI.2005
   residuals <- TFR.2005 - predicted.TFR
-  RMSE = sqrt(mean(residuals^2))
+  RMSE = sqrt(mean(residuals ^ 2))
   return(RMSE)
   
 } 
