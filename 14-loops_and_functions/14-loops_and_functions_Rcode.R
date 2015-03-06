@@ -19,9 +19,9 @@ ggplot(df, aes(x = HDI.2005, y = TFR.2005)) +
 
 lfit <- lm(TFR.2005 ~ HDI.2005, data = df)
 tidy(lfit)
-
+library(ggplot2)
 ggplot(df, aes(x = HDI.2005, y = TFR.2005)) +
-  geom_point(color = "blue") + 
+  geom_point(color = "red") + 
   geom_smooth(method = "lm", se = F)
 
 # 
@@ -30,7 +30,7 @@ vcov(lfit)
 # multivariate random normal
 mvrnorm(1, mu = lfit$coefficients, Sigma = vcov(lfit)) 
 mvrnorm(2, mu = lfit$coefficients, Sigma = vcov(lfit)) 
-
+ 
 
 
 # draw 100
@@ -92,25 +92,25 @@ for (row in 1:100) {
 
 #### Introduction to Functions ########
 
-# Creating a function, called f1, which adds a pair of numbers.
-f1 <- function(x, y) {
+F1 <- function(x, y) {
+  # Creating a function, called f1, which adds a pair of numbers.
   x + y
 }
 
-f1(3, 4)
-f1(2, 6)
+F1(3, 4)
+F1(2, 6)
 
 # Ex. 2
-my.scatter.plot <- function(color, size = 2, method) { # set default size to 2
+My.scatter.plot <- function(color, size = 2, method) { # set default size to 2
   ggplot(df, aes(x = HDI.2005, y =  TFR.2005)) + 
     geom_point(color = color, size = size) +   # color and size vary based on inputs
     geom_smooth(method = method, color = "red") + # line will always be red
     theme_bw()                                    # theme will always be bw
 }
 
-my.scatter.plot(color = "green", size = 6,  method = "lm")
-my.scatter.plot(color = "blue",  method = "lm")
-my.scatter.plot("red", 5, "loess")
+My.scatter.plot(color = "green", size = 6,  method = "lm")
+My.scatter.plot(color = "blue",  method = "lm")
+My.scatter.plot("red", 5, "loess")
 
 ############# Functions ###########
 
