@@ -1,0 +1,152 @@
+---
+title: "Statistical inference for regression"
+author: "Matthew Salganik"
+date: "2015-03-02 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+##
+
+Logisitcs:
+
+- next two weeks posted
+- no more assignments before spring break, only work on your project
+- results from feedback
+
+##
+
+Plan for this week:
+
+- statistical inference from regression
+- loops and functions
+- beyond stargazing (many of my collogues might not agree with this class)
+
+##
+
+<img src="images/Data_Science_VD.png" width="500">
+
+<div class="cite">
+http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram
+</div>
+
+##
+
+After this class you will be able to
+
+- look up in a book the assumptions required for a variety of properties of the least-squares estimator
+- describe the difference between empirical and structural relationships
+- explain the consequences of measurement error on the outcome variable and predictor variables
+
+# assumptions related to regression
+
+##
+
+Data generating process:
+$$Y_i = \alpha + \beta X_i + \epsilon_i$$
+
+Given lots of pairs $(x, y)$ what we can infer about $\alpha$ and $\beta$?  This must require assumptions.
+
+##
+
+Variety of assumptions
+
+- linearity
+- contstant variance
+- normality
+- independence
+- fixed X or X measured wihtout error and indepednent of the error
+
+Lead to variety of properties
+
+- unbiased estimators
+- specific sampling variance
+- most efficent of all linear estimators
+- maximum liklihood estimators
+- coefficents are normally distributed
+
+##
+
+Consider the case
+$$Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$$
+
+Many of the assumptions are about relationship between $X$ and $\epsilon$.
+
+And, these can be checked, see Fox Chapter 12: Diagnosing non-normality, nonconstant error variance, and nonlinearity.
+
+##
+
+<img src="images/fox_applied_2008_6_1.png" width="600">
+
+<div class="cite">
+[Fox 2008](http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/index.html), Figure 6.1
+</div>
+
+##
+
+How you might have thought before:
+
+- your p-values = f(your data)
+
+How I hope you think now:
+
+- your p-values = f(your data, your assumptions)
+
+# What about a census?
+
+##
+
+Think back to your homework that involved the 50 US States.  Do these assumptions make sense in that case?
+
+# "empirical" and "structural" relationships (using language from Fox)
+
+##
+
+Imagine that the true data generating process is
+$$income = \beta_0 + \beta_1 educ + \beta_2 height + \epsilon$$
+
+If we estimate
+$$income = \beta_0 + \beta_1' educ + \epsilon$$
+
+What is relationship between $\beta_1'$ and $\beta$? Do we care?
+
+##
+
+Algebra from Fox shows:
+$$\beta_1' = \beta_1 + bias$$
+where
+$$bias = \beta_2 \frac{\sigma_{12}}{\sigma_1^2}$$
+
+If you want to estimate the parameter in the data generating process, you need to know the data generating process.
+
+# measurement error on outcome and predictors
+
+##
+
+Mock FB interview
+
+##
+
+- random measurement error in $X$ biases $\beta_1$ toward 0
+- random measurement error in $Y$ does not introduce bias in coefficients (goes into $\epsilon$)
+
+# wrap-up
+
+## 
+
+questions?
+
+##
+
+goal check
+
+## 
+
+motivation for next class
+
+##
+
+```{r}
+sessionInfo()
+```
