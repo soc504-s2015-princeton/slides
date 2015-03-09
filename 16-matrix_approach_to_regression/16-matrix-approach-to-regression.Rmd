@@ -13,6 +13,7 @@ Logisitcs:
 
 - reproduction due Sunday, March 15 at midnight
 - no extensions, you will submit what you have (.Rmd and .html) in a github repo
+- [Web scraping and text processing in Python](http://q-aps.princeton.edu/classes/web-scraping-and-text-processing-python)
 
 ##
 
