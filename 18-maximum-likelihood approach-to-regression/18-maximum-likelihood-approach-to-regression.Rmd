@@ -1,7 +1,7 @@
 ---
-title: "Beyond stargazing"
+title: "Maximum likelihood"
 author: "Matthew Salganik"
-date: "2015-03-04 ![Creative Commons Attribution License](images/cc-by.png)"
+date: "2015-03-11 ![Creative Commons Attribution License](images/cc-by.png)"
 output: 
   ioslides_presentation:
     css: ../soc504_s2015_slides.css
@@ -11,165 +11,177 @@ output:
 
 Logisitcs:
 
-- please ignore travis-ci stuff for now
-- we are going to leave a lot of time for discussion in class today
+- projects are due Sunday at midnight
 
 questions?
 
 ##
 
-<img src="images/stars.png" width="800">
+today's class will be disappointing, I apologize in advance
 
 ##
 
 At the end of this class you will be able to
 
-- explain why obsession with p-values is worse than useless
-- describe simple alternatives that are more interesting
+- walk through a simple example of maximum liklihood for the binomial model 
+- understand new R techniques: vectorized code, testing
+- do a better job writing reusable code
 
-
-# what are p-values?
 
 ##
 
-<img src="images/nuzzo_statistical_2014_pvalue.png" width="500">
-
-All p-values do is summarize the data with respect to a null/nil hypothesis
+<img src="images/myung_tutorial_2003_title.png" width="600">
 
 <div class="cite">
-[Nuzzo (2014)](http://www.nature.com/news/scientific-method-statistical-errors-1.14700)
-</div>
-
-## 
-
-As described in Cohen (!994) p-values are often misinterpreted.  But, this is not my main concern with p-values.
-
-Even if correctly interpreted, p-values
-
-- remove foucs from data, measurement, and theory (e.g., units)
-- encourage dichotomous thinking
-- lead to filtering of findings in journals based an arbitrary cut-off
-
-# p-hacking
-
-##
-
-"p-hacking is trying multiple things until you get the desired result"
-
-Uri Simonsohn in [Nuzzo (2014)](http://www.nature.com/news/scientific-method-statistical-errors-1.14700)
-
-##
-
-<img src="images/significant.png" width="200">
-
-<div class="cite">
-http://xkcd.com/882/
+http://dx.doi.org/10.1016/S0022-2496(02)00028-7
 </div>
 
 ##
 
-researcher degrees of freedom and distorted incentives are a bad combination
+Two general approaches to parameter estimation:
+
+- least-squares estimation
+- maximum likelihood estimation
+
+# probability
 
 ##
 
-<img src="images/simmons_false_2011_tab2.png" width="500">
+pr[data | parameters, model]
 
-<div class="cite">
-[Simmons et al (2011)](http://dx.doi.org/10.1177/0956797611417632)
-</div>
+What is the probability of observing y successes in 10 Bernoulli trials where w = 0.2?
 
 ##
 
-<img src="images/simmons_false-positive_2011_conclusion.png" width="700">
+The famous coin flipping distribution:
 
-<div class="cite">
-[Simmons et al (2011)](http://dx.doi.org/10.1177/0956797611417632)
-</div>
+$pr(y \mid n, w) = {n \choose w} w^y (1-w)^{n-y}$
 
-# What should you do?
+where
 
-## 
-
-"don't look for a magical alternative to null hypothesis signficance testing, some other objective mechanical ritual to replace it.  It does not exist."
-
-Cohen (1994)
-
-But I think we can do better
-
-# three simple rules to help move beyond p-values
-
-## 1) Don't talk about p-values
-
-compare:
-
-- "the coefficient on education was significant at the 0.05 level" 
-
-- "Other things being equal, an additional year of education would increase your annual income by $1,500 on average, plus or minus about $500."
-
-- "People who more education earned more money.  Someone with one more year of education than someone else would be expected to earn about $1,500 more per year, plus or minus about $500."
-
-
-## 2) talk about (and graph) confidence intervals
-
-focuses attention on magnitude and interpretability, and still allows you to rule out 0 
-
-## 3) talk about (and graph) more interesting summaries of complex models
-
-<img src="images/feeding_baby_birds.png" width="300">
-
-<div class="cite">
-http://animalstime.com/what-feed-baby-bird-what-feed-baby-birds/
-</div>
+${n \choose w} = \frac{n!}{y! (n-y)!}$
 
 ##
 
-Is there an inverse-U shaped relationship between age and voting?
-
-<img src="images/king_making_2000_fig1.png" width="600">
-
-<div class="cite">
-http://animalstime.com/what-feed-baby-bird-what-feed-baby-birds/
-</div>
-
-and there are many more examples in the paper
-
-# one not simple rule to move beyond p-values
+$f(y | n = 10, w = 0.2) = \frac{10!}{y!(10-y)!} (0.2)^y (0.8)^{(10-y)}$
 
 ##
 
-Focus on prediction
+```{r}
+# for illustrative purposes only
+# if you were doing on this on a real problem you would need to do something more computationally efficient
+
+y.vec <- 0:10
+factorial(10)/factorial(10 - y.vec)
+```
 
 ##
 
-the search for statistically significant relationships may be the best way to try to really explain what is happening in the world
+```{r}
+p.vec <- factorial(10)/(factorial(y.vec) * factorial(10 - y.vec)) * 0.2 ^ y.vec * 0.8 ^ (10 - y.vec)
 
-## 
-
-<img src="images/ward_perils_2010_tab1.png" width="600">
-
-<div class="cite">
-[Ward et al (2010)](http://dx.doi.org/10.1177/0022343309356491)
-</div>
+# automated testing, and what is with that weird test?
+if (abs(sum(p.vec) - 1) > 0.000001) stop("ERROR calculating p.vec")
+p.vec
+```
 
 ##
 
-<img src="images/ward_perils_2010_tab2.png" width="600">
+```{r}
+library(ggplot2)
+df <- data.frame(heads = y.vec, prob = p.vec)
+p <- ggplot(df, aes(x = heads, y = prob))
+p + geom_bar(stat="identity") + scale_x_discrete(limits = df$heads)
+```
 
-<div class="cite">
-[Ward et al (2010)](http://dx.doi.org/10.1177/0022343309356491)
-</div>
+## { .smaller }
+
+```{r}
+w <- 0.5
+n <- 10
+heads.vec <- 0:n
+p.vec <- factorial(n)/(factorial(heads.vec) * factorial(10 - heads.vec)) * w ^ heads.vec * w ^ (10 - heads.vec)
+if (abs(sum(p.vec) - 1) > 0.000001) stop("ERROR calculating p.vec")
+df <- data.frame(heads = y.vec, prob = p.vec)
+p <- ggplot(df, aes(x = heads, y = prob))
+p + geom_bar(stat="identity") + scale_x_continuous(breaks = df$heads)
+```
 
 ##
 
-<img src="images/ward_perils_2010_tab3.png" width="800">
+Pick your favorite w
 
-<div class="cite">
-[Ward et al (2010)](http://dx.doi.org/10.1177/0022343309356491)
-</div>
+Pick your favorite n
 
 ##
 
-Focus on out of sample prediction is related to concerns about p-hacking
+Programming concepts:
+
+- vectorization
+- error testing
+- resuable code
+
+##
+
+pr[data | parameters, model]
+
+What is the probability of observing y successes in 10 Bernoulli trials where w = 0.2?
+
+$f(y | n = 10, w = 0.2) = \frac{10!}{y!(10-y)!} (0.2)^y (0.8)^{(10-y)}$
+
+# inference
+
+##
+
+find parameters most likely given data and model
+
+Imagine that we have 7 heads in 10 tosses.  What value of $w$ was most likely to generate that data?
+
+$L(w | n = 10, y = 7) = \frac{10!}{7!3!} w^7 (1 - w)^3$
+
+##
+
+One can find the maximum using calculus or computationally.  Here we do it graphically.
+
+## { .smaller }
+
+```{r}
+w.vec <- seq(from = 0, to = 1, by = 0.01)
+l.vec <- (factorial(10)/(factorial(7) * factorial(3))) * w.vec^7 * (1 - w.vec)^3
+df <- data.frame(w.vec = w.vec, l.vec = l.vec)
+p <- ggplot(df, aes(x = w.vec, y = l.vec))
+p + geom_line()
+```
+
+##
+
+Now you generalize the code for $n$ tosses and $y$ successes
+
+## { .smaller }
+
+```{r}
+w.vec <- seq(from = 0, to = 1, by = 0.01)
+n <- 10
+y <- 7
+l.vec <- (factorial(n)/(factorial(y) * factorial(n - y))) * w.vec^y * (1 - w.vec)^(n-y)
+df <- data.frame(w.vec = w.vec, l.vec = l.vec)
+p <- ggplot(df, aes(x = w.vec, y = l.vec))
+p + geom_line()
+```
+
+##
+
+In practice we usually work with log-liklihoods.
+
+# maximum likelihood approach to regression
+
+##
+
+$y_i = \beta_0 + \beta_1 x_i + \epsilon_i$
+
+$p(y_i) = \frac{1}{\sigma_\epsilon \sqrt{2 \pi}} exp \left[- \frac{(y_i - \beta_0 + \beta_1 X_i)^2}{2 \sigma_\epsilon^2} \right]$
+
+$L(\beta_0, \beta_1, \sigma_{\epsilon^2} \mid y, x) = \prod_{i=1}^n \frac{1}{\sigma_\epsilon \sqrt{2 \pi}} exp \left[- \frac{(y_i - \beta_0 + \beta_1 x_i)^2}{2 \sigma_\epsilon^2} \right]$
 
 # wrap-up
 
