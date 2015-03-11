@@ -27,6 +27,8 @@ This week is focused on the goal of enabling lifelong learning
 
 # real motivating example
 
+##
+
 project of a classmate
 
 ##
@@ -270,6 +272,10 @@ goal check
 ## 
 
 motivation for next class
+
+##
+
+http://bit.do/soc504feedback
 
 ##
 
