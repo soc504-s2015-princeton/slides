@@ -12,6 +12,7 @@ output:
 Logisitcs:
 
 - projects are due Sunday at midnight
+- setwd()
 
 questions?
 
@@ -97,12 +98,13 @@ p + geom_bar(stat="identity") + scale_x_discrete(limits = df$heads)
 ## { .smaller }
 
 ```{r}
-w <- 0.5
-n <- 10
+w <- 0.2
+n <- 25
 heads.vec <- 0:n
-p.vec <- factorial(n)/(factorial(heads.vec) * factorial(10 - heads.vec)) * w ^ heads.vec * w ^ (10 - heads.vec)
+c <- factorial(n)/(factorial(heads.vec) * factorial(n - heads.vec))
+p.vec <- c * w ^ heads.vec * (1 - w) ^ (n - heads.vec)
 if (abs(sum(p.vec) - 1) > 0.000001) stop("ERROR calculating p.vec")
-df <- data.frame(heads = y.vec, prob = p.vec)
+df <- data.frame(heads = heads.vec, prob = p.vec)
 p <- ggplot(df, aes(x = heads, y = prob))
 p + geom_bar(stat="identity") + scale_x_continuous(breaks = df$heads)
 ```
