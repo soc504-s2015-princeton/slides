@@ -1,0 +1,50 @@
+---
+title: "Causal graphs"
+author: "Matthew Salganik"
+date: "2015-03-25 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+##
+
+Logisitcs:
+
+questions?
+
+##
+
+Big picture goal:
+
+Explain the limitations of observational data for making causal claims, and begin to use existing strategies for attempting to make causal claims from observational data
+
+##
+
+
+At the end of this class you will be able to
+
+
+##
+
+
+# wrap-up
+
+##
+
+goal check
+
+## 
+
+motivation for next class
+
+##
+
+http://bit.do/soc504feedback
+
+##
+
+
+```{r}
+sessionInfo()
+```
