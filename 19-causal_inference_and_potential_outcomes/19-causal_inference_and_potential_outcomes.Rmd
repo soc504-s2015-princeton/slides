@@ -22,11 +22,24 @@ plan for next two weeks (added as a course goal):
 Explain the limitations of observational data for making causal claims, and begin to use existing strategies for attempting to make causal claims from observational data
 
 
+<img src="images/morgan_counterfactuals_2015_cover.png", height="400">
+
 ##
 
 At the end of this class you will be able to
 
 
+##
+
+# warm-up
+
+##
+
+<img src="images/taubes_do_2007_title.png", width="700">
+
+<div class="cite">
+http://www.nytimes.com/2007/09/16/magazine/16epidemiology-t.html
+</div>
 
 ##
 
