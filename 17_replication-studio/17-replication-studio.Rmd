@@ -1,0 +1,13 @@
+---
+title: "Replication studio"
+author: "Angela Dixon"
+date: "2015-03-02 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+## {.smaller}
+
+Work on replication projects
+

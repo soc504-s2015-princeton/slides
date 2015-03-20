@@ -2,4 +2,8 @@
 .Rhistory
 .RData
 *.html
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+>>>>>>> 2349b6c4ba19642d5b2da8aedbfcaa8aaa3d8707

@@ -1,0 +1,61 @@
+---
+title: "Causal inference and potential outcomes"
+author: "Matthew Salganik"
+date: "2015-03-23 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+##
+
+Logisitcs:
+
+- plan for project reviews
+
+questions?
+
+##
+
+plan for next two weeks (added as a course goal):
+
+Explain the limitations of observational data for making causal claims, and begin to use existing strategies for attempting to make causal claims from observational data
+
+
+<img src="images/morgan_counterfactuals_2015_cover.png", height="400">
+
+##
+
+At the end of this class you will be able to
+
+
+##
+
+# warm-up
+
+##
+
+<img src="images/taubes_do_2007_title.png", width="700">
+
+<div class="cite">
+http://www.nytimes.com/2007/09/16/magazine/16epidemiology-t.html
+</div>
+
+##
+
+
+# wrap-up
+
+##
+
+goal check
+
+## 
+
+motivation for next class
+
+##
+
+```{r}
+sessionInfo()
+```
