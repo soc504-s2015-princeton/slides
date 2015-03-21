@@ -1,0 +1,12 @@
+---
+title: "Working with models for polytomous data"
+author: "Angela Dixon"
+date: "2015-04-13 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+## {.smaller}
+
+
