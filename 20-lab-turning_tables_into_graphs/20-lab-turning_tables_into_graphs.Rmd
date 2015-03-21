@@ -1,0 +1,69 @@
+---
+title: "Turning Tables Into Graphs"
+author: "Angela Dixon"
+date: "2015-03-23 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+
+## {.smaller}
+
+
+<br><br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> 
+<br> <br><br> <br> <br>    
+
+** Inspiration for this lab comes from the work of Jonathan Tannen 
+
+##  Goals for Today
+
+1. Understand and practice pair programming
+2. ???.
+3. ???.
+
+## What is Pair Programming?  
+- It has been shown to cut down coding errors by 50 percent!  
+- It leads to more efficient, better commented, more elegant code! 
+- Itis an advanced technique that has taken over the cultures of Facebook, Square, and other Silicon Valley leaders in order to create cleaner more excellent code!  
+- It has been said to lead to "soulmate-level" connections!  
+
+## What is Pair Programming?  
+- The idea is simple: you code in a team of 2.  
+- The Driver: Writes the code.  
+- The Navigator: Reviews and guides.  
+- Switch often! (At least every 30 minutes)  
+- Check in!  
+- Reflect on good ways to solve the problems!  
+
+## Why Turn Tables into Graphs? {.smaller}
+ 
+Kastellec and Leoni (2007)
+
+Abstract
+
+> When political scientists present empirical results, they are much more likely to use tables than graphs, despite the fact that <span style="color:blue">**graphs greatly increases the clarity of presentation and makes it easier for a reader to understand the data being used and to draw clear and correct inferences**</span>. Using a sample of leading journals, we document this tendency and suggest reasons why researchers prefer tables. We argue that <span style="color:blue">**the extra work required in producing graphs is rewarded by greatly enhanced presentation and communication of empirical results**</span>. We illustrate their benefits by turning several published tables into graphs, including tables that present descriptive data and regression results. We show that <span style="color:blue">**regression graphs emphasize point estimates and confidence intervals**</span> and that they can successfully present the results of regression models. A move away from tables towards graphs would improve the discipline's communicative output and make empirical findings more accessible to every type of audience.
+
+- http://tables2graphs.com/doku.php
+
+## Turning Tables into Graphs {.smaller}
+
+*  Turn the table from figure 7 into a graph with ggplot2 (instead of base R) and add color   
+    + http://svn.cluelessresearch.com/tables2graphs/Rcode/Final%20Code%20for%20Website/figure_7_pekkanen_table_1.R  
+    + You can use the code from the link above to retrieve the numbers and variable names you will use  
+* Turn the table from figure 8 into a graph with ggplot2 and add color 
+    + http://svn.cluelessresearch.com/tables2graphs/Rcode/Ansolabehere_code.R
+<br>  
+* Complete these tasks while pair programming 
+* You both can search for information or help, but you should use the pair programming practices while writing all code. 
+* Either replicate the graph Kastellec and Leoni (2007) made or come up with your own improved graph to better represent the data. 
+* The graphs do not need to look identical. Work on ways can you approve on them, but still retain the same basic information. 
+    
+##  Goal Check 
+
+
+
+## Session Info
+```{r}
+sessionInfo()
+```
