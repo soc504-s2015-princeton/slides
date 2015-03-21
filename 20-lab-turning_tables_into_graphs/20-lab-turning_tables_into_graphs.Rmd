@@ -18,14 +18,14 @@ output:
 
 ##  Goals for Today
 
-1. Understand and practice pair programming
-2. ???.
-3. ???.
+1. Understand the value of and practice pair programming
+2. Explain why regression graphs are better than tables
+3. Code regression tables into graphs
 
 ## What is Pair Programming?  
 - It has been shown to cut down coding errors by 50 percent!  
 - It leads to more efficient, better commented, more elegant code! 
-- Itis an advanced technique that has taken over the cultures of Facebook, Square, and other Silicon Valley leaders in order to create cleaner more excellent code!  
+- It is an advanced technique that has taken over the cultures of Facebook, Square, and other Silicon Valley leaders resulting in cleaner more excellent code!  
 - It has been said to lead to "soulmate-level" connections!  
 
 ## What is Pair Programming?  
@@ -48,19 +48,22 @@ Abstract
 
 ## Turning Tables into Graphs {.smaller}
 
-*  Turn the table from figure 7 into a graph with ggplot2 (instead of base R) and add color   
-    + http://svn.cluelessresearch.com/tables2graphs/Rcode/Final%20Code%20for%20Website/figure_7_pekkanen_table_1.R  
-    + You can use the code from the link above to retrieve the numbers and variable names you will use  
+*  Turn the table from figure 7 into a graph with ggplot2 (instead of base R) and add color
 * Turn the table from figure 8 into a graph with ggplot2 and add color 
-    + http://svn.cluelessresearch.com/tables2graphs/Rcode/Ansolabehere_code.R
-<br>  
+* Kastellec and Leoni (2007) code: http://tables2graphs.com/doku.php?id=04_regression_coefficients
+    + You can use the code from the link above to retrieve the numbers and variable names you will use.  
+    + How can you make the Kastellec and Leoni (2007) code robust to changes in model specification (hint: broom package)?   
+<br>
 * Complete these tasks while pair programming 
 * You both can search for information or help, but you should use the pair programming practices while writing all code. 
-* Either replicate the graph Kastellec and Leoni (2007) made or come up with your own improved graph to better represent the data. 
+* Either replicate the graphs Kastellec and Leoni (2007) made or come up with your own improved graphs to better represent the data. 
 * The graphs do not need to look identical. Work on ways can you approve on them, but still retain the same basic information. 
     
 ##  Goal Check 
 
+- Understand the value of and practice pair programming  
+- Explain why regression graphs are better than tables  
+- Code regression tables into graphs  
 
 
 ## Session Info
