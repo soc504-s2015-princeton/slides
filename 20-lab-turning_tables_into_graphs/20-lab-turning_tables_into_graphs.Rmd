@@ -46,6 +46,15 @@ Abstract
 
 - http://tables2graphs.com/doku.php
 
+## Suggestions for Turning Tables into Graphs {.smaller}
+
+- Think about what is the main point you want to get across
+- Think about what is the best way to present this graphically
+- Draw out the graph you want to create on paper before you start coding
+- Find a template and tweak it
+- Google, google, google
+- Don't be afraid to ask for help!
+
 ## Turning Tables into Graphs {.smaller}
 
 *  Turn the table from figure 7 into a graph with ggplot2 (instead of base R) and add color
