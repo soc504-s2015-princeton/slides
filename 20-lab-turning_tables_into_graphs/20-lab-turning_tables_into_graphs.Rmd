@@ -32,7 +32,7 @@ output:
 - The idea is simple: you code in a team of 2.  
 - The Driver: Writes the code.  
 - The Navigator: Reviews and guides.  
-- Switch often! (At least every 30 minutes)  
+- Switch often! (We will switch together as a class every 40 minutes) 
 - Check in!  
 - Reflect on good ways to solve the problems!  
 
