@@ -74,6 +74,9 @@ Abstract
 - Explain why regression graphs are better than tables  
 - Code regression tables into graphs  
 
+## Feedback
+
+http://bit.do/soc504_lab
 
 ## Session Info
 ```{r}
