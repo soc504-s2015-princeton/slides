@@ -1,0 +1,106 @@
+---
+title: "Turning Tables Into Graphs - Lab Code"
+author: "Angela Dixon"
+date: "March 25, 2015"
+output: html_document
+---
+
+####### Yaritza and Grace #######
+
+```{r}
+
+library(ggplot2)
+
+coef.vec.1<- c(0.18, -0.19,-0.39,-0.09, NA, 0.04,-0.86, 0.39,-3.76, -1.61,
+    -0.34, -1.17, -1.15,-1.52, -1.66, -1.34,-2.89,-1.88,-1.08, 0.20)
+se.vec.1 <-  c(0.22, 0.22, 0.18,.29, NA, 0.08,0.26,0.29,0.36,.19,0.19, 0.22,
+    0.22,0.25,0.28,0.32,0.48, 0.43,0.41, 0.20)
+coef.vec.2 <-  c(0.27,-0.19, NA, NA, 0.005, 0.04,-0.98,-.36,-3.66, -1.59,
+     -0.45, -1.24, -1.04, -1.83, -1.82, -1.21, -2.77, -1.34, -0.94, 0.13)
+se.vec.2 <- c(0.22,0.24, NA, NA, 0.004, 0.09 , .31 , .30 , .37 , .21 , .21 , .24 , .24,
+     .29 , .32 , .33 , .49 , .46 , .49 , .26)
+var.names <- c("Zombie" , "SMD Only", "PR Only", "Costa Rican in PR", 
+    "Vote share margin", "Urban-Rural Index","No factional\nmembership",
+    "Legal professional", "1st Term", "2nd Term", "4th Term",
+    "5th Term","6th Term","7th Term","8th Term","9th Term","10th Term",
+    "11th Term","12th Term", "Constant")
+
+    
+cbind(coef.vec.1, se.vec.1)
+
+df7<-data.frame(coef.vec.1, se.vec.1, coef.vec.2, se.vec.2, var.names)
+print(df7)
+
+ggplot(df7, aes(x= coef.vec.1, y= var.names)) + geom_point() + geom_point(aes(x= coef.vec.2, y= var.names)) + 
+  geom_errorbarh(aes(xmin = ci.1.min, xmax = ci.1.max, y = var.names), colour = "black", width = .5, position = position_dodge(.1)) +
+  geom_errorbarh(aes(xmin = ci.2.min, xmax = ci.2.max, y = var.names), colour = "red", width = .5, position = position_dodge(.1))
+
+# Assign length of confidence interval line.
+ci.1.min <- coef.vec.1-qnorm(.975)*se.vec.1 -.1
+ci.1.max <- coef.vec.1+qnorm(.975)*se.vec.1 -.1
+ci.2.min <- coef.vec.2-qnorm(.975)*se.vec.2 -.1
+ci.2.max <- coef.vec.2+qnorm(.975)*se.vec.2 -.1
+
+```
+
+
+
+
+############# Megan, Liora, Leah  #######
+Create vectors of coefficients, standard errors; name variables
+```{r}
+coef.vec.1<- c(0.18, -0.19,-0.39,-0.09, NA, 0.04,-0.86, 0.39,-3.76, -1.61,
+    -0.34, -1.17, -1.15,-1.52, -1.66, -1.34,-2.89,-1.88,-1.08, 0.20)
+se.vec.1 <-  c(0.22, 0.22, 0.18,.29, NA, 0.08,0.26,0.29,0.36,.19,0.19, 0.22,
+    0.22,0.25,0.28,0.32,0.48, 0.43,0.41, 0.20)
+coef.vec.2 <-  c(0.27,-0.19, NA, NA, 0.005, 0.04,-0.98,-.36,-3.66, -1.59,
+     -0.45, -1.24, -1.04, -1.83, -1.82, -1.21, -2.77, -1.34, -0.94, 0.13)
+se.vec.2 <- c(0.22,0.24, NA, NA, 0.004, 0.09 , .31 , .30 , .37 , .21 , .21 , .24 , .24,
+     .29 , .32 , .33 , .49 , .46 , .49 , .26)
+var.names <- c("Zombie" , "SMD Only", "PR Only", "Costa Rican in PR", 
+    "Vote share margin", "Urban-Rural Index","No factional\nmembership",
+    "Legal professional", "1st Term", "2nd Term", "4th Term",
+    "5th Term","6th Term","7th Term","8th Term","9th Term","10th Term",
+    "11th Term","12th Term", "Constant")
+```
+
+Put these data in one dataframe
+```{r}
+all.vectors <- rbind(coef.vec.1, coef.vec.2, se.vec.1, se.vec.2)
+all.vectors <- t(all.vectors)
+all.vectors <- as.data.frame(all.vectors)
+
+library(dplyr)
+all.vectors <- cbind(all.vectors, var.names)
+
+all.vectors <- all.vectors %>%
+  filter(!is.na(coef.vec.1), !is.na(coef.vec.2)) %>%
+    mutate(ci.lower.1=coef.vec.1-qnorm(.975)*se.vec.1, 
+           ci.upper.1=coef.vec.1+qnorm(.975)*se.vec.1,
+           ci.lower.2=coef.vec.2-qnorm(.975)*se.vec.1,
+           ci.upper.2=coef.vec.2+qnorm(.975)*se.vec.1 )
+
+all.vectors
+
+```
+
+Make the plot!!
+```{r}
+library(ggplot2)
+library(gridExtra)
+
+ggplot(all.vectors, aes(x=coef.vec.1, y=var.names)) +
+    geom_point() +
+    geom_errorbarh(aes(xmin = ci.lower.1, xmax = ci.upper.1))+
+    geom_vline(xintercept = 0, size= 1, linetype="dashed") +
+    geom_point(aes(x=coef.vec.2, y=var.names), shape=1)+
+    geom_errorbarh(aes(xmin = ci.lower.2, xmax = ci.upper.2))+
+    ylab("") + xlab("") +
+    theme_classic() +
+    theme(axis.text = element_text(colour = "black", face= "bold"), 
+        axis.title = element_text(face= "bold")) 
+
+ 
+
+
+
