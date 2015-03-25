@@ -17,6 +17,16 @@ questions?
 
 ##
 
+Pilot testing titles:
+
+- Tour of the Terminal: Using Unix or Mac OS X Command-Line
+- Getting your computation running in the cloud
+- Getting your computation running on Princeton's cloud
+- Linux Solutions for Big Data 
+
+
+##
+
 plan for next two weeks (added as a course goal):
 
 Explain the limitations of observational data for making causal claims, and begin to use existing strategies for attempting to make causal claims from observational data
@@ -186,9 +196,9 @@ Which is more interesting in research about Catholic schools?
 
 When does the naive estimator work?
 
-Assumption 1: E[Y^1 \mid D=1] = E[Y^1 \mid D=0] 
+Assumption 1: $E[Y^1 \mid D=1] = E[Y^1 \mid D=0]$ 
 
-Assumption 2: E[Y^0 \mid D=1] = E[Y^0 \mid D=0] 
+Assumption 2: $E[Y^0 \mid D=1] = E[Y^0 \mid D=0]$ 
 
 If (1) and (2), then
 
@@ -266,6 +276,18 @@ When is this close to true?  When is the totally wrong?
 
 Can policy experiments every really inform policy?
 
+# causes of effects and effects of causes
+
+##
+
+1) causes of effects
+2) effects of causes
+
+Which can we do?
+
+Which do we want to do?
+
+
 # wrap-up
 
 ##
@@ -275,6 +297,10 @@ goal check
 ## 
 
 motivation for next class
+
+##
+
+http://bit.do/soc504feedback
 
 ##
 
