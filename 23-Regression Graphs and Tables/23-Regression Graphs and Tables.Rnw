@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+% Table created by stargazer v.5.1 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+% Date and time: Mon, Mar 30, 2015 - 11:59:45
+\begin{table}[!htbp] \centering 
+  \caption{OLS Regression: Outcome TFR} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lcc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+\\[-1.8ex] & \multicolumn{2}{c}{} \\ 
+ & Model 1 & Model 2 \\ 
+\\[-1.8ex] & (1) & (2)\\ 
+\hline \\[-1.8ex] 
+ Female Education & $-$0.135$^{*}$ & 0.014 \\ 
+  & ($-$0.240, $-$0.031) & ($-$0.113, 0.141) \\ 
+  & & \\ 
+ Contraception & $-$0.033$^{***}$ & $-$0.023$^{**}$ \\ 
+  & ($-$0.050, $-$0.017) & ($-$0.036, $-$0.010) \\ 
+  & & \\ 
+ America & $-$0.756$^{*}$ & 0.564 \\ 
+  & ($-$1.489, $-$0.024) & ($-$0.171, 1.299) \\ 
+  & & \\ 
+ Asia & $-$0.711$^{*}$ & 0.316 \\ 
+  & ($-$1.350, $-$0.072) & ($-$0.348, 0.980) \\ 
+  & & \\ 
+ Europe & $-$1.136$^{*}$ & $-$0.503 \\ 
+  & ($-$1.983, $-$0.290) & ($-$1.327, 0.321) \\ 
+  & & \\ 
+ Oceania & $-$0.378 & 0.952 \\ 
+  & ($-$1.533, 0.778) & ($-$0.339, 2.242) \\ 
+  & & \\ 
+ Female Life Expectancy &  & $-$0.084$^{***}$ \\ 
+  &  & ($-$0.118, $-$0.049) \\ 
+  & & \\ 
+ GDP per Capita &  & 0.00001 \\ 
+  &  & ($-$0.00003, 0.00004) \\ 
+  & & \\ 
+ Female Illiteracy &  & 0.017$^{*}$ \\ 
+  &  & (0.002, 0.032) \\ 
+  & & \\ 
+ Constant & 6.934$^{***}$ & 9.372$^{***}$ \\ 
+  & (6.190, 7.678) & (7.068, 11.677) \\ 
+  & & \\ 
+\hline \\[-1.8ex] 
+Observations & 62 & 45 \\ 
+Adjusted R$^{2}$ & 0.779 & 0.877 \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.05; $^{**}$p$<$0.01; $^{***}$p$<$0.001} \\ 
+\end{tabular} 
+\end{table}
+
+
+\end{document}
