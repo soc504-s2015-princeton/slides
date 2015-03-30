@@ -1,7 +1,7 @@
 ---
 title: "Replication studio 2"
 author: "Angela Dixon"
-date: "2015-03-30 ![Creative Commons Attribution License](images/cc-by.png)"
+date: "2015-04-06 ![Creative Commons Attribution License](images/cc-by.png)"
 output: 
   ioslides_presentation:
     css: ../soc504_s2015_slides.css

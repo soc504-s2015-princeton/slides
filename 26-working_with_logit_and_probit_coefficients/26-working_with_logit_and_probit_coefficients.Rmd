@@ -1,5 +1,5 @@
 ---
-title: "Working with logit and probit coefficients"
+title: "Logistic Regressions"
 author: "Angela Dixon"
 date: "2015-04-06 ![Creative Commons Attribution License](images/cc-by.png)"
 output: 
@@ -7,6 +7,57 @@ output:
     css: ../soc504_s2015_slides.css
 ---
 
-## {.smaller}
+## Goals for Today 
 
+
+- Run a logistic regression.
+- Interpret the coefficients of a logistic regression.
+- Predict values and marginal effects of logistic regression.
+
+## HS Graduation
+
+- Use the data located at:
+http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/datasets/HS-Powers.txt  
+- Calculate the mean of hsgrad for the two groups of mother
+graduated/mother didn't graduate.  
+- Calculate the odds of hs graduation for these groups.  
+- Calculate the log-odds of hs graduation for these groups.  
+- Make a scatter of hsgrad as a function of asvab. Add a loess
+fit.  
+- Run a linear probability model for hsgrad as a function of
+asvab. Add the line to the plot.  
+- Plot the residuals from the linear probability model.  
+
+## One-Variable Logistic Regression
+
+$$  Y_i \sim binom(\pi_i) $$
+$$  logit(\pi_i) = log\left(\frac{\pi_i}{1-\pi_i}\right) = \alpha + \beta X_i $$
+
+- Run a logistic regression of hsgrad on asvab.
+- Does increasing asvab increase or decrease hsgrad?
+- Write the equation for the odds of graduating. How does an
+increase of 1 in asvab change the odds of graduating?
+- Add the fitted values to your original scatter.
+- According to the plot, what is the marginal effect of asvab on
+probability?
+- Plot the residuals vs asvab. What's up?
+
+## Multivariate Logistic Regression
+$$   Y_i \sim binom(\pi_i) $$
+$$  logit(\pi_i)  = \alpha + \beta_1 asvab_i + \beta_2 mhs_i $$
+
+- Run the regression.
+- By hand, write the equation for logit($\pi$). Then, write the
+equation for the odds of $Y_i$ . Finally, write the equation for $\pi_i$.
+- Interpret the coefficients: How does a change in 1 of asvab
+change the odds? Ditto for mhs?
+- Add the fitted values from your regression to the plot.
+
+## Multivariate Logistic Regression
+
+- Calculate the odds of graduating if you had a mother who
+graduated highschool and got an asvab score of 1. Then the
+predicted probability of graduating.
+- Write a function that takes a vector of log odds and returns
+the probability. (call it inv.logit)
 
