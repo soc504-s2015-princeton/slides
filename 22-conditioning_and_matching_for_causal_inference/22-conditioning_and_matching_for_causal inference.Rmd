@@ -42,9 +42,13 @@ Three main approaches to causal inference:
 
 <img src="images/morgan_counterfactuals_2015_4_fig1.png", width="800">
 
-Bback-door path: roughly something thatpoints for treatment and outcome 
+Back-door path: roughly something thatpoints for treatment and outcome 
 
 D <- C -> O -> Y
+
+## { .build }
+
+TODO: add formal definition of back door path 
 
 ## { .build }
 
@@ -167,7 +171,7 @@ motivation for next class
 
 ##
 
-http://bit.do/soc504feedback
+http://bit.do/soc504_feedback
 
 ##
 
