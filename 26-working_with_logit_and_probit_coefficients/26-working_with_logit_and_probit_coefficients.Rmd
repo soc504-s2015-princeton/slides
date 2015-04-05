@@ -54,6 +54,7 @@ Abstract
 - Calculate the predicted probability of voting for Bush for whites and non-whites by setting all other independent variables at their mean values.  
 - Hanmer and Kalkan (2013) write "the average case (setting dummy variables to their mode and rounding to the nearest whole number for categorical variables) is a white 48-year-old female who identifies as an independent, has an associates degree, is politically moderate, believes economic performance has been the same, disapproves of the Iraq war, but not strongly, and has income between $45,000 and $50,000." 
 - Calculate the predicted probability of voting for Bush for whites and non-whites with all other independent variables at their observed values. 
+- Compare the marginal effects for the average case approach and for the observed-value approach. 
 - Challenge: Graph the predicted probabilities.
 
 ## Goal Check

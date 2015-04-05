@@ -7,6 +7,76 @@ output:
     css: ../soc504_s2015_slides.css
 ---
 
-## {.smaller}
+
+## Goals for Today 
+
+- Finish exercises from last week 
+- Run a multinomial logistic regression
+- Examine difference between observed value and average case approaches for a multinomial logistic regression.
+
+## Review: "Observed Value"" vs. the “Average Case” Approach {.smaller}
+ 
+Hanmer and Kalkan (2013)
+
+Abstract
+
+> Models designed for limited dependent variables are increasingly common in political science. Researchers estimating such models often give little attention to the coefficient estimates and instead focus on marginal effects, predicted probabilities, predicted counts, etc. Since the models are nonlinear, the estimated effects are sensitive to how one generates the predictions. The most common approach involves estimating the effect for the “average case.” But this approach creates a weaker connection between the results and the larger goals of the research enterprise and is thus less preferable than the observed value approach. That is, rather than seeking to understand the effect for the average case, the goal is to obtain an estimate of the average effect in the population. In addition to the theoretical argument in favor of the observed-value approach, we illustrate via an empirical example and Monte Carlo simulations that the two approaches can produce substantively different results.
+
+- http://onlinelibrary.wiley.com/doi/10.1111/j.1540-5907.2012.00602.x/epdf
 
 
+## From Last Week: Logistic Regression {.smaller}
+
+- Run a logistic regression of presvote on all of the variables in SI section B Table 1 from Hanmer and Kalkan (2013) (your coefficients will be different because we are doing logit, not probit)  
+- Calculate the predicted probability of voting for Bush for whites and non-whites by setting all other independent variables at their mean values.  
+- Hanmer and Kalkan (2013) write "the average case (setting dummy variables to their mode and rounding to the nearest whole number for categorical variables) is a white 48-year-old female who identifies as an independent, has an associates degree, is politically moderate, believes economic performance has been the same, disapproves of the Iraq war, but not strongly, and has income between $45,000 and $50,000." 
+- Calculate the predicted probability of voting for Bush for whites and non-whites with all other independent variables at their observed values. 
+- Compare the marginal effects for the average case approach and for the observed-value approach. 
+- Challenge: Graph the predicted probabilities.
+
+## Multinomial Logistic regression {.smaller}
+
+- Use the data from Hanmer and Kalkan (2013) located at:
+http://thedata.harvard.edu/dvn/dv/ajps/faces/study/StudyPage.xhtml?globalId=hdl:1902.1/18542
+
+```{r, eval=FALSE}
+#install.packages("nnet")
+library(nnet)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(stargazer)
+load("data/Hanmer.RData")
+
+df2 <- tbl_df(x)
+df2 <- filter(df, !is.na(presvote)) ## remove missing values
+
+df2 <- df2 %>%
+mutate(party = ifelse(df$partyid == 0 | df$partyid == 1, "dem",  ## Democrats
+         ifelse(df$partyid == 2 | df$partyid == 3 | df$partyid == 4, "indep", ## Independents
+         ifelse(df$partyid == 5 | df$partyid == 6, "rep", NA))))  ## Republicans 
+```
+
+
+## Multinomial Logistic Regression {.smaller}
+
+- Run a multinomial logistic regression of the "party" variable created above on ideol7b, retecon, white, female, age, educ1_7, income, bushiraq, and presvote
+- Calculate the predicted probability of being a democrat, independent, and republican for whites and non-whites by setting all other independent variables at their mean values.  
+- Calculate the predicted probability of each of the three outcomes for whites and non-whites with all other independent variables at their observed values. 
+- Challenge: Graph the predicted probabilities 
+
+## Goal Check
+
+- Finish exercises from last week 
+- Run a multinomial logistic regression.
+- Examine difference between observed value and average case approaches for a multinomial logistic regression.
+
+
+## Feedback
+
+http://bit.do/soc504_lab
+
+## Session Info
+```{r}
+sessionInfo()
+```
