@@ -9,55 +9,65 @@ output:
 
 ## Goals for Today 
 
-
+- Calculate odds, and log-odds
 - Run a logistic regression.
-- Interpret the coefficients of a logistic regression.
-- Predict values and marginal effects of logistic regression.
+- Examine difference between observed value and average case approaches 
 
-## HS Graduation
 
-- Use the data located at:
-http://socserv.socsci.mcmaster.ca/jfox/Books/Applied-Regression-2E/datasets/HS-Powers.txt  
-- Calculate the mean of hsgrad for the two groups of mother
-graduated/mother didn't graduate.  
-- Calculate the odds of hs graduation for these groups.  
-- Calculate the log-odds of hs graduation for these groups.  
-- Make a scatter of hsgrad as a function of asvab. Add a loess
-fit.  
-- Run a linear probability model for hsgrad as a function of
-asvab. Add the line to the plot.  
-- Plot the residuals from the linear probability model.  
-
-## One-Variable Logistic Regression
+## Odds and Log-odds {.smaller}
 
 $$  Y_i \sim binom(\pi_i) $$
 $$  logit(\pi_i) = log\left(\frac{\pi_i}{1-\pi_i}\right) = \alpha + \beta X_i $$
 
-- Run a logistic regression of hsgrad on asvab.
-- Does increasing asvab increase or decrease hsgrad?
-- Write the equation for the odds of graduating. How does an
-increase of 1 in asvab change the odds of graduating?
-- Add the fitted values to your original scatter.
-- According to the plot, what is the marginal effect of asvab on
-probability?
-- Plot the residuals vs asvab. What's up?
+- Use the data from Hanmer and Kalkan (2013) located at:
+http://thedata.harvard.edu/dvn/dv/ajps/faces/study/StudyPage.xhtml?globalId=hdl:1902.1/18542
+- Calculate the probability of voting for Bush (presvote) for whites and nonwhites
+- Calculate the odds of voting for Bush for these groups.  
+- Calculate the log-odds of voting for Bush for these groups.  
+- Now take the log-odds and transform it back into the probability:
+- Challenge: Write a function that takes a vector of log odds and returns
+the probability (call it inv.logit)
 
-## Multivariate Logistic Regression
-$$   Y_i \sim binom(\pi_i) $$
-$$  logit(\pi_i)  = \alpha + \beta_1 asvab_i + \beta_2 mhs_i $$
+##  One Variable Logistic Regression
 
-- Run the regression.
-- By hand, write the equation for logit($\pi$). Then, write the
-equation for the odds of $Y_i$ . Finally, write the equation for $\pi_i$.
-- Interpret the coefficients: How does a change in 1 of asvab
-change the odds? Ditto for mhs?
-- Add the fitted values from your regression to the plot.
+- Run a logistic regression of presvote on white.
+- Interpret the coefficient on white (is this interpretation intuitive?)
+- Calculate the log odds of voting for Bush for a white person (does this number look familiar?)
+- Calculate the odds ratios for the coefficient on white (how could you get this same number using the calculations you performed in the previous slide?)
+- Interpret the odds ratios for the coefficient on white (is this interpretation intuitive?) 
+- Calculate and compare the predicted probabilities of voting for Bush for a white and nonwhite person (intuitive now?) (are these numbers familiar?)
 
-## Multivariate Logistic Regression
+## "Observed Value"" vs. the “Average Case” Approach {.smaller}
+ 
+Hanmer and Kalkan (2013)
 
-- Calculate the odds of graduating if you had a mother who
-graduated highschool and got an asvab score of 1. Then the
-predicted probability of graduating.
-- Write a function that takes a vector of log odds and returns
-the probability. (call it inv.logit)
+Abstract
 
+> Models designed for limited dependent variables are increasingly common in political science. Researchers estimating such models often give little attention to the coefficient estimates and instead focus on marginal effects, predicted probabilities, predicted counts, etc. Since the models are nonlinear, the estimated effects are sensitive to how one generates the predictions. The most common approach involves estimating the effect for the “average case.” But this approach creates a weaker connection between the results and the larger goals of the research enterprise and is thus less preferable than the observed value approach. That is, rather than seeking to understand the effect for the average case, the goal is to obtain an estimate of the average effect in the population. In addition to the theoretical argument in favor of the observed-value approach, we illustrate via an empirical example and Monte Carlo simulations that the two approaches can produce substantively different results.
+
+- http://onlinelibrary.wiley.com/doi/10.1111/j.1540-5907.2012.00602.x/epdf
+
+
+## Multivariate Logistic Regression {.smaller}
+
+- Run a logistic regression of presvote on all of the variables in SI section B Table 1 from Hanmer and Kalkan (2013) (your coefficients will be different because we are doing logit, not probit)  
+- Calculate the predicted probability of voting for Bush for whites and non-whites by setting all other independent variables at their mean values.  
+- Hanmer and Kalkan (2013) write "the average case (setting dummy variables to their mode and rounding to the nearest whole number for categorical variables) is a white 48-year-old female who identifies as an independent, has an associates degree, is politically moderate, believes economic performance has been the same, disapproves of the Iraq war, but not strongly, and has income between $45,000 and $50,000." 
+- Calculate the predicted probability of voting for Bush for whites and non-whites with all other independent variables at their observed values. 
+- Challenge: Graph the predicted probabilities.
+
+## Goal Check
+
+- Calculate odds, and log-odds
+- Run a logistic regression.
+- Examine difference between observed value and average case approaches 
+
+
+## Feedback
+
+http://bit.do/soc504_lab
+
+## Session Info
+```{r}
+sessionInfo()
+```

@@ -157,7 +157,7 @@ Sweave Document
 
 
 ```{r, eval=FALSE}
-#install.package("stargazer")
+#install.packages("stargazer")
 library(stargazer)
 library(dplyr)
 library(broom)
