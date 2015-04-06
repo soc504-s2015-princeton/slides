@@ -73,9 +73,11 @@ exp(fit1$estimate[2])
 
 ### predicted probabilities 
 
+# whites
 (exp(fit1$estimate[1] + fit1$estimate[2])) / (1 + exp(fit1$estimate[1] + fit1$estimate[2]))
 
-exp(fit1$estimate[1]) / (1 + exp(fit1$estimate[1]))
+#nonwhites
+exp(fit1$estimate[1]) / (1 + exp(fit1$estimate[1])) 
 
 ##### replication from Hanmer and Kalkan
 fit2 <- glm(presvote ~ retecon + partyid + bushiraq + ideol7b + white + female +
