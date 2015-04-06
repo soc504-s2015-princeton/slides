@@ -27,6 +27,15 @@ http://thedata.harvard.edu/dvn/dv/ajps/faces/study/StudyPage.xhtml?globalId=hdl:
 - Now take the log-odds and transform it back into the probability:
 - Challenge: Write a function that takes a vector of log odds and returns
 the probability (call it inv.logit)
+```{r}
+library(dplyr)
+library(broom)
+library(ggplot2)
+
+load("data/Hanmer.RData")
+df <- tbl_df(x)
+df <- filter(df, !is.na(presvote))
+```
 
 ##  One Variable Logistic Regression
 
