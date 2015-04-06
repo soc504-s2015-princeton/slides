@@ -97,7 +97,7 @@ pp.nonwhite <- predict(fit2, type = "response", newdata = df.nonwhite)
 mean(pp.nonwhite)
 
 ###  marginal effect - observed value
-mean(pp.white) - mean(pp.nonwhite) ###  0.007900108
+mean(pp.white) - mean(pp.nonwhite) 
 
 
 ## average case approach

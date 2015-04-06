@@ -9,7 +9,7 @@ output:
 
 ## Goals for Today 
 
-- Calculate odds, and log-odds
+- Calculate odds and log-odds
 - Run a logistic regression.
 - Examine difference between observed value and average case approaches 
 
@@ -59,7 +59,7 @@ Abstract
 
 ## Goal Check
 
-- Calculate odds, and log-odds
+- Calculate odds and log-odds
 - Run a logistic regression.
 - Examine difference between observed value and average case approaches 
 
