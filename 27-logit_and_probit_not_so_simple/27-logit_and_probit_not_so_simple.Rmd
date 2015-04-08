@@ -1,0 +1,136 @@
+---
+title: "Logit and probit models: Not as simple as you thought"
+author: "Matthew Salganik"
+date: "2015-04-08 ![Creative Commons Attribution License](images/cc-by.png)"
+output: 
+  ioslides_presentation:
+    css: ../soc504_s2015_slides.css
+---
+
+##
+
+Logisitcs:
+
+- suggestions about the visit days
+- I am behind on giving you feedback on your projects, keep going . . .
+- we will have a homeowrk assingment next week :)
+
+questions?
+
+##
+
+At the end of this class you will be able to
+
+- begin to have an opinion about comparing logistic regression across groups 
+- begin to have an opinion about interactions in logistic regression
+- feel a bit more comfortable with the mechanics of logistic regression
+
+Key theme: Logistic regression is different than linear regression.  You might need to have an opinion about this stuff so we can struggle through it a bit together.
+
+# latent variable interpretation of logistic regression
+
+##
+
+y* that is unobserved that is linearly related to $\beta_0 + \beta_1 x$
+
+if y* > 0 then y = 1
+
+if y* < 0 then y = 0
+
+##
+
+$$y_i^* = \alpha + x_{1i} \beta_1 + \epsilon_i$$
+
+If $\epsilon_i$ follows a logistic distribution with a fixed variance of 3.29 then
+
+$$ln( \frac{p}{1-p} ) = a + x_{1i}b_1$$
+
+##
+
+<img src="images/mood_logistic_2010_quote1.png", width="800">
+
+
+# logistic regression: why we cannot do what we think we can do
+
+##
+
+"We cannot compare log-odds ratios or odds ratios for similar models across groups, samples, or timepoints."
+
+##
+
+<img src="images/mood_logistic_2010_tab1.png", width="800">
+
+Draw a picture and explain what is going on here.  This could take a while.
+
+## 
+
+<img src="images/mood_logistic_2010_fig1.png", width="800">
+
+##
+
+Solution
+
+- don't do logistic regression
+- do it a bunch of different ways
+
+##
+
+Solution
+
+<img src="images/mood_logistic_2010_tab6.png", width="800">
+
+# product term interactions
+
+##
+
+key idea is "compression" because outcome is bounded between 0 and 1
+
+##
+
+<img src="images/berry_testing_2010_fig2.png", width="800">
+
+##
+
+Wolfinger and Rosenstone "liberalizing registration provisions would have by far the greatest impact on the least education adn relatively little impact on the most well education"
+
+- Does this sound like an interaction?
+- Is an interaction required to make this claim?
+
+##
+
+What to do?
+
+If you think there is an interaction in the model for Y* then include the product term.
+
+##
+
+<img src="images/berry_testing_2010_tab1.png", height="600">
+
+##
+
+<img src="images/berry_testing_2010_fig4.png", width="600">
+
+## 
+
+How do you go from the table to the figure?
+
+# wrap-up
+
+##
+
+goal check
+
+## 
+
+motivation for next class
+
+##
+
+http://bit.do/soc504_feedback
+
+##
+
+
+```{r}
+sessionInfo()
+```
