@@ -12,8 +12,9 @@ output:
 Logisitcs:
 
 - suggestions about the visit days
+- OPR workshops
 - I am behind on giving you feedback on your projects, keep going . . .
-- we will have a homeowrk assingment next week :)
+- we will have a homework assingment next week :)
 
 questions?
 
