@@ -43,9 +43,8 @@ http://thedata.harvard.edu/dvn/dv/ajps/faces/study/StudyPage.xhtml?globalId=hdl:
 #install.packages("nnet")
 library(nnet)
 library(ggplot2)
-library(tidyr)
+library(broom)
 library(dplyr)
-library(stargazer)
 load("data/Hanmer.RData")
 
 df2 <- tbl_df(x)
