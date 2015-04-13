@@ -1,5 +1,5 @@
 ---
-title: "Models for polytymous data"
+title: "Models for polytomous data"
 author: "Matthew Salganik"
 date: "2015-04-13 ![Creative Commons Attribution License](images/cc-by.png)"
 output: 
@@ -13,9 +13,9 @@ Logisitcs:
 
 - homework on logistic regression due via github Sunday, April 19 at midnight
 - replication and extension projects due via github Sunday, April 26 at midnight
-- lab on Monday, April 27 present your projects (20 minutes per team)
+- lab on Monday, April 27 present your projects (exact schedule TBA)
 - receive all feedback from Matt, Angela, and peers by Sunday, May 3 at midnight
-- replication and extension paper due Tuesday, May 12 at midnight
+- replication and extension project due Tuesday, May 12 at midnight
 
 questions?
 
@@ -24,18 +24,18 @@ questions?
 At the end of this class you will be able to
 
 - identify what is a polytomous outcome
-- describe the main modeling strategies used for polytmous outcomes 
+- describe the main modeling strategies used for polytomous outcomes 
 - begin to interpret output from these models
 
 Key themes: Lots of ideas from logistic regression generalize
 
-# polytymous outcomes
+# polytomous outcomes
 
 ##
 
 Dichotomous outcomes: vote for Obama or not, drop out of high school or not,  . . .
 
-Polytmous outcomes: high school, college, or grad school; vote Conservative, Labour, or Liberal Democrat
+Polytomous outcomes: high school, college, or grad school; vote Conservative, Labour, or Liberal Democrat
 
 ##
 
@@ -52,9 +52,9 @@ We will focus on  (1) and (3)
 
 ##
 
-What is an example of an ordered polytmous outcome and an unordered polytymous outcome?
+What is an example of an ordered polyotmous outcome and an unordered polytomous outcome?
 
-# polytmous logit for unordered categories
+# polytomous logit for unordered categories
 
 ## 
 
