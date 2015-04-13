@@ -49,12 +49,12 @@ library(stargazer)
 load("data/Hanmer.RData")
 
 df2 <- tbl_df(x)
-df2 <- filter(df, !is.na(presvote)) ## remove missing values
+df2 <- filter(df2, !is.na(presvote)) ## remove missing values
 
 df2 <- df2 %>%
-mutate(party = ifelse(df$partyid == 0 | df$partyid == 1, "dem",  ## Democrats
-         ifelse(df$partyid == 2 | df$partyid == 3 | df$partyid == 4, "indep", ## Independents
-         ifelse(df$partyid == 5 | df$partyid == 6, "rep", NA))))  ## Republicans 
+mutate(party = ifelse(partyid == 0 | partyid == 1, "dem",  ## Democrats
+         ifelse(partyid == 2 | partyid == 3 | partyid == 4, "indep", ## Independents
+         ifelse(partyid == 5 | partyid == 6, "rep", NA))))  ## Republicans 
 ```
 
 
