@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 *.html
+!32-lab-hurricanes-solutions.html
 <<<<<<< HEAD
 .DS_Store
 =======
