@@ -1,4 +1,4 @@
-library(dplyr)
+ library(dplyr)
 library(broom)
 library(ggplot2)
 
@@ -40,6 +40,7 @@ log.odds.nw <- df %>%
   filter(white == 0) %>%
   summarise(logodds =  log((mean(presvote) / (1 - mean(presvote)))))
 log.odds.nw
+
 
 ### back to probability
 exp(log.odds.w$logodds) / (1 + exp(log.odds.w$logodds))

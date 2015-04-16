@@ -71,7 +71,7 @@ ova.value <- c(mean(df2.nw$dem), mean(df2.w$dem), mean(df2.nw$indep), mean(df2.w
 df3$ova.value <- ova.value
 df3
 
-## graph for whites
+## graph for whites - observed value approach is in blue; average case approach in red
 ggplot(filter(df3, white == 1), aes(x = key, y = value )) + geom_point(aes(color = as.factor(white))) +
   geom_point(color = "red") +
   geom_point( aes(y = ova.value), color = "blue") +
