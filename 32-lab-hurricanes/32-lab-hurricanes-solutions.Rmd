@@ -27,7 +27,6 @@ Topics covered in this lab include:
     + Take the log of the outcome  
     + How would we write this? $log(\mu_i) = x_i^\prime \beta$  
     + Ok, now if we just wanted the left side in terms of $\mu$? $\mu_i=e^{x_i^\prime\beta}$  
-* In the final model, an exponentiated regression coefficient  $e^{\beta_j}$ represents a multiplicative effect of the $j^{th}$ predictor on the mean  
 * Negative binomial regression
     + Starts with a standard Poisson model and adds a random effect (theta) to represent unobserved heterogeneity 
 
@@ -58,59 +57,59 @@ download.file(url = "http://www.pnas.org/content/suppl/2014/05/30/1402786111.DCS
               destfile = "data/hurricane-raw-data.xlsx")
 ```
 
-(@) **Next, read the correct sheet of the xlsx spreadsheet into R and save it with the name `hurricanes.raw`.** 
+(@) **Next, read the correct sheet of the xlsx spreadsheet into R and save it with the name `hurricanes_raw`.** 
 
 ```{r}
 library(xlsx)
-hurricanes.raw <- read.xlsx(file = "data/hurricane-raw-data.xlsx",
+hurricanes_raw <- read.xlsx(file = "data/hurricane-raw-data.xlsx",
                            sheetName = "Archival Study")
 ```
 
 Now, thinking about Roger Peng's pipeline picture, we are going to go from the "measured data" to the "analytic data".  This is sometimes called data cleaning.  It can be annoying, but it is neccesary.
 
-(@) **Convert `hurricanes.raw` to a tbl. But, something is weird with the tbl. Notice all the "Notes" at the end; you can also see these directly in the Excel spreadsheet.  Get rid of the "Notes".  And, give the variables sensible and consistent names that follow Google R Style Guidelines (Naming variables in an art; try to get good at it).  Save this new cleaned up data.frame as `hurricanes`. Putting in all this work up front will actually make this analysis much easier (and more fun).**
+(@) **Convert `hurricanes_raw` to a tbl. But, something is weird with the tbl. Notice all the "Notes" at the end; you can also see these directly in the Excel spreadsheet.  Get rid of the "Notes".  And, give the variables sensible and consistent names that follow Google R Style Guidelines (Naming variables in an art; try to get good at it).  Save this new cleaned up data.frame as `hurricanes`. Putting in all this work up front will actually make this analysis much easier (and more fun).**
 
 ```{r}
 library(dplyr)
-hurricanes <- tbl_df(hurricanes.raw)
+hurricanes <- tbl_df(hurricanes_raw)
 hurricanes <- filter(hurricanes, !is.na(Name))
 hurricanes <- rename(hurricanes, name = Name)
 hurricanes <- rename(hurricanes, year = Year)
-hurricanes <- rename(hurricanes, name.mas.fem = MasFem)
-hurricanes <- rename(hurricanes, min.pressure.before = MinPressure_before) 
-hurricanes <- rename(hurricanes, min.pressure.updated.2014 = Minpressure_Updated.2014) 
+hurricanes <- rename(hurricanes, name_mas_fem = MasFem)
+hurricanes <- rename(hurricanes, min_pressure_before = MinPressure_before) 
+hurricanes <- rename(hurricanes, min_pressure_updated_2014 = Minpressure_Updated.2014) 
 hurricanes <- rename(hurricanes, female = Gender_MF) # Note: think about why I did it this way
 hurricanes <- rename(hurricanes, category = Category) 
-hurricanes <- rename(hurricanes, all.deaths = alldeaths) 
-hurricanes <- rename(hurricanes, normalized.damage = NDAM) 
-hurricanes <- rename(hurricanes, elapsed.years = Elapsed.Yrs) 
+hurricanes <- rename(hurricanes, all_deaths = alldeaths) 
+hurricanes <- rename(hurricanes, normalized_damage = NDAM) 
+hurricanes <- rename(hurricanes, elapsed_years = Elapsed.Yrs) 
 hurricanes <- rename(hurricanes, source = Source) 
-hurricanes <- rename(hurricanes, name.mas.fem.z = ZMasFem) 
-hurricanes <- rename(hurricanes, normalized.damage.z = ZNDAM) 
+hurricanes <- rename(hurricanes, name_mas_fem_z = ZMasFem) 
+hurricanes <- rename(hurricanes, normalized_damage_z = ZNDAM) 
 ```
 
 ```{r}
 # almost done but we have the problem of `ZMinPressure_A`
-# is that the z score of min.pressure.before or min.pressure.updated.2014?
-z.score.updated <- (hurricanes$min.pressure.updated.2014 - mean(hurricanes$min.pressure.updated.2014))/sd(hurricanes$min.pressure.updated.2014)
+# is that the z score of min_pressure_before or min_pressure_updated_2014?
+z_score_updated <- (hurricanes$min_pressure_updated_2014 - mean(hurricanes$min_pressure_updated_2014))/sd(hurricanes$min_pressure_updated_2014)
 
-z.score.updated - hurricanes$ZMinPressure_A
+z_score_updated - hurricanes$ZMinPressure_A
 
 # ok these are different
 
-z.score.before <- (hurricanes$min.pressure.before - mean(hurricanes$min.pressure.before))/sd(hurricanes$min.pressure.before)
+z_score_before <- (hurricanes$min_pressure_before - mean(hurricanes$min_pressure_before))/sd(hurricanes$min_pressure_before)
 
-z.score.before - hurricanes$ZMinPressure_A
-all((z.score.before - hurricanes$ZMinPressure_A) < 0.00001)
+z_score_before - hurricanes$ZMinPressure_A
+all((z_score_before - hurricanes$ZMinPressure_A) < 0.00001)
 
 # Why did I subtract them and check if they are less than 0.00001?
 # This has to do with how the computer stores numbers.
 # To learn more read this from the R FAQ: http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f
 # Or watch this part Martin Mächler's Keynote Speech from useR 2014 "Good Practices in R Programming": https://www.youtube.com/watch?v=ytbX-T1A8wE?#t=43m00s
 
-# ok the right answer is that ZMinPressure_A is the z.score of min.pressure.before
+# ok the right answer is that ZMinPressure_A is the z.score of min_pressure_before
 
-hurricanes <- rename(hurricanes, min.pressure.before.z = ZMinPressure_A) 
+hurricanes <- rename(hurricanes, min_pressure_before_z = ZMinPressure_A) 
 
 # Note they stored the Z score of what appears to be the old measure of MinPressure.  I'm not sure what is going on here.  This is a good example of why you want to store normalized data.
 ```
@@ -148,12 +147,12 @@ yes
 
 ```{r}
 library(ggplot2)
-p <- ggplot(hurricanes, aes(x=name.mas.fem, y=all.deaths))
+p <- ggplot(hurricanes, aes(x=name_mas_fem, y=all_deaths))
 p + geom_point() +
   stat_smooth(method = "loess")
 
 # we can also clean this up a bit
-p <- ggplot(hurricanes, aes(x=name.mas.fem, y=all.deaths))
+p <- ggplot(hurricanes, aes(x=name_mas_fem, y=all_deaths))
 p + geom_point() +
   scale_x_continuous(name="Femininity of hurricane name", limits=c(1,11), breaks=c(1, 3, 5, 7, 9, 11)) +
   scale_y_continuous(name="Deaths") +
@@ -171,12 +170,12 @@ To foreshadow what is coming in the future, we are going to try to account for t
 (@) **Make a plot that shows how the femininity of hurrican names has changed over time.  The naming convention whereby hurricane names alternated between male and female was implimented in 1979.  Please include this information in the graph.**
 
 ```{r}
-p <- ggplot(hurricanes, aes(x=year, y=name.mas.fem))
+p <- ggplot(hurricanes, aes(x=year, y=name_mas_fem))
 p + geom_point() +
   geom_vline(xintercept = 1979)
   
 # we can also clean this up a bit
-p <- ggplot(hurricanes, aes(x=year, y=name.mas.fem))
+p <- ggplot(hurricanes, aes(x=year, y=name_mas_fem))
 p + geom_point() +
   geom_vline(xintercept=1979, linetype="dotted") +
   scale_y_continuous(name="Femininity of hurricane name", limits=c(1, 11), breaks=c(1, 3, 5, 7, 9, 11)) +
@@ -186,7 +185,7 @@ p + geom_point() +
 (@) **Make a plot that shows the relationship between minimum pressure and deaths.**
 
 ```{r}
-p <- ggplot(hurricanes, aes(x=min.pressure.updated.2014, y=all.deaths))
+p <- ggplot(hurricanes, aes(x=min_pressure_updated_2014, y=all_deaths))
 p + geom_point() +
   stat_smooth(method = "loess") +
   scale_x_continuous(name="Minimum Pressure") +
@@ -196,7 +195,7 @@ p + geom_point() +
 (@) **Make a plot that shows the relationship between normalized damage and deaths.**
 
 ```{r}
-p <- ggplot(hurricanes, aes(x=normalized.damage, y=all.deaths))
+p <- ggplot(hurricanes, aes(x=normalized_damage, y=all_deaths))
 p + geom_point() +
   stat_smooth(method = "loess") +
   scale_x_continuous(name="Normalized damage") +
@@ -214,12 +213,12 @@ hurricanes %>%
 (@) **Make a plot showing the distribution of deaths for storms of each category.**
 
 ```{r}
-p <- ggplot(hurricanes, aes(x=all.deaths))
+p <- ggplot(hurricanes, aes(x=all_deaths))
 p + geom_histogram() +
   facet_wrap( ~ category)
 
 # now let's clean it up a bit
-p <- ggplot(hurricanes, aes(x=all.deaths))
+p <- ggplot(hurricanes, aes(x=all_deaths))
 p + geom_histogram() +
   facet_wrap( ~ category, ncol=5) +
   scale_x_continuous(name="Deaths") +
@@ -229,12 +228,12 @@ p + geom_histogram() +
 
 ## Practice with Negative binomial regression 
 
-- Run a negative binomial regression for Model 1 of the deaths on minimized pressure (use "min.pressure.before", not "min.pressure.updated.2014")
+- Run a negative binomial regression for Model 1 of the deaths on minimized pressure (use "min_pressure_before", not "min_pressure_updated_2014")
 - For model 2, add Normalized damage and Mas-fem index (MFI)
 - For model 3, add the interaction of MFI with minimum pressure and also the interaction of MFI with normalized damage.
 - Freese argues "The significant coefficients in their key model both become nonsignificant and presumably nonpublishable (p > .25) if we drop only two hurricanes: Andrew and Diane (which killed 200 people in 1955)." Verify this for yourself in model 3.
-- Returning to the previous model 3 (with all 92 hurricanes), calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach. 
-- Graph the results
+- Returning to the original model 3 (with all 92 hurricanes), make a scatter plot of actual death counts vs. the predicted (fitted.values) counts.
+- Calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach and graph the results.
 
 
 ```{r}
@@ -243,46 +242,67 @@ library(MASS) ## use this package to run your regression (see http://www.ats.ucl
 library(stargazer)
 
 ## Model 1
-model1 <- glm.nb(all.deaths ~ min.pressure.before, data = hurricanes)
-stargazer(model1 , type = "text")
+model1 <- glm.nb(all_deaths ~ min_pressure_before, data = hurricanes)
+stargazer(model1, type = "text")
 
 ## Model2
-model2 <- glm.nb(all.deaths ~ min.pressure.before +  normalized.damage + name.mas.fem, data = hurricanes)
+model2 <- glm.nb(all_deaths ~ min_pressure_before +  normalized_damage + name_mas_fem, data = hurricanes)
 stargazer(model2, type = "text")
 
 ## Model 3
-model3 <- glm.nb(all.deaths ~ min.pressure.before +  normalized.damage + name.mas.fem + name.mas.fem:min.pressure.before + name.mas.fem:normalized.damage, data = hurricanes)
+model3 <- glm.nb(all_deaths ~ min_pressure_before +  normalized_damage + name_mas_fem + name_mas_fem:min_pressure_before + name_mas_fem:normalized_damage, data = hurricanes)
 stargazer(model3, type = "text")
 
 ## dropping Diane and Andrew
 hurricanes2 <- hurricanes %>%
   filter(name != "Diane", name != "Andrew")
 
-model3.drop <- glm.nb(all.deaths ~ min.pressure.before +  normalized.damage + name.mas.fem + name.mas.fem:min.pressure.before + name.mas.fem:normalized.damage, data = hurricanes2)
-stargazer(model3.drop, type = "text")
+model3_drop <- glm.nb(all_deaths ~ min_pressure_before +  normalized_damage + name_mas_fem + name_mas_fem:min_pressure_before + name_mas_fem:normalized_damage, data = hurricanes2)
+stargazer(model3_drop, type = "text")
+
+
+#### fitted values
+
+pred_count <- predict(model3, type = "response", newdata = hurricanes)
+hurricanes$pred_count <- pred_count
+
+dplyr::select(hurricanes, pred_count, all_deaths) ## use dplyr:: because dplyr package is masked by MASS
+
+ggplot(hurricanes, aes(x = name_mas_fem, y = all_deaths)) + 
+  geom_point(color = "red") +
+  geom_point(aes(y = pred_count), color = "blue")
+
+
+## zoom in 
+ggplot(hurricanes, aes(x = name_mas_fem, y = all_deaths)) + 
+  geom_point(color = "red") +
+  geom_point(aes(y = pred_count), color = "blue") +
+  ylim(0, 275)
+
+### Challenge 
 
 ## predicted counts from original model 3
-mfi.male <- hurricanes
-mfi.fem <- hurricanes
+mfi_male <- hurricanes
+mfi_fem <- hurricanes
 
-mfi.male$name.mas.fem <- 1
-mfi.fem$name.mas.fem <- 11
+mfi_male$name_mas_fem <- 1
+mfi_fem$name_mas_fem <- 11
 
-pp.mfi.male <- predict(model3, type = "response", newdata = mfi.male)
-pp.mfi.male.mean <- mean(pp.mfi.male)
-pp.mfi.male.mean
+pp_mfi_male <- predict(model3, type = "response", newdata = mfi_male)
+pp_mfi_male_mean <- mean(pp_mfi_male)
+pp_mfi_male_mean
 
-pp.mfi.fem <- predict(model3, type = "response", newdata = mfi.fem)
-pp.mfi.fem.mean <- mean(pp.mfi.fem)
-pp.mfi.fem.mean 
+pp_mfi_fem <- predict(model3, type = "response", newdata = mfi_fem)
+pp_mfi_fem_mean <- mean(pp_mfi_fem)
+pp_mfi_fem_mean 
 
 ###  marginal effect - observed value
-pp.mfi.fem.mean  - pp.mfi.male.mean
+pp_mfi_fem_mean  - pp_mfi_male_mean
 
 ### Graph predicted counts
 
 x <- c("Low MFI", "High MFI")
-y <- c(pp.mfi.male.mean, pp.mfi.fem.mean)
+y <- c(pp_mfi_male_mean, pp_mfi_fem_mean)
 graph <- data.frame(x = x, y = y)
 
 ggplot(graph, aes(x = x, y = y, fill = x)) + geom_bar(stat = "identity") +
@@ -295,39 +315,53 @@ ggplot(graph, aes(x = x, y = y, fill = x)) + geom_bar(stat = "identity") +
 
 - Read about Jeremy Freese post and the discussion section for why normalized damage should be logged (https://scatter.wordpress.com/2014/06/18/why-log/)
 - Rerun model 3, this time with the log of normalized damage instead
-- Calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach. 
-- Compare this to the predictions of the previous model
+- Add the fitted values from this model to the scatterplot you made above.
+-  Challenge: Calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach. Compare this to the predictions of the previous model
 
 ```{r}
 
-model3.log <- glm.nb(all.deaths ~ min.pressure.before +  log(normalized.damage) + name.mas.fem + name.mas.fem:min.pressure.before + name.mas.fem:log(normalized.damage), data = hurricanes) 
-#stargazer(model3.log, type = "text")
+model3_log <- glm.nb(all_deaths ~ min_pressure_before +  log(normalized_damage) + name_mas_fem + name_mas_fem:min_pressure_before + name_mas_fem:log(normalized_damage), data = hurricanes) 
+stargazer(model3_log, type = "text")
 
 
-mfi.male.log <- hurricanes
-mfi.fem.log <- hurricanes
+pred_count_log <- predict(model3_log, type = "response", newdata = hurricanes)
+hurricanes$pred_count_log <- pred_count_log
 
-mfi.male.log$name.mas.fem <- 1
-mfi.fem.log$name.mas.fem <- 11
 
-pp.mfi.male.log <- predict(model3.log, type = "response", newdata = mfi.male.log)
-mean.pp.mfi.male.log <- mean(pp.mfi.male.log)
-mean.pp.mfi.male.log 
+dplyr::select(hurricanes, pred_count, pred_count_log, all_deaths) ## use dplyr:: because dplyr package is masked by MASS
 
-pp.mfi.fem.log <- predict(model3.log, type = "response", newdata = mfi.fem.log)
-mean.pp.mfi.fem.log <- mean(pp.mfi.fem.log)
-mean.pp.mfi.fem.log 
+ggplot(hurricanes, aes(x = name_mas_fem, y = all_deaths)) + 
+  geom_point(color = "red") +
+  geom_point(aes(y = pred_count), color = "blue") +
+  geom_point(aes(y = pred_count_log), color = "dark green") +
+  ylim(0, 275)
+
+
+### Challenge
+mfi_male_log <- hurricanes
+mfi_fem_log <- hurricanes
+
+mfi_male_log$name_mas_fem <- 1
+mfi_fem_log$name_mas_fem <- 11
+
+pp_mfi_male_log <- predict(model3_log, type = "response", newdata = mfi_male_log)
+mean_pp_mfi_male_log <- mean(pp_mfi_male_log)
+mean_pp_mfi_male_log 
+
+pp_mfi_fem_log <- predict(model3_log, type = "response", newdata = mfi_fem_log)
+mean_pp_mfi_fem_log <- mean(pp_mfi_fem_log)
+mean_pp_mfi_fem_log 
 
 ###  marginal effect 
-mean.pp.mfi.fem.log  - mean.pp.mfi.male.log 
+mean_pp_mfi_fem_log  - mean_pp_mfi_male_log 
 
 
-x.log <- c("Low MFI", "High MFI")
-y.log <- c(mean.pp.mfi.male.log , mean.pp.mfi.fem.log)
-graph.log <- data.frame(x = x.log, y = y.log)
-graph.log 
+x_log <- c("Low MFI", "High MFI")
+y_log <- c(mean_pp_mfi_male_log , mean_pp_mfi_fem_log)
+graph_log <- data.frame(x = x_log, y = y_log)
+graph_log 
 
-ggplot(graph.log, aes(x = x.log, y = y.log, fill = x)) + geom_bar(stat = "identity") +
+ggplot(graph_log, aes(x = x_log, y = y_log, fill = x)) + geom_bar(stat = "identity") +
   ylab("Number of Deaths")
 
 

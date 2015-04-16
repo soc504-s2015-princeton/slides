@@ -1,5 +1,5 @@
 ---
-title: "Lab 11: Hurricanes"
+title: "Lab 11: Hurricanes Solutions"
 date: "April 20, 2015"
 output: html_document
 ---
@@ -27,7 +27,6 @@ Topics covered in this lab include:
     + Take the log of the outcome  
     + How would we write this? $log(\mu_i) = x_i^\prime \beta$  
     + Ok, now if we just wanted the left side in terms of $\mu$? $\mu_i=e^{x_i^\prime\beta}$  
-* In the final model, an exponentiated regression coefficient  $e^{\beta_j}$ represents a multiplicative effect of the $j^{th}$ predictor on the mean  
 * Negative binomial regression
     + Starts with a standard Poisson model and adds a random effect (theta) to represent unobserved heterogeneity 
 
@@ -58,59 +57,60 @@ download.file(url = "http://www.pnas.org/content/suppl/2014/05/30/1402786111.DCS
               destfile = "data/hurricane-raw-data.xlsx")
 ```
 
-(@) **Next, read the correct sheet of the xlsx spreadsheet into R and save it with the name `hurricanes.raw`.** 
+(@) **Next, read the correct sheet of the xlsx spreadsheet into R and save it with the name `hurricanes_raw`.** 
 
 ```{r}
 library(xlsx)
-hurricanes.raw <- read.xlsx(file = "data/hurricane-raw-data.xlsx",
+hurricanes_raw <- read.xlsx(file = "data/hurricane-raw-data.xlsx",
                            sheetName = "Archival Study")
 ```
 
 Now, thinking about Roger Peng's pipeline picture, we are going to go from the "measured data" to the "analytic data".  This is sometimes called data cleaning.  It can be annoying, but it is neccesary.
 
-(@) **Convert `hurricanes.raw` to a tbl. But, something is weird with the tbl. Notice all the "Notes" at the end; you can also see these directly in the Excel spreadsheet.  Get rid of the "Notes".  And, give the variables sensible and consistent names that follow Google R Style Guidelines (Naming variables in an art; try to get good at it).  Save this new cleaned up data.frame as `hurricanes`. Putting in all this work up front will actually make this analysis much easier (and more fun).**
+(@) **Convert `hurricanes_raw` to a tbl. But, something is weird with the tbl. Notice all the "Notes" at the end; you can also see these directly in the Excel spreadsheet.  Get rid of the "Notes".  And, give the variables sensible and consistent names that follow Google R Style Guidelines (Naming variables in an art; try to get good at it).  Save this new cleaned up data.frame as `hurricanes`. Putting in all this work up front will actually make this analysis much easier (and more fun).**
 
 ```{r}
 library(dplyr)
-hurricanes <- tbl_df(hurricanes.raw)
+library(ggplot2)
+hurricanes <- tbl_df(hurricanes_raw)
 hurricanes <- filter(hurricanes, !is.na(Name))
 hurricanes <- rename(hurricanes, name = Name)
 hurricanes <- rename(hurricanes, year = Year)
-hurricanes <- rename(hurricanes, name.mas.fem = MasFem)
-hurricanes <- rename(hurricanes, min.pressure.before = MinPressure_before) 
-hurricanes <- rename(hurricanes, min.pressure.updated.2014 = Minpressure_Updated.2014) 
+hurricanes <- rename(hurricanes, name_mas_fem = MasFem)
+hurricanes <- rename(hurricanes, min_pressure_before = MinPressure_before) 
+hurricanes <- rename(hurricanes, min_pressure_updated_2014 = Minpressure_Updated.2014) 
 hurricanes <- rename(hurricanes, female = Gender_MF) # Note: think about why I did it this way
 hurricanes <- rename(hurricanes, category = Category) 
-hurricanes <- rename(hurricanes, all.deaths = alldeaths) 
-hurricanes <- rename(hurricanes, normalized.damage = NDAM) 
-hurricanes <- rename(hurricanes, elapsed.years = Elapsed.Yrs) 
+hurricanes <- rename(hurricanes, all_deaths = alldeaths) 
+hurricanes <- rename(hurricanes, normalized_damage = NDAM) 
+hurricanes <- rename(hurricanes, elapsed_years = Elapsed.Yrs) 
 hurricanes <- rename(hurricanes, source = Source) 
-hurricanes <- rename(hurricanes, name.mas.fem.z = ZMasFem) 
-hurricanes <- rename(hurricanes, normalized.damage.z = ZNDAM) 
+hurricanes <- rename(hurricanes, name_mas_fem_z = ZMasFem) 
+hurricanes <- rename(hurricanes, normalized_damage_z = ZNDAM) 
 ```
 
 ```{r}
 # almost done but we have the problem of `ZMinPressure_A`
-# is that the z score of min.pressure.before or min.pressure.updated.2014?
-z.score.updated <- (hurricanes$min.pressure.updated.2014 - mean(hurricanes$min.pressure.updated.2014))/sd(hurricanes$min.pressure.updated.2014)
+# is that the z score of min_pressure_before or min_pressure_updated_2014?
+z_score_updated <- (hurricanes$min_pressure_updated_2014 - mean(hurricanes$min_pressure_updated_2014))/sd(hurricanes$min_pressure_updated_2014)
 
-z.score.updated - hurricanes$ZMinPressure_A
+z_score_updated - hurricanes$ZMinPressure_A
 
 # ok these are different
 
-z.score.before <- (hurricanes$min.pressure.before - mean(hurricanes$min.pressure.before))/sd(hurricanes$min.pressure.before)
+z_score_before <- (hurricanes$min_pressure_before - mean(hurricanes$min_pressure_before))/sd(hurricanes$min_pressure_before)
 
-z.score.before - hurricanes$ZMinPressure_A
-all((z.score.before - hurricanes$ZMinPressure_A) < 0.00001)
+z_score_before - hurricanes$ZMinPressure_A
+all((z_score_before - hurricanes$ZMinPressure_A) < 0.00001)
 
 # Why did I subtract them and check if they are less than 0.00001?
 # This has to do with how the computer stores numbers.
 # To learn more read this from the R FAQ: http://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f
 # Or watch this part Martin Mächler's Keynote Speech from useR 2014 "Good Practices in R Programming": https://www.youtube.com/watch?v=ytbX-T1A8wE?#t=43m00s
 
-# ok the right answer is that ZMinPressure_A is the z.score of min.pressure.before
+# ok the right answer is that ZMinPressure_A is the z.score of min_pressure_before
 
-hurricanes <- rename(hurricanes, min.pressure.before.z = ZMinPressure_A) 
+hurricanes <- rename(hurricanes, min_pressure_before_z = ZMinPressure_A) 
 
 # Note they stored the Z score of what appears to be the old measure of MinPressure.  I'm not sure what is going on here.  This is a good example of why you want to store normalized data.
 ```
@@ -147,18 +147,21 @@ yes
 (@) **Make a plot that shows the death toll as a function of the femininity of the name of the hurricane.  Include a loess smoother on the plot.**
 
 ```{r}
-library(ggplot2)
-
 ```
 
 (@) **In words, what would you conclude from this graph?**
 
-
+To foreshadow what is coming in the future, we are going to try to account for the fact that the storms with feminine names might be different from the storms of masculine names.  This is what researchers sometimes call "controlling".
 
 (@) **Make a plot that shows how the femininity of hurrican names has changed over time.  The naming convention whereby hurricane names alternated between male and female was implimented in 1979.  Please include this information in the graph.**
 
 ```{r}
-p <- ggplot(hurricanes, aes(x=year, y=name.mas.fem))
+p <- ggplot(hurricanes, aes(x=year, y=name_mas_fem))
+p + geom_point() +
+  geom_vline(xintercept = 1979)
+  
+# we can also clean this up a bit
+p <- ggplot(hurricanes, aes(x=year, y=name_mas_fem))
 p + geom_point() +
   geom_vline(xintercept=1979, linetype="dotted") +
   scale_y_continuous(name="Femininity of hurricane name", limits=c(1, 11), breaks=c(1, 3, 5, 7, 9, 11)) +
@@ -186,23 +189,24 @@ p + geom_point() +
 (@) **Make a plot showing the distribution of deaths for storms of each category.**
 
 ```{r}
-
 ```
 
 
 ## Practice with Negative binomial regression 
 
-- Run a negative binomial regression for Model 1 of the deaths on minimized pressure (use "min.pressure.before", not "min.pressure.updated.2014")
+- Run a negative binomial regression for Model 1 of the deaths on minimized pressure (use "min_pressure_before", not "min_pressure_updated_2014")
 - For model 2, add Normalized damage and Mas-fem index (MFI)
 - For model 3, add the interaction of MFI with minimum pressure and also the interaction of MFI with normalized damage.
 - Freese argues "The significant coefficients in their key model both become nonsignificant and presumably nonpublishable (p > .25) if we drop only two hurricanes: Andrew and Diane (which killed 200 people in 1955)." Verify this for yourself in model 3.
-- Returning to the previous model 3 (with all 92 hurricanes), calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach. 
-- Graph the results
+- Returning to the original model 3 (with all 92 hurricanes), make a scatter plot of actual death counts vs. the predicted (fitted.values) counts.
+- Calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach and graph the results.
 
 
-```{r}
+```{r, eval=FALSE}
 #install.packages("MASS")
 library(MASS) ## use this package to run your regression (see http://www.ats.ucla.edu/stat/r/dae/nbreg.htm for more info)
+library(stargazer)
+
 ```
 
 
@@ -210,10 +214,11 @@ library(MASS) ## use this package to run your regression (see http://www.ats.ucl
 
 - Read about Jeremy Freese post and the discussion section for why normalized damage should be logged (https://scatter.wordpress.com/2014/06/18/why-log/)
 - Rerun model 3, this time with the log of normalized damage instead
-- Calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach. 
-- Compare this to the predictions of the previous model
+- Add the fitted values from this model to the scatterplot you made above.
+-  Challenge: Calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach. Compare this to the predictions of the previous model
 
 ```{r}
+
 
 ```
 
