@@ -347,7 +347,8 @@ ggplot(graph.log, aes(x = x.log, y = y.log, fill = x)) + geom_bar(stat = "identi
 
 http://bit.do/soc504_lab
 
-
+## To see html version
+http://htmlpreview.github.io/?https://raw.githubusercontent.com/soc504-s2015-princeton/slides/master/32-lab-hurricanes/32-lab-hurricanes-solutions.html
 
 #### Please don't delete this; it is helpful for debugging
 
