@@ -1,5 +1,5 @@
 ---
-title: "Lab 11: Hurricanes Solutions"
+title: "Lab 11: Hurricanes"
 date: "April 20, 2015"
 output: html_document
 ---
