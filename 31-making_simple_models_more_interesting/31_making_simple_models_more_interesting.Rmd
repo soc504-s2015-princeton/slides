@@ -13,8 +13,8 @@ Logisitcs:
 
 - experience with lintR?
 - Gelman and Hill book
-- projects are due Sunday, May 26 at midnight
-- you will present your projects to your peers Monday, May in lab
+- projects are due Sunday, April 26 at midnight
+- you will present your projects to your peers Monday, April 27 in lab
 
 questions?
 
@@ -23,7 +23,7 @@ questions?
 At the end of this class you will be able to
 
 - explain how linear transformations of predictors to aid interpreation of coefficients
-- explain how nonlinear transformations of predictors can change improve model fit and fundementally change the model we are using
+- explain how nonlinear transformations of predictors can improve model fit and fundementally change the model we are using
 - explain how to look for u-shaped relationships
 
 # review of GLM
@@ -67,7 +67,7 @@ gapminder
 
 Hypothesis: The relationship between gdp per capita and life expectancy was different in contries in Asia than other countries in 1952.
 
-$$\widehat{lifeexp}_i = \beta_0 + \beta_1 gdppercap_i + \beta_2 Asia_i + \beta_3 + \beta_3 gdppercap_i * Asia_i$$
+$$\widehat{lifeexp}_i = \beta_0 + \beta_1 gdppercap_i + \beta_2 Asia_i + \beta_3 gdppercap_i * Asia_i$$
 
 Vote: Do you think this is correct?
 
@@ -114,8 +114,11 @@ Difference in relationship between gdp per capita and life expectancy for Asian 
 Now let's center the predictors around their means.
 
 ```{r}
-data_to_fit <- mutate(data_to_fit, gdpPercap_centered = gdpPercap - mean(gdpPercap))
-fit_centered <- lm(lifeExp ~ gdpPercap_centered + asian + gdpPercap_centered:asian, data = data_to_fit)
+data_to_fit <- mutate(data_to_fit, 
+                      gdpPercap_centered = gdpPercap - mean(gdpPercap))
+fit_centered <- lm(lifeExp ~ 
+                     gdpPercap_centered + asian + gdpPercap_centered:asian,
+                   data = data_to_fit)
 fit_centered_df <- tidy(fit_centered)
 print(fit_centered_df)
 ```
