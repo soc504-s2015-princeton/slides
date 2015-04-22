@@ -11,6 +11,8 @@ output:
 
 Logisitcs:
 
+- science in action
+- schedule for Soc 500, what do you recommend?
 - Gelman and Hill book
 - projects are due Sunday, April 26 at midnight
 - you will present your projects to your peers Monday, April 27 in lab
