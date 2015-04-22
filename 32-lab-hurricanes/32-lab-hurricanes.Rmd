@@ -1,5 +1,5 @@
 ---
-title: "Lab 11: Hurricanes Solutions"
+title: "Lab 11: Hurricanes"
 date: "April 20, 2015"
 output: html_document
 ---
@@ -198,7 +198,7 @@ p + geom_point() +
 - For model 2, add Normalized damage and Mas-fem index (MFI)
 - For model 3, add the interaction of MFI with minimum pressure and also the interaction of MFI with normalized damage.
 - Freese argues "The significant coefficients in their key model both become nonsignificant and presumably nonpublishable (p > .25) if we drop only two hurricanes: Andrew and Diane (which killed 200 people in 1955)." Verify this for yourself in model 3.
-- Returning to the original model 3 (with all 92 hurricanes), make a scatter plot of actual death counts vs. the predicted (fitted.values) counts.
+- Returning to the original model 3 (with all 92 hurricanes), make a scatter plot of predicted (fitted.values) counts vs. the MFI. Add another layer in a difference color with the actual death counts.
 - Challenge: Calculate the predicted counts of fatalities for a MFI score of 1 and 11. Use the observed value approach and graph the results.
 
 
