@@ -153,6 +153,7 @@ https://commons.wikimedia.org/wiki/File:Archives_of_American_Art_-_Willard_Newma
 - Causal inference with Yu Xie (maybe)
 - OPR computing workshops
 - Politics computing workshops
+- self study
 - others?
 
 # commandments
