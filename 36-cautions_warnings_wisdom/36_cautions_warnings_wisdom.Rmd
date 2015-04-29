@@ -150,6 +150,9 @@ https://commons.wikimedia.org/wiki/File:Archives_of_American_Art_-_Willard_Newma
 - Multilevel models with German Rodriguez
 - Survival analysis with German Rodriguez
 - Text as data with Brandon Stewart
+- Causal inference with Yu Xie (maybe)
+- OPR computing workshops
+- Politics computing workshops
 - others?
 
 # commandments
